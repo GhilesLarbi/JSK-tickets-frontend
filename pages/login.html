@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSK: Login</title>
+
+    <link rel="stylesheet" href="../styles/fontawesome.css">
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/login.css">
+
+
+    <script src="../scripts/general.js" defer></script>
+    <script src="../scripts/login.js" defer></script>
+</head>
+
+<body>
+
+    <header class="primay-header">
+        <div class="container primary-header_container">
+            <a href="../index.html" class="logo">LOGO</a>
+
+            <div class="primary-header-right">
+                <div class="switch-theme-container">
+                  <input class="switch-theme-btn" type="checkbox" name="switch theme">
+                  <div class="switch-theme-icons">
+                    <i class="moon-icon fa-solid fa-moon"></i>
+                    <i class="sun-icon fa-solid fa-sun"></i>
+                  </div>
+                </div>
+
+                <div class="primary-header-user">
+                <div class="seperator"></div>
+                  <a href="#" class="primary-header-tickets">
+                    <i class="fa-solid fa-ticket-simple"></i>
+                  </a>
+                  <a href="#" class="primary-header-account">
+                    <i class="fa-solid fa-user"></i>
+                  </a>
+                </div>
+        
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section section_forms">
+            <div class="container container_wrappers">
+                <div class="form-wrapper form-wrapper_login form-wrapper_selected">
+                    <div class="left-side">
+                        <p class="text-accent">Welcome back</p>
+                        <h1 class="text-heading">LOG IN IN YOUR ACCOUNT</h1>
+                        <p class="text-body">Access you account</p>
+                        <p class="input-desc">Email</p>
+                        <div class="input login-email-input">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="exemple@exemple.com">
+                        </div>
+                        <p class="input-desc">Password</p>
+                        <div class="input login-password-input">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" placeholder="enter password">
+                        </div>
+                        <div class="form-options">
+                            <div class="remamber-me">
+                                <input type="checkbox" class="checkbox" id="remamber-me" checked="true">
+                                <label for="remamber-me">Remember Me</label>
+                            </div>
+
+                            <a href="#" class="forget-password">Forget Password?</a>
+                        </div>
+                        <button class="btn btn_primary">Login <i class="fa-solid fa-arrow-right"></i></button>
+
+                        <div class="link-text">
+                            <p>Not a memeber? </p>
+                            <a class="register-link" href="#">Register now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-wrapper form-wrapper_signup">
+                    <div class="left-side">
+                        <p class="text-accent">Get Started</p>
+                        <h1 class="text-heading">CREATE YOUR ACCOUNT</h1>
+                        <p class="text-body">Follow the easy steps</p>
+                        <p class="input-desc">Email</p>
+                        <div class="input signup-email-input">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="exemple@exemple.com">
+                        </div>
+                        <p class="input-desc">User name</p>
+                        <div class="input signup-username-input">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="John Doe">
+                        </div>
+                        <p class="input-desc">Password</p>
+                        <div class="input signup-password-input">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" placeholder="enter password">
+                        </div>
+                        
+                        <button class="btn btn_primary">Next <i class="fa-solid fa-arrow-right"></i></button>
+
+                        <div class="link-text">
+                            <p>Already got an account? </p>
+                            <a class="login-link" href="#">Login now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-wrapper form-wrapper_email">
+                    <div class="left-side">
+                        <p class="text-accent">Get Started</p>
+                        <h1 class="text-heading">Confirm your email</h1>
+                        <p class="text-body">Please check your email inbox for a message from us and follow the link provided to confirm your email address.</p>
+
+                        <div class="link-text">
+                            <p>Didn't get any email? </p>
+                            <a class="resend-link" href="#">Resend</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-wrapper form-wrapper_identity">
+                    <div class="left-side">
+                        <p class="text-accent">One step left</p>
+                        <h1 class="text-heading">Confirm your identity</h1>
+                        <p class="text-body">Please fill up those fields</p>
+                        <p class="input-desc">Phone number</p>
+                        <div class="input identity-phone-input">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="text" placeholder="+213 987654321">
+                        </div>
+                        <p class="input-desc">National ID</p>
+                        <div class="input identity-national-number-input">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" placeholder="1234567890">
+                        </div>
+                        <button class="btn btn_primary">Create account <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+</body>
+
+</html>

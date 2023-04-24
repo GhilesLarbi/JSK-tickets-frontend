@@ -1,0 +1,153 @@
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--clr-primary);
+    z-index: -1;
+}
+
+
+.switch-theme-container {
+    background-color: var(--clr-white-o1);
+}
+
+
+.primary-header-user > a {
+  color: var(--clr-white-o9);
+  background-color: var(--clr-white-o1);
+  /* outline: .6rem solid var(--clr-white-o1); */
+}
+
+.seperator {
+    background-color: var(--clr-white);
+}
+
+
+/* ################# FORMS SECTIONS ################### */
+
+.container_wrappers {
+    display: grid;
+    gap: 1rem;
+}
+
+.form-wrapper {
+    grid-column: 1;
+    grid-row: 1;
+    height: 100%;
+    margin-bottom: 3rem;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12rem;
+    padding: 6rem 0;
+}
+
+.form-wrapper_selected {
+    z-index: 1;
+}
+
+.left-side {
+    --transition-delay : .3s;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility var(--transition-delay), opacity var(--transition-delay);
+} 
+
+.form-wrapper_selected  .left-side{
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.form-wrapper .text-accent {
+    margin-bottom: 1rem;
+}
+
+.form-wrapper .text-heading {
+    margin-bottom: 1rem;
+}
+
+
+.form-wrapper .text-body {
+    margin-bottom: 3rem;
+}
+
+
+
+.input-desc {
+    opacity: .3;
+    margin-bottom: 1rem;
+}
+
+.form-wrapper .input {
+    margin-bottom: 2rem;
+}
+
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+
+.remamber-me {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.remamber-me label {
+    cursor: pointer;
+    opacity: .5;
+    /* font-size: var(--fz-300); */
+    padding-left: 1rem;
+    user-select: none;
+}
+
+
+.forget-password {
+    opacity: .3;
+    /* font-size: var(--fz-300); */
+}
+
+
+.form-wrapper .btn {
+    margin-bottom: 4rem;
+    width: 100%;
+}
+
+.link-text {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.link-text p {
+    opacity: .5;
+}
+
+.link-text a {
+    color: var(--clr-primary);
+    background-color: var(--clr-primary-o1);
+    padding: .2rem .6rem;
+    border-radius: .4rem;
+    border: 1px solid var(--clr-primary-o1);
+}
+
+/* ############### Login ############# */
+
+/* ############### Signup ############# */
+.form-wrapper_signup .btn {
+    margin-top: 6rem;
+}
+
+/* ################ Confirm identy ############## */
+.form-wrapper .btn {
+    margin-top: 6rem;
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSK: Reservation</title>
+    <link rel="stylesheet" href="../styles/fontawesome.css">
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/reservation.css">
+
+
+    <script src="../scripts/general.js" defer></script>
+    <script src="../scripts/reservation.js" defer></script>
+</head>
+
+<body>
+
+
+    <header class="primay-header">
+        <div class="container primary-header_container">
+            <div class="primary-header-left">
+
+                <a href="../index.html" class="logo">LOGO</a>
+                <nav class="primary-nav">
+                    <ul>
+                        <li>
+                            <a class="nav-link nav-link_selected" href="#">Home</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-star"></i>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#">Tickets</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-star"></i>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="primary-header-right">
+                <div class="switch-theme-container">
+                    <input class="switch-theme-btn" type="checkbox" name="switch theme">
+                    <div class="switch-theme-icons">
+                        <i class="moon-icon fa-solid fa-moon"></i>
+                        <i class="sun-icon fa-solid fa-sun"></i>
+                    </div>
+                </div>
+                <div class="seperator"></div>
+                <a href="login.html?page=login" class="primary-header-login-btn btn btn_primary btn_small">Login
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+                <div class="primary-header-user">
+                    <a href="#" class="primary-header-tickets">
+                        <i class="fa-solid fa-ticket-simple"></i>
+                    </a>
+                    <a href="#" class="primary-header-account">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="left-side">
+                    <div class="stadium-wrapper">
+                        <svg id="stadium-svg" version="1.1" viewBox="0 0 573 360" xmlns="http://www.w3.org/2000/svg">
+                            <path id="stadium-bg" rx="0" ry="0"
+                                d="m286.5 0c158.12 0 286.5 80.655 286.5 180s-128.38 180-286.5 180-286.5-80.655-286.5-180 128.38-180 286.5-180zm0 103c-67.61 0-122.5 34.503-122.5 77s54.89 77 122.5 77 122.5-34.503 122.5-77-54.89-77-122.5-77z" />
+                            <g id="stadium-bleachers">
+                                <path class="btype btype_vip btype_selected" data-type="vip"
+                                    d="m276.5 103.25c-34.915 1.7758-65.713 12.771-86.215 29.105-4.3174 3.4396-10.095 3.0149-13.334-1.4584l-61.186-84.501c-3.2391-4.4733-1.8545-10.093 3.174-12.376 44.609-20.256 98.855-32.643 157.56-33.91 5.5214-0.11923 14.477-0.11923 19.998 2.63e-6 58.719 1.268 112.98 13.66 157.59 33.923 5.0283 2.2837 6.4128 7.9038 3.1739 12.377l-61.183 84.5a10.581 10.581 0 0 1-5.8886 8.0988c-27.974-22.979-58.777-33.978-93.702-35.757-5.5151-0.28097-14.476-0.28149-19.991-9.9e-4z" />
+                                <path class="btype btype_rb" data-type="rb"
+                                    d="m423.38 93.204-27.3 37.704a10.156 10.156 0 0 1-5.8876 8.0978l-1.485-1.383c13.122 15.029 17.429 23.496 19.276 32.446 1.1142 5.3996 1.1142 14.462 8.8e-4 19.862-1.8557 9.0006-6.197 17.513-12.564 25.264-3.5033 4.2649-6.0769 6.6568-5.2159 5.7991l0.025-2e-3 33.16 45.798c3.239 4.4734 9.7322 5.837 14.329 2.7762 31.726-21.127 52.396-48.875 56.101-79.591 0.66099-5.4798 0.66099-14.472-2e-5 -19.952-3.7055-30.718-24.379-58.469-56.11-79.596-4.5966-3.0604-11.09-1.6965-14.329 2.7769z" />
+                                <path class="btype btype_rt" data-type="rt"
+                                    d="m457.23 46.457-22.118 30.547c-3.239 4.4733-1.9972 10.362 2.5994 13.423 31.732 21.128 52.405 48.879 56.11 79.597 0.66103 5.4798 0.66102 14.472 0 19.952-3.7051 30.715-24.375 58.464-56.101 79.591-4.5963 3.0609-5.8381 8.9501-2.5992 13.423l22.119 30.548c3.239 4.4734 9.8898 6.1359 14.76 3.5317 57.988-31.008 96.129-76.234 100.57-127.08 0.48033-5.5002 0.48033-14.475-1e-5 -19.975-4.441-50.852-42.585-96.081-100.58-127.09-4.8703-2.6038-11.521-0.941-14.76 3.5323z" />
+                                <path class="btype btype_lb" data-type="lb"
+                                    d="m135.31 90.41c-31.746 21.13-52.428 48.888-56.135 79.614-0.661 5.4798-0.661 14.472 2.2e-5 19.952 3.7069 30.729 24.394 58.49 56.144 79.621 4.5972 3.0596 11.091 1.695 14.33-2.7784l27.308-37.716c3.2389-4.4734 6.4823-7.5438 7.2235-6.8358-13.056-15.009-17.331-23.432-19.17-32.335-1.1152-5.3993-1.1151-14.462-8.1e-4 -19.861 1.8475-8.9523 6.1562-17.421 12.47-25.138 3.4948-4.2718 6.1222-6.7219 5.33-5.9331l-33.17-45.81c-3.239-4.4733-9.7328-5.8377-14.33-2.7779z" />
+                                <path class="btype btype_lt" data-type="lt"
+                                    d="m101.04 42.911c-58.009 31.008-96.167 76.243-100.61 127.11-0.48032 5.5002-0.48032 14.475 3.41e-6 19.975 4.4418 50.863 42.6 96.101 100.62 127.11 4.8707 2.603 11.522 0.93953 14.761-3.5338l22.116-30.545c3.239-4.4733 1.9966-10.361-2.6005-13.421-31.75-21.131-52.437-48.891-56.144-79.621-0.66102-5.4798-0.66102-14.472-1e-6 -19.952 3.7065-30.726 24.39-58.484 56.135-79.614 4.597-3.0598 5.8393-8.9482 2.6004-13.422l-22.117-30.546c-3.2389-4.4734-9.89-6.1365-14.76-3.533z" />
+                                <path class="btype btype_bb" data-type="bb"
+                                    d="m382.76 227.63c-20.521 16.34-51.324 27.34-86.247 29.116-5.5151 0.28048-14.476 0.28048-19.991 0-34.916-1.7757-65.716-12.771-86.224-29.105-4.3178-3.439-10.096-3.0137-13.335 1.4597l-27.308 37.716c-3.2389 4.4734-2.0236 10.406 2.8543 12.995 33.821 17.95 76.848 29.259 123.99 30.667 5.5202 0.16483 14.477 0.16483 19.997-1e-5 47.165-1.4084 90.211-12.727 124.03-30.691 4.8771-2.5903 6.0919-8.5246 2.8534-12.998l-27.29-37.698c-3.2385-4.4737-9.0174-4.9003-13.336-1.4618z" />
+                                <path class="btype btype_bt" data-type="bt"
+                                    d="m420.53 279.79c-33.828 17.964-76.872 29.283-124.03 30.692-5.5202 0.16487-14.477 0.16486-19.997 2e-5 -47.144-1.4078-90.173-12.717-123.99-30.667-4.8779-2.5889-11.344-1.2691-14.583 3.2043l-22.148 30.588c-3.239 4.4733-1.8544 10.093 3.1741 12.376 44.609 20.256 98.855 32.643 157.56 33.91 5.5214 0.11923 14.477 0.11923 19.998-1e-5 58.719-1.2681 112.98-13.661 157.59-33.924 5.0283-2.2837 6.4125-7.9036 3.173-12.377l-22.162-30.602c-3.2394-4.473-9.7058-5.7918-14.583-3.2017z" />
+                            </g>
+                        </svg>
+
+                    </div>
+                    <div class="stadium-filters">
+                        <div class="stadium-filter">
+                            <p>Price</p>
+                            <div class="price-range">
+                                <input type="range">
+                                <!-- list="markers"> -->
+                            </div>
+                            <datalist id="markers">
+                                <option value="0" label="0"></option>
+                                <option value="25"></option>
+                                <option value="50"></option>
+                                <option value="75"></option>
+                                <option value="100"></option>
+                            </datalist>
+                        </div>
+
+                        <div class="stadium-filter">
+                            <p>Number of tickets</p>
+                            <form class="ticket-numbers">
+                                <div class="ticket-number">
+                                    <input type="radio" name="number" value="1" id="nticket-1">
+                                    <label for="nticket-1">1</label>
+                                </div>
+
+                                <div class="ticket-number">
+                                    <input type="radio" name="number" value="2" id="nticket-2">
+                                    <label for="nticket-2">2</label>
+                                </div>
+
+                                <div class="ticket-number">
+                                    <input type="radio" name="number" value="3" id="nticket-3">
+                                    <label for="nticket-3">3</label>
+                                </div>
+
+                                <div class="ticket-number">
+                                    <input type="radio" name="number" value="4" id="nticket-4">
+                                    <label for="nticket-4">4</label>
+                                </div>
+
+                                <div class="ticket-number">
+                                    <input type="radio" name="number" value="5" id="nticket-5">
+                                    <label for="nticket-5">5</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-side">
+                    <div class="game-wrapper">
+                        <p class="game-date">MAR 24, 19:30</p>
+                        <div class="game-content">
+                            <div class="game-team">
+                                <img src="../images/test/jsk.svg" alt="JSK logo">
+                                <p>jsk</p>
+                            </div>
+                            <div class="game-center">
+                                <p>Africa cup</p>
+                                <p>semi-final</p>
+                            </div>
+                            <div class="game-team">
+                                <img src="../images/test/belouizdad.svg" alt="belouizdad logo">
+                                <p>crb</p>
+                            </div>
+                        </div>
+                        <a href="#">Select other match <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="ticket-card">
+
+                        <div class="ticket-element">
+                            <div class="ticket-element-text">
+                                <h2><i class="fa-solid fa-registered"></i>VIP</h2>
+                                <p>bleacher</p>
+                            </div>
+                            <div>
+                                <button class="show-3d-btn">
+                                   <i class="fa-solid fa-maximize"></i> 
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ticket-element">
+                            <div class="ticket-element-text">
+                                <h2><i class="fa-solid fa-ticket"></i>01</h2>
+                                <p>Number of tickets</p>
+                            </div>
+                            <div class="control-ticket-number-wrapper">
+                                <button class="control-ticket-number-btn">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <button class="control-ticket-number-btn">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ticket-element">
+                            <div class="ticket-element-text">
+                                <h2><i class="fa-solid fa-wallet"></i>2 000</h2>
+                                <p>Total price</p>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <button class="btn btn_primary">continue <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
