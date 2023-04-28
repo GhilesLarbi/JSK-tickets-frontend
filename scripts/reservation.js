@@ -75,7 +75,8 @@ async function init() {
 
 
     const buyTicketBtnElm = document.querySelector(".buy-ticket-btn")
-    buyTicketBtnElm.addEventListener("click", async () => {
+    buyTicketBtnElm.addEventListener("click", async (e) => {
+        e.preventDefault()
         
         if (!selectedGameId) return
         if (!selectedBleacher) return
@@ -86,11 +87,16 @@ async function init() {
             method : "POST",
             body : {
                 gameId : selectedGameId,
-                bleacherType : selectedBleacher.type
+                bleacherType : selectedBleacher.type,
+                quantity : 1,
+                successUrl : "http://localhost:5500/index.html",
+                cancelUrl : "http://localhost:5500/pages/reservation.html?gameId=3"
             }
         })
 
         console.log(res)
+        
+        if (res.success === true) window.location.href = res.data.payUrl
     })
 
 }
