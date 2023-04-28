@@ -162,3 +162,5 @@ createAccountBtnElm.addEventListener("click", async (e) => {
     
     window.location.href = window.location.origin
 })
+
+APP.init(()=>{})

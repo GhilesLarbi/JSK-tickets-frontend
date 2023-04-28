@@ -15,6 +15,9 @@ body::before {
     z-index: -1;
 }
 
+.primary-header {
+    background-color: transparent;
+}
 
 .primary-header_container {
     display: grid;
@@ -119,34 +122,28 @@ body::before {
     width: 30%;
 }
 
+.stadium-filter sub {
+    font-size: .8em;
+}
 
 .price-range {
     isolation: isolate;
     position: relative;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
-.price-range::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -70%);
-    width: 100%;
-    height: .8rem;
-    z-index: -1;
-    background-color: var(--clr-accent);
-    border-radius: 100rem;
-    user-select: none;
-    pointer-events: none;
+.price-range input {
+    flex-grow: 1;
 }
 
-.price-range::after {
-    content: attr(value);
-}
-
-.stadium-filter input[type="range"] {
-    width: 100%;
-    appearance: none;
+.price-range output {
+    width: 2rem;
+    color: var(--clr-white);
+    opacity: .5;
 }
 
 
@@ -211,11 +208,36 @@ body::before {
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
+    
+    position: relative;
 }
 
 
-.game-date {
+.game-wrapper_empty > *:not(.loading-icon){
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
 
+.game-wrapper_empty .loading-icon {
+    position: absolute;
+    display: flex;
+}
+
+.game-wrapper_err>*:not(.game-err, a) {
+    display: none;
+}
+
+.game-err {
+    margin-top: 2rem;
+    font-weight: var(--fw-medium);
+    opacity: .3;
+    
+    display: none;
+}
+
+.game-wrapper_err .game-err {
+    display: block;
 }
 
 
@@ -284,18 +306,18 @@ body::before {
     border-bottom: 2px solid var(--clr-primary-o1);
 }
 
-.ticket-element-text h2 {
-    font-size: var(--fz-700);
-    font-weight: var(--fw-bold);
-    margin-bottom: .4rem;
+
+.ticket-element-title {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     gap: 1rem;
     opacity: .8;
+    font-size: var(--fz-700);
+    font-weight: var(--fw-bold);
+    margin-bottom: .4rem;
 }
 
-.ticket-element-text h2 i {
+.ticket-element-title  i {
     color: var(--clr-primary);
     font-size: var(--fz-500);
     opacity: .8;

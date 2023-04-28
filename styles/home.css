@@ -32,6 +32,10 @@
     margin-bottom: 6.4rem;
 }
 
+.hero-text .btn {
+    width: fit-content;
+}
+
 
 .sponsors {
     width: fit-content;
@@ -115,9 +119,6 @@
     justify-items: center;
 }
 
-.next-game_empty .next-game-content {
-    display: none;
-}
 
 .next-game-content {
     grid-column: 1;
@@ -130,6 +131,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.next-game_empty .next-game-content>*:not(.loading-icon) {
+    display: none;
+}
+
+.next-game_empty .loading-icon {
+    display: flex;
 }
 
 .counter {
@@ -304,10 +313,6 @@
 }
 
 
-.ticket_empty .ticket-content {
-    display: none;
-}
-
 .ticket-bg {
     grid-row: 1;
     grid-column: 1;
@@ -335,6 +340,15 @@
     align-items: center;
 }
 
+
+.ticket_empty .ticket-content>*:not(.loading-icon) {
+    display: none;
+}
+
+
+.ticket_empty .loading-icon {
+    display: flex;
+}
 
 .ticket-date {
     height: 20%;

@@ -16,12 +16,9 @@
 </head>
 
 <body>
-
-
-    <header class="primay-header">
+    <header class="primary-header">
         <div class="container primary-header_container">
             <div class="primary-header-left">
-
                 <a href="../index.html" class="logo">LOGO</a>
                 <nav class="primary-nav">
                     <ul>
@@ -52,17 +49,22 @@
                     </div>
                 </div>
                 <div class="seperator"></div>
-                <a href="login.html?page=login" class="primary-header-login-btn btn btn_primary btn_small">Login
+                <a href="pages/login.html?page=login" class="primary-header-login-btn btn btn_primary btn_small">Login
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
 
                 <div class="primary-header-user">
-                    <a href="#" class="primary-header-tickets">
-                        <i class="fa-solid fa-ticket-simple"></i>
-                    </a>
                     <a href="#" class="primary-header-account">
                         <i class="fa-solid fa-user"></i>
                     </a>
+
+                    <div class="user-dropdown">
+                        <a href="#" class="dropdown-link"><i class="fa-solid fa-user-circle"></i> <span>My
+                                account</span></a>
+                        <a href="#" class="dropdown-link"><i class="fa-solid fa-ticket"></i> <span>My tickets</span></a>
+                        <a href="#" class="dropdown-link dropdown-link_highlight dropdwon-link_logout"><i
+                                class="fa-solid fa-arrow-circle-left"></i> <span>Log out</span></a>
+                    </div>
                 </div>
 
             </div>
@@ -98,9 +100,10 @@
                     </div>
                     <div class="stadium-filters">
                         <div class="stadium-filter">
-                            <p>Price</p>
+                            <p>Price <sub>(da)</sub></p>
                             <div class="price-range">
-                                <input type="range">
+                                <input type="range" oninput="rangevalue.value=value" max="2000" min="300">
+                                <output id="rangevalue"></output>
                                 <!-- list="markers"> -->
                             </div>
                             <datalist id="markers">
@@ -116,7 +119,7 @@
                             <p>Number of tickets</p>
                             <form class="ticket-numbers">
                                 <div class="ticket-number">
-                                    <input type="radio" name="number" value="1" id="nticket-1">
+                                    <input type="radio" name="number" value="1" id="nticket-1" checked>
                                     <label for="nticket-1">1</label>
                                 </div>
 
@@ -145,11 +148,13 @@
                 </div>
 
                 <div class="right-side">
-                    <div class="game-wrapper">
+                    <div class="game-wrapper game-wrapper_empty">
+                        <i class="fas fa-spinner loading-icon"></i>
+                        <p class="game-err">Please select another match</p>
                         <p class="game-date">MAR 24, 19:30</p>
                         <div class="game-content">
                             <div class="game-team">
-                                <img src="../images/test/jsk.svg" alt="JSK logo">
+                                <img src="/images/test/jsk.svg" alt="JSK logo">
                                 <p>jsk</p>
                             </div>
                             <div class="game-center">
@@ -157,7 +162,7 @@
                                 <p>semi-final</p>
                             </div>
                             <div class="game-team">
-                                <img src="../images/test/belouizdad.svg" alt="belouizdad logo">
+                                <img src="/images/test/belouizdad.svg" alt="belouizdad logo">
                                 <p>crb</p>
                             </div>
                         </div>
@@ -168,18 +173,25 @@
 
                         <div class="ticket-element">
                             <div class="ticket-element-text">
-                                <h2><i class="fa-solid fa-registered"></i>VIP</h2>
+                                <div class="ticket-element-title">
+
+                                    <i class="fa-solid fa-registered"></i>
+                                    <h2 class="ticket-bleacher">VIP</h2>
+                                </div>
                                 <p>bleacher</p>
                             </div>
                             <div>
                                 <button class="show-3d-btn">
-                                   <i class="fa-solid fa-maximize"></i> 
+                                    <i class="fa-solid fa-maximize"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="ticket-element">
                             <div class="ticket-element-text">
-                                <h2><i class="fa-solid fa-ticket"></i>01</h2>
+                                <div class="ticket-element-title">
+                                    <i class="fa-solid fa-ticket"></i>
+                                    <h2>01</h2>
+                                </div>
                                 <p>Number of tickets</p>
                             </div>
                             <div class="control-ticket-number-wrapper">
@@ -193,13 +205,17 @@
                         </div>
                         <div class="ticket-element">
                             <div class="ticket-element-text">
-                                <h2><i class="fa-solid fa-wallet"></i>2 000</h2>
+                                <div class="ticket-element-title">
+                                    <i class="fa-solid fa-wallet"></i>
+                                    <h2 class="ticket-price">2 000</h2>
+                                </div>
                                 <p>Total price</p>
                             </div>
                             <div></div>
                         </div>
                     </div>
-                    <button class="btn btn_primary">continue <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="btn btn_primary buy-ticket-btn">continue <i
+                            class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
         </section>

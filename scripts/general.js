@@ -1,11 +1,86 @@
 const APP = (function () {
     const HOSTNAME = "http://127.0.0.1:3000"
-    
+
+
+    let notificationsElm
+    let uniqueNotificationId = 0
     let retryBtnElm
+
+
+
+
+
+
+    // #################### Notification #############################
+    function Notification(message, type) {
+        this.message = message
+        this.type = type
+        this.id = uniqueNotificationId
+        uniqueNotificationId += 1
+    }
+
+    Notification.prototype.push = function () {
+        const not = document.createElement("div")
+        not.classList.add("notification")
+
+        not.setAttribute("data-notification-id", this.id)
+
+        if (this.type === "loading") {
+            not.classList.add("notification_loading")
+        } else if (this.type === "true") {
+            not.classList.add("notification_true")
+        } else if (this.type === "false") {
+            not.classList.add("notification_false")
+        }
+
+
+        not.innerHTML = `
+            <div class="notification-icons">
+                <i class="fas fa-spinner notification-icon notification-icon_loading"></i>
+                <i class="fa-solid fa-check notification-icon notification-icon_true"></i>
+                <i class="fa-solid fa-xmark notification-icon notification-icon_false"></i>
+            </div>
+            <p class="notification-message">${this.message}</p>
+        `
+
+        notificationsElm.appendChild(not)
+        not.style.height =  not.clientHeight + "px"
+    }
+
+
+    Notification.prototype.pop = function () {
+        const not = notificationsElm.querySelector(`.notification[data-notification-id="${this.id}"]`)
+        not.classList.add("notification_pop")
+        setTimeout(() => {
+            not.classList.add("notification_remove")
+            setTimeout(() => {
+                not.remove()
+            }, 500);
+        }, 1000);
+    }
+
+    Notification.prototype.popAfter = function (time) {
+        setTimeout(() => {
+            this.pop()
+        }, time);
+    }
+
+
+
+
+
+
 
     // this function runs on every page
     async function initial() {
-        
+
+
+        // add notifications
+        notificationsElm = document.createElement("div")
+        notificationsElm.classList.add("notifications")
+        document.body.appendChild(notificationsElm)
+
+
         // Yo, let's load up this sick theme.
         if (localStorage.getItem("theme") === "dark") switchTheme("dark")
 
@@ -15,21 +90,23 @@ const APP = (function () {
 
         const noInternetTemplate = `
             <div class="container">
-            <h1 class="text-heading">Can't reach the API at the moment</h1>
-            <p class="text-body">We apologize, but it seems that we are unable to connect to the API at the moment. Please
-                check your internet connection and try again later. If the problem persists, please contact support for further
-                assistance.</p>
+                <h1 class="text-heading">Can't reach the API at the moment</h1>
+                <p class="text-body">We apologize, but it seems that we are unable to connect to the API at the moment. Please
+                    check your internet connection and try again later. If the problem persists, please contact support for further
+                    assistance.</p>
             
-            <button class="btn btn_primary">Retry <i class="fa-solid fa-arrow-right"></i></button>
+                <button class="btn btn_primary">Retry <i class="fa-solid fa-arrow-right"></i></button>
             </div>
         `
 
         const noInternetOverlayElm = document.createElement("div")
-        noInternetOverlayElm.classList.add("no-internet")
+        noInternetOverlayElm.classList.add("overlay")
         noInternetOverlayElm.innerHTML = noInternetTemplate
 
         document.body.appendChild(noInternetOverlayElm)
-        retryBtnElm = document.querySelector(".no-internet .btn")
+        retryBtnElm = document.querySelector(".overlay .btn")
+
+
 
         // let's add some wait-for-click promise functionality up in here.
         retryBtnElm.waitForClick = function () {
@@ -39,25 +116,30 @@ const APP = (function () {
                 })
             })
         }
-       
-        
-        // check if the token is valid
-        if (localStorage.getItem("token")){
-            const userRequest = await fetch("user")
-            
-            if (!userRequest.success) localStorage.removeItem("token")
-            else document.body.classList.add("loged-in")
-        }
 
+
+
+
+        // check if the token is valid
+        if (localStorage.getItem("token")) {
+            const userRequest = await fetch("user")
+
+            if (!userRequest.success) localStorage.removeItem("token")
+            else {
+                document.body.classList.add("loged-in")
+                const userLogedNot = new Notification("You loged in", "true")
+                userLogedNot.push()
+                userLogedNot.popAfter(2000)
+            }
+        }
 
         // add some listeners
         addListeners()
-        
     }
-   
+
     // fire up the initial function
     initial()
-    
+
 
     function addListeners() {
         // ################################ input ################################### 
@@ -82,18 +164,48 @@ const APP = (function () {
                 inputElm.classList.remove("input_focus")
             })
         })
-        
+
         // ############################# switch theme button ##############################
         const switchThemeBtnElm = document.querySelector(".switch-theme-btn")
         if (switchThemeBtnElm) switchThemeBtnElm.addEventListener("change", switchTheme)
-        
+
+
+
+        // ############################# show user dropdown ################################
+        const primaryHeaderAccountElm = document.querySelector(".primary-header-account ")
+        if (primaryHeaderAccountElm) primaryHeaderAccountElm.addEventListener("click", (e) => {
+            e.preventDefault()
+            primaryHeaderAccountElm.parentElement.classList.toggle("primary-header-user_showdrop")
+        })
+
 
         // ############################# disconnect ################################
-        const disconnectBtnElm = document.querySelector(".primary-header-account")
+        const disconnectBtnElm = document.querySelector(".dropdwon-link_logout")
         if (disconnectBtnElm) disconnectBtnElm.addEventListener("click", (e) => {
             e.preventDefault()
             localStorage.removeItem("token")
             window.location.reload()
+        })
+
+
+        // ############################## fixed header ##############################
+        const primaryHeaderElm = document.querySelector(".primary-header")
+        const primaryHeaderHeight = primaryHeaderElm.offsetHeight
+
+        document.addEventListener("scroll", e => {
+            if (window.pageYOffset > primaryHeaderHeight && window.pageYOffset < 900) {
+                primaryHeaderElm.classList.add("primary-header_hide")
+            } else {
+                primaryHeaderElm.classList.remove("primary-header_hide")
+            }
+
+            if (window.pageYOffset > 450) {
+                document.body.classList.add("fixed-header")
+                document.body.style.paddingTop = primaryHeaderHeight + "px"
+            } else {
+                document.body.classList.remove("fixed-header")
+                document.body.style.paddingTop = "0px"
+            }
         })
     }
 
@@ -110,9 +222,13 @@ const APP = (function () {
             document.querySelector(".switch-theme-btn").checked = false
         } else {
             // Let's toggle that thing  if none of the above parameters are given
-            if (document.documentElement.classList.contains("dark-theme")) switchTheme("light")
-            else switchTheme("dark")
+            if (document.documentElement.classList.contains("dark-theme")) return switchTheme("light")
+            else return switchTheme("dark")
         }
+
+        const themeNot = new Notification(`Switch theme to ${theme}`, "true")
+        themeNot.push()
+        themeNot.popAfter(2000)
     }
 
 
@@ -162,16 +278,16 @@ const APP = (function () {
         // if no options provided use empty one
         if (!opt) opt = {}
         if (!opt.headers) opt.headers = {}
-        
 
-        
+
+
         // construct the default options
-        const options = {headers : {}}
-       
+        const options = { headers: {} }
+
         // set the method
         if (opt.method) options.method = opt.method
         else options.method = "GET"
-        
+
         // stringify the body by default
         if (opt.body) options.body = JSON.stringify(opt.body)
 
@@ -184,14 +300,14 @@ const APP = (function () {
         const token = localStorage.getItem("token")
         if (token) options.headers.authorization = `Bearer ${token}`
 
-        
+
         // construct the query
         let query = ""
         if (opt.query) query = "?" + new URLSearchParams(opt.query)
-       
+
         // console.log(`${HOSTNAME}/api/${url}${query}`)
         // console.log(options)
-        
+
         let res
         try {
             res = await window.fetch(`${HOSTNAME}/api/${url}${query}`, options)
@@ -251,6 +367,9 @@ const APP = (function () {
 
 
 
+
+
+
     return {
         HOSTNAME,
         VALIDATORS,
@@ -258,5 +377,6 @@ const APP = (function () {
         fetch,
         inputValidator,
         startCounter,
+        Notification
     }
 })()

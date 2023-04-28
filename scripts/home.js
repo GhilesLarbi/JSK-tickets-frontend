@@ -15,7 +15,6 @@ async function init() {
     }
     
 
-    document.querySelector(".next-game").classList.remove("next-game_empty")
 
 
     const nextGame = data[0]
@@ -31,14 +30,19 @@ async function init() {
     // let's get down to business and set that next game date
     const counterElms = document.querySelectorAll(".counter-element") 
     APP.startCounter(counterElms, (new Date(nextGame.date)).getTime())
-    
+   
+    document.querySelector(".next-game-content a.btn").setAttribute("href", `/pages/reservation.html?gameId=${nextGame.id}`)
+
+    document.querySelector(".next-game").classList.remove("next-game_empty")
+
+
+
     // Let's get these tickets on lock - time to set up that sweet,
     const ticketElems = document.querySelectorAll(".ticket")
     
     ticketElems.forEach((elem, i) => {
         if (!data[i]) return
         
-        elem.classList.remove("ticket_empty")
         elem.querySelector(".ticket-date").textContent = (new Date(data[i].date)).toDateString()
 
         const imgElems = elem.querySelectorAll(".ticket-team img")
@@ -48,6 +52,8 @@ async function init() {
         const teamNameElems = elem.querySelectorAll(".ticket-team p")
         teamNameElems[0].textContent = data[i].team1.name
         teamNameElems[1].textContent = data[i].team2.name
+
+        elem.querySelector("a.btn").setAttribute("href", `/pages/reservation.html?gameId=${data[i].id}`)
         
 
         if (elem.classList.contains("ticket_main")) {
@@ -55,6 +61,7 @@ async function init() {
             elem.querySelector(".ticket-desc").textContent = data[i].description
         }
         
+        elem.classList.remove("ticket_empty")
     })
 
 }

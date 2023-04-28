@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  <header class="primay-header">
+  <header class="primary-header">
     <div class="container primary-header_container">
       <a href="#" class="logo">LOGO</a>
       <nav class="primary-nav">
@@ -28,7 +28,7 @@
             <i class="fa-solid fa-star"></i>
           </li>
           <li>
-            <a class="nav-link" href="#">Tickets</a>
+            <a class="nav-link" href="/pages/tickets.html">Tickets</a>
           </li>
           <li>
             <i class="fa-solid fa-star"></i>
@@ -50,14 +50,18 @@
         <a href="pages/login.html?page=login" class="primary-header-login-btn btn btn_primary btn_small">Login
           <i class="fa-solid fa-arrow-right"></i>
         </a>
-        
+
         <div class="primary-header-user">
-          <a href="#" class="primary-header-tickets">
-            <i class="fa-solid fa-ticket-simple"></i>
-          </a>
           <a href="#" class="primary-header-account">
             <i class="fa-solid fa-user"></i>
           </a>
+
+          <div class="user-dropdown">
+            <a href="#" class="dropdown-link"><i class="fa-solid fa-user-circle"></i> <span>My account</span></a>
+            <a href="#" class="dropdown-link"><i class="fa-solid fa-ticket"></i> <span>My tickets</span></a>
+            <a href="#" class="dropdown-link dropdown-link_highlight dropdwon-link_logout"><i
+                class="fa-solid fa-arrow-circle-left"></i> <span>Log out</span></a>
+          </div>
         </div>
 
       </div>
@@ -73,9 +77,9 @@
           <p class="text-body">Calling all passionate JSK fans! Secure your spot in the stands and cheer on your team at
             AIT AHMED Stadium. Be a part of the electric atmosphere and witness unforgettable moments on the pitch. Book
             your seats now and join us in supporting JSK to victory!</p>
-          <button class="btn btn_primary">Book Tickets
+          <a href="/pages/tickets.html" class="btn btn_primary">Book Tickets
             <i class="fa-solid fa-arrow-right"></i>
-          </button>
+          </a>
           <div class="sponsors">
             <!-- Shape: mobilis -->
             <svg width="63.449" height="20" version="1.1" viewBox="60 616 63.449 20" xmlns="http://www.w3.org/2000/svg">
@@ -178,6 +182,8 @@
       <div class="container container_next-game">
         <div class="next-game next-game_empty">
           <div class="next-game-content">
+
+            <i class="fas fa-spinner loading-icon"></i>
             <div class="counter">
               <p class="counter-element">01 <span>day</span></p>
               <p class="counter-element">03 <span>hour</span></p>
@@ -195,7 +201,7 @@
               </div>
 
               <div class="next-game-btn-container">
-                <a href="pages/reservation.html" class="btn btn_primary">Buy ticket
+                <a class="btn btn_primary">Buy ticket
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 <div class="next-game-stars">
@@ -259,6 +265,7 @@
 
             <div class="ticket-content">
 
+            <i class="fas fa-spinner loading-icon"></i>
               <p class="ticket-date">Mar 24, 19:30</p>
               <div class="ticket-center">
                 <div class="ticket-teams">
@@ -273,9 +280,9 @@
                   </div>
                 </div>
               </div>
-              <button class="btn btn_primary">Buy ticket
+              <a class="btn btn_primary">Buy ticket
                 <i class="fa-solid fa-arrow-right"></i>
-              </button>
+              </a>
             </div>
           </div>
 
@@ -290,6 +297,7 @@
             </svg>
 
             <div class="ticket-content">
+            <i class="fas fa-spinner loading-icon"></i>
               <p class="ticket-date">Mar 24, 19:30</p>
               <div class="ticket-center">
                 <h3 class="ticket-league">Africa cup</h3>
@@ -306,9 +314,9 @@
                   </div>
                 </div>
               </div>
-              <button class="btn btn_primary">Buy ticket
+              <a class="btn btn_primary">Buy ticket
                 <i class="fa-solid fa-arrow-right"></i>
-              </button>
+              </a>
             </div>
           </div>
 
@@ -322,6 +330,7 @@
             </svg>
 
             <div class="ticket-content">
+            <i class="fas fa-spinner loading-icon"></i>
               <p class="ticket-date">Mar 24, 19:30</p>
               <div class="ticket-center">
                 <div class="ticket-teams">
@@ -336,9 +345,9 @@
                   </div>
                 </div>
               </div>
-              <button class="btn btn_primary">Buy ticket
+              <a class="btn btn_primary">Buy ticket
                 <i class="fa-solid fa-arrow-right"></i>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -346,9 +355,9 @@
         <div class="tickets-btn-container">
           <div class="tickets-btn-header">jsk</div>
           <p class="tickets-btn-msg">JSK's future matches schedule is now available.</p>
-          <button class="btn btn_primary">Book tickets
+          <a href="/pages/tickets.html" class="btn btn_primary">Book tickets
             <i class="fa-solid fa-arrow-right"></i>
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -377,12 +386,8 @@
           <div class="stadium-text">
             <p class="text-accent">join jsk crowd</p>
             <h1 class="text-heading">DISCOVER THE ICONIC AIT<br />AHMED STADIUM</h1>
-            <p class="text-body">Calling all passionate JSK fans! Secure your spot in the stands and cheer on your team
-              at
-              AIT AHMED Stadium. Be a part of the electric atmosphere and witness unforgettable moments on the pitch.
-              Book
-              your seats now and join us in supporting JSK to victory!</p>
-            <button class="btn btn_primary">Book Tickets
+            <p class="text-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, nemo vel? Atque corrupti esse nemo, ut nesciunt, eius rerum quidem earum architecto ipsum magnam veniam quia saepe natus inventore. Nesciunt.</p>
+            <button class="btn btn_primary">Learn more
               <i class="fa-solid fa-arrow-right"></i>
             </button>
           </div>
@@ -421,18 +426,17 @@
           <img src="images/player-2.png" alt="">
         </div>
         <div class="footer-text">
-          <h2 class="text-heading">DISCOVER THE ICONIC AIT<br />AHMED STADIUM</h2>
-          <p class="text-body">JSK's next game is just around the corner! Reserve your spot in the stands and be part of
-            the action</p>
+          <h2 class="text-heading">Lorem ipsum dolor sit amet consectetur</h2>
+          <p class="text-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quidem voluptatum laborum.</p>
 
           <div class="input">
             <i class="fa-solid fa-envelope"></i>
             <input type="text" placeholder="example@example.com">
           </div>
 
-          <button class="btn btn_primary">Sign up
+          <a href="/pages/login.html?page=register" class="btn btn_primary">Sign up
             <i class="fa-solid fa-arrow-right"></i>
-          </button>
+          </a>
         </div>
       </div>
 
@@ -450,8 +454,6 @@
 
     </div>
   </footer>
-
-
 </body>
 
 </html>

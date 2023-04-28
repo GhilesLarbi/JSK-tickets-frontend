@@ -10,6 +10,10 @@ body::after {
 }
 
 
+.primary-header {
+    background-color: transparent;
+}
+
 .switch-theme-container {
     background-color: var(--clr-white-o1);
 }
