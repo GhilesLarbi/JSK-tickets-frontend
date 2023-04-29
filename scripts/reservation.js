@@ -1,10 +1,17 @@
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 
-let selectedGameId = params.gameId
+let gameIdParam = params.gameId
+let currentBleacher
+
+const ticket = {
+    bleacherType: "VIP",
+    quantity: 1,
+    successUrl: "http://127.0.0.1:5500/pages/tickets.html",
+    cancelUrl: "http://127.0.0.1:5500/pages/reservation.html?gameId=3"
+}
 
 
-let selectedBleacher
 const bleacherElems = document.querySelectorAll(".btype")
 
 
@@ -19,15 +26,15 @@ function selectBleacherVisualy(bleacherType) {
 
 
 function selectBleacherGlobally() {
-    document.querySelector(".ticket-bleacher").textContent = selectedBleacher.type
-    document.querySelector(".ticket-price").textContent = selectedBleacher.price
+    document.querySelector(".ticket-bleacher").textContent = currentBleacher.type
+    document.querySelector(".ticket-price").textContent = currentBleacher.price
 
 }
 
 
 async function init() {
 
-    const gameRes = await APP.fetch(`game/${selectedGameId}`, {
+    const gameRes = await APP.fetch(`game/${gameIdParam}`, {
         query: {
             include: "team,league"
         }
@@ -35,14 +42,13 @@ async function init() {
 
     if (!gameRes.success) {
         document.querySelector(".game-wrapper").classList.add("game-wrapper_err")
-        selectedGameId = null
     } else {
         const game = gameRes.data
         if (new Date(game.date).getTime() < new Date()) {
             document.querySelector(".game-wrapper").classList.add("game-wrapper_err")
-            selectedGameId = null
         }
         else {
+            ticket.gameId = game.id
             document.querySelector(".game-date").textContent = new Date(game.date).toDateString()
             document.querySelector(".game-center p:first-child").textContent = game.league.name
             document.querySelector(".game-center p:last-child").textContent = game.description
@@ -52,13 +58,8 @@ async function init() {
             document.querySelector(".game-team:last-child p").textContent = game.team2.name
         }
     }
-    
+
     document.querySelector(".game-wrapper").classList.remove("game-wrapper_empty")
-
-
-    const res = await APP.fetch("bleacher")
-    const data = res.data
-
 
     bleacherElems.forEach(async (bleacherElm) => {
         bleacherElm.addEventListener("click", async () => {
@@ -68,7 +69,8 @@ async function init() {
                     type: bleacherElm.getAttribute("data-type")
                 }
             })
-            selectedBleacher = bleacher.data[0]
+            ticket.bleacherType = bleacher.data[0].type
+            currentBleacher = bleacher.data[0]
             selectBleacherGlobally()
         })
     })
@@ -77,26 +79,31 @@ async function init() {
     const buyTicketBtnElm = document.querySelector(".buy-ticket-btn")
     buyTicketBtnElm.addEventListener("click", async (e) => {
         e.preventDefault()
-        
-        if (!selectedGameId) return
-        if (!selectedBleacher) return
+        buyTicketBtnElm.setAttribute("disabled", "true")
 
-        console.log({gameId : selectedGameId, bleacherType : selectedBleacher.type})
-        
+        const waitNot = new APP.Notification("Please wait... ", "loading")
+        waitNot.push()
+
+
         const res = await APP.fetch("ticket", {
-            method : "POST",
-            body : {
-                gameId : selectedGameId,
-                bleacherType : selectedBleacher.type,
-                quantity : 1,
-                successUrl : "http://localhost:5500/index.html",
-                cancelUrl : "http://localhost:5500/pages/reservation.html?gameId=3"
-            }
+            method: "POST",
+            body: ticket
         })
 
-        console.log(res)
-        
-        if (res.success === true) window.location.href = res.data.payUrl
+
+        buyTicketBtnElm.removeAttribute("disabled")
+        waitNot.pop()
+
+
+        if (res.success === false) {
+            const notOthorizedNot = new APP.Notification(res.message, "false")
+            notOthorizedNot.push()
+            notOthorizedNot.popAfter(3000)
+            return
+        }
+
+        window.location.href = res.data.payUrl
+
     })
 
 }

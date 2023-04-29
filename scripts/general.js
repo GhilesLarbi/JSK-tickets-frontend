@@ -44,7 +44,7 @@ const APP = (function () {
         `
 
         notificationsElm.appendChild(not)
-        not.style.height =  not.clientHeight + "px"
+        not.style.height = not.clientHeight + "px"
     }
 
 
@@ -55,8 +55,8 @@ const APP = (function () {
             not.classList.add("notification_remove")
             setTimeout(() => {
                 not.remove()
-            }, 500);
-        }, 1000);
+            }, 100);
+        }, 500);
     }
 
     Notification.prototype.popAfter = function (time) {
@@ -190,23 +190,26 @@ const APP = (function () {
 
         // ############################## fixed header ##############################
         const primaryHeaderElm = document.querySelector(".primary-header")
-        const primaryHeaderHeight = primaryHeaderElm.offsetHeight
 
-        document.addEventListener("scroll", e => {
-            if (window.pageYOffset > primaryHeaderHeight && window.pageYOffset < 900) {
-                primaryHeaderElm.classList.add("primary-header_hide")
-            } else {
-                primaryHeaderElm.classList.remove("primary-header_hide")
-            }
+        if (primaryHeaderElm) {
+            const primaryHeaderHeight = primaryHeaderElm.offsetHeight
 
-            if (window.pageYOffset > 450) {
-                document.body.classList.add("fixed-header")
-                document.body.style.paddingTop = primaryHeaderHeight + "px"
-            } else {
-                document.body.classList.remove("fixed-header")
-                document.body.style.paddingTop = "0px"
-            }
-        })
+            document.addEventListener("scroll", e => {
+                if (window.pageYOffset > primaryHeaderHeight && window.pageYOffset < 900) {
+                    primaryHeaderElm.classList.add("primary-header_hide")
+                } else {
+                    primaryHeaderElm.classList.remove("primary-header_hide")
+                }
+
+                if (window.pageYOffset > 450) {
+                    document.body.classList.add("fixed-header")
+                    document.body.style.paddingTop = primaryHeaderHeight + "px"
+                } else {
+                    document.body.classList.remove("fixed-header")
+                    document.body.style.paddingTop = "0px"
+                }
+            })
+        }
     }
 
 

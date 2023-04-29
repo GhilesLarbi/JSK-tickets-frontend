@@ -294,6 +294,15 @@ input[type="range"]::-webkit-slider-thumb {
   text-transform: uppercase;
   font-size: var(--fz-400);
   font-weight: var(--fw-medium);
+  border: .2rem solid transparent;
+
+  transition: opacity .4s;
+}
+
+.btn:disabled {
+  /* opacity: .5; */
+  background-color: var(--clr-primary-o2);
+  border-color: var(--clr-primary-o05) ;
 }
 
 .btn>i {
@@ -769,6 +778,8 @@ body.show-loading-overlay {
   justify-content: end;
   align-items: end;
   gap: 1rem;
+  
+  pointer-events: none;
 }
 
 
@@ -783,7 +794,7 @@ body.show-loading-overlay {
   align-items: center;
   gap: 2rem;
   
-  transition-property: opacity,transform;
+  transition-property: opacity,transform,height;
   transition-duration: .5s;
 }
 
