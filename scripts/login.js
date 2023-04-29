@@ -51,10 +51,18 @@ loginBtnElm.addEventListener("click", async () => {
 
     if (email === false || password === false) return
 
+    
+    loginBtnElm.setAttribute("disabled", "true")
+    const waitNot = new APP.Notification("Please wait...", "loading")
+    waitNot.push()
+
     const data = await APP.fetch("user/login", {
         method: "POST",
         body: { email, password }
     })
+
+    waitNot.pop()
+    loginBtnElm.removeAttribute("disabled")
 
     if (!data.success) {
         if (data.field == "email")
@@ -90,11 +98,22 @@ nextRegisterBtnElm.addEventListener("click", async () => {
     const username = APP.inputValidator(usernameInputElm, "User name cant't be empty", APP.VALIDATORS.empty)
 
     if (email === false || password === false || username === false) return
+    
+
+    nextRegisterBtnElm.setAttribute("disabled", "true")
+    const waitNot = new APP.Notification("Please wait...", "loading")
+    waitNot.push()
+
 
     const data = await APP.fetch("user", {
         method: "POST",
         body: { email, password, username }
     })
+    
+
+    waitNot.pop()
+    nextRegisterBtnElm.removeAttribute("disabled")
+
 
     if (!data.success) {
         if (data.field == "email")
@@ -149,6 +168,13 @@ createAccountBtnElm.addEventListener("click", async (e) => {
     const nationalNumber = APP.inputValidator(natioanlNumberInputElm, "Passowrd cant't be empty", APP.VALIDATORS.empty)
    
     if (phone === false || nationalNumber === false) return
+    
+
+    createAccountBtnElm.setAttribute("disabled", "true")
+    const waitNot = new APP.Notification("Please wait...", "loading")
+    waitNot.push()
+
+
 
     const data = await APP.fetch("user", {
         method: "PUT",
@@ -157,6 +183,10 @@ createAccountBtnElm.addEventListener("click", async (e) => {
             nationalNumber
         }
     })
+    
+
+    waitNot.pop()
+    createAccountBtnElm.removeAttribute("disabled")
     
     console.log(data)
     

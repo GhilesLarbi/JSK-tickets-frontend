@@ -1,5 +1,5 @@
 const APP = (function () {
-    const HOSTNAME = "http://127.0.0.1:3000"
+    const HOSTNAME = "https://stadium-tickets-api.onrender.com"
 
 
     let notificationsElm
