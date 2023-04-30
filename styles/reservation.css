@@ -211,6 +211,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    padding-inline: 2rem;
+}
+
+
+.game-date {
+    opacity: .6;
 }
 
 
@@ -222,8 +229,22 @@ body {
     gap: .6rem;
 }
 
+.game-team-img {
+    --size : 6rem;
+    
+    width: var(--size);
+    height: var(--size);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(var(--clr-primary),.1);
+    border-radius: 50%;
+}
+
 .game-team img {
-    width: 5rem;
+    width: calc(var(--size) * .8);
 }
 
 .game-team p {
@@ -233,13 +254,13 @@ body {
 }
 
 .game-center p:first-child {
-    font-size: var(--fz-600);
-    font-weight: var(--fw-semi-bold);
+    font-size: var(--fz-700);
+    font-weight: var(--fw-bold);
     margin-bottom: .6rem;
+    opacity: .8;
 }
 
 .game-center p:last-child {
-    font-size: var(fz-300);
     opacity: .5;
 }
 

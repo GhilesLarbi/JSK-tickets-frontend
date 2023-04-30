@@ -317,11 +317,102 @@ input[type="range"]::-webkit-slider-thumb {
 
 .btn_secondary {
   background-color: rgb(var(--clr-accent));
-  color: var(--clr-black);
+  color: rgb(var(--clr-black));
   box-shadow: .4rem .4rem 1.5rem .4rem rgba(var(--clr-accent),.2);
 }
 
 
+
+
+
+
+
+/* ############### Input ################# */
+.input {
+  position: relative;
+
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  background-color: rgba(var(--clr-primary),.05);
+  padding-left: 3rem;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  cursor: text;
+}
+
+.input_dark {
+  background-color: rgba(var(--clr-accent),.05);
+}
+
+
+.input_focus {
+  outline: 2px solid rgb(var(--clr-black),.1);
+}
+
+.input_dark.input_focus {
+  outline: 2px solid rgb(var(--clr-white),.1);
+}
+
+
+
+.input_error {
+  border-color: rgb(var(--clr-err));
+  border-top-right-radius: 0;
+}
+
+.input_error::after {
+  content: attr(data-err);
+  position: absolute;
+  bottom: 100%;
+  right: -2px;
+
+  padding: 1rem 2rem;
+  color: rgb(var(--clr-white));
+  background-color: rgb(var(--clr-err));
+  border-radius: .5rem .5rem 0 0;
+}
+
+
+.input::before {
+  content: "";
+  width: .15rem;
+  background-color: rgb(var(--clr-black));
+  opacity: 30%;
+  height: 2rem;
+  margin-right: -2rem;
+  border-radius: 100rem;
+  order: 1;
+}
+
+.input_dark::before {
+  background-color: rgb(var(--clr-white));
+}
+
+
+.input i {
+  opacity: .5;
+  order: 0;
+}
+
+.input input {
+  flex-grow: 1;
+  padding: 1.5rem 2rem;
+  color: rgb(var(--clr-black));
+  order: 2;
+  opacity: .8;
+}
+
+.input_dark input {
+  color: rgb(var(--clr-white));
+}
+
+.input_dark input::placeholder {
+  color: rgba(var(--clr-white), .5);
+}
 
 
 /* ################ checkbox ################# */
@@ -380,6 +471,12 @@ input[type="range"]::-webkit-slider-thumb {
   animation-iteration-count: infinite;
   
   display: none;
+}
+
+
+.loading-icon_dark {
+  color: rgb(var(--clr-accent));
+  background-color: rgba(var(--clr-accent), .1);
 }
 
 
@@ -732,69 +829,6 @@ input[type="range"]::-webkit-slider-thumb {
 
 
 
-/* ############### Input ################# */
-.input {
-  position: relative;
-
-  align-self: stretch;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-
-  background-color: rgba(var(--clr-primary),.05);
-  padding-left: 3rem;
-  border: 2px solid transparent;
-  border-radius: 0.5rem;
-  cursor: text;
-}
-
-.input_focus {
-  outline: 2px solid rgb(var(--clr-black),.1);
-}
-
-.input_error {
-  border-color: rgb(var(--clr-err));
-  border-top-right-radius: 0;
-}
-
-.input_error::after {
-  content: attr(data-err);
-  position: absolute;
-  bottom: 100%;
-  right: -2px;
-
-  padding: 1rem 2rem;
-  color: rgb(var(--clr-white));
-  background-color: rgb(var(--clr-err));
-  border-radius: .5rem .5rem 0 0;
-}
-
-
-.input::before {
-  content: "";
-  width: .15rem;
-  background-color: rgb(var(--clr-black));
-  opacity: 30%;
-  height: 2rem;
-  margin-right: -2rem;
-  border-radius: 100rem;
-  order: 1;
-}
-
-
-.input i {
-  opacity: .5;
-  order: 0;
-}
-
-.input input {
-  flex-grow: 1;
-  padding: 1.5rem 2rem;
-  color: rgb(var(--clr-black));
-  order: 2;
-  opacity: .8;
-}
 
 
 /*################ Notitifcations #################### */
