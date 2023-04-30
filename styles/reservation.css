@@ -1,39 +1,5 @@
 body {
-    position: relative;
     min-width: 100vh;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: calc(60% - 1rem);
-    width: min(calc(((100% - 145rem) / 2) + (145rem * 2 / 3) - 10.5rem ), calc(60% -  1rem));
-    background-color: var(--clr-primary);
-    z-index: -1;
-}
-
-.primary-header {
-    background-color: transparent;
-}
-
-.primary-header_container {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-}
-
-.primary-header-left {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 5rem;
-    color: var(--clr-white);
-}
-
-.primary-header-right {
-    margin-left: auto;
 }
 
 
@@ -64,10 +30,10 @@ body::before {
 }
 
 #stadium-bg {
-    fill: var(--clr-white);
+    fill: rgb(var(--clr-white));
     fill-opacity: 1;
     opacity:0;
-    stroke: var(--clr-white);
+    stroke: rgb(var(--clr-white));
     stroke-width : .4rem; 
 }
 
@@ -77,10 +43,10 @@ body::before {
 }
 
 .btype {
-    fill: var(--clr-white);
+    fill: rgb(var(--clr-primary));
     fill-opacity: .05;
     
-    stroke: var(--clr-primary);
+    stroke: rgb(var(--clr-white-height));
     stroke-width: .8rem;
     stroke-opacity: 1;
     stroke-linecap: round;
@@ -96,14 +62,14 @@ body::before {
 
 .btype_selected,
 .btype_selected:hover {
-    fill: var(--clr-accent);
+    fill: rgb(var(--clr-primary));
     fill-opacity: 1;
 }
 
 
 .stadium-filters {
     border-radius: .5rem;
-    background-color: var(--clr-black-o1);
+    background-color: rgba(var(--clr-primary),.1);
     
     display: flex;
     justify-content: space-between;
@@ -113,8 +79,7 @@ body::before {
 .stadium-filter p {
     margin-bottom: 1rem;
     text-transform: uppercase;
-    color: var(--clr-white);
-    opacity: .5;
+    color: rgba(var(--clr-black),.5);
 }
 
 
@@ -142,8 +107,8 @@ body::before {
 
 .price-range output {
     width: 2rem;
-    color: var(--clr-white);
-    opacity: .5;
+    color: rgba(var(--clr-black),.5);
+    font-weight: var(--fw-semi-bold);
 }
 
 
@@ -160,18 +125,14 @@ body::before {
     appearance: none;
     width: 3rem;
     height: 3rem;
-    background-color: var(--clr-primary);
-    border: 2px solid var(--clr-white-o1);
+    background-color: rgba(var(--clr-primary),.1);
+    border: 2px solid rgba(var(--clr-white),.1);
     border-radius: .5rem;
     cursor: pointer;
 }
 
 .ticket-number input:checked {
-    border-color: var(--clr-accent);
-}
-.ticket-number input:checked + label {
-    opacity: .8;
-    color: var(--clr-accent);
+    border-color: rgba(var(--clr-primary),.7);
 }
 
 .ticket-numbers label {
@@ -180,15 +141,18 @@ body::before {
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: var(--fw-bold);
-    color: var(--clr-white);
-    opacity: .4;
+    color: rgba(var(--clr-primary),.4);
     cursor: pointer;
+    user-select: none;
+}
+
+.ticket-number input:checked + label {
+    color: rgba(var(--clr-primary),.7);
 }
 
 
-
 .dark-theme .stadium-filters {
-    background-color: var(--clr-white-o1);
+    background-color: rgba(var(--clr-white),.1);
 }
 
 /* ############################## right content ############################ */
@@ -197,7 +161,8 @@ body::before {
 }
 
 .game-wrapper {
-    background-color: var(--clr-white);
+    background-color: rgb(var(--clr-white));
+    border: 1px solid rgba(var(--clr-black),.1);
     border-radius: .5rem;
     box-shadow: 0 .8rem 2rem .4rem rgba(0, 0, 0, 0.02);
     padding: 3rem 4rem;
@@ -280,14 +245,15 @@ body::before {
 
 .game-wrapper a {
     align-self: flex-end;
-    color: var(--clr-primary);
+    color: rgb(var(--clr-primary));
     margin-top: 1rem;
 }
 
 
 
 .ticket-card {
-    background-color: var(--clr-white);
+    background-color: rgb(var(--clr-white));
+    border: 1px solid rgba(var(--clr-black),.1);
     box-shadow: 0 .8rem 2rem .4rem rgba(0, 0, 0, 0.02);
     border-radius: .5rem;
     margin-top: 3rem;
@@ -303,7 +269,7 @@ body::before {
 }
 
 .ticket-element:not(:last-child) {
-    border-bottom: 2px solid var(--clr-primary-o1);
+    border-bottom: 2px solid rgba(var(--clr-black),.05);
 }
 
 
@@ -318,9 +284,8 @@ body::before {
 }
 
 .ticket-element-title  i {
-    color: var(--clr-primary);
+    color: rgba(var(--clr-primary),.8);
     font-size: var(--fz-500);
-    opacity: .8;
 }
 
 
@@ -330,11 +295,12 @@ body::before {
 
 
 
-.show-3d-btn {
+.show-3d-btn ,
+.control-ticket-number-btn {
     width: 4rem;
     height: 4rem;
-    background-color: var(--clr-primary-o1);
-    color: var(--clr-primary);
+    background-color: rgba(var(--clr-primary),.1);
+    color: rgb(var(--clr-primary));
     border-radius: 50%;
 }
 
@@ -343,21 +309,8 @@ body::before {
     display: flex;
     gap: 1rem;
 }
-.control-ticket-number-btn {
-    width: 4rem;
-    height: 4rem;
-    background-color: var(--clr-primary-o1);
-    border-radius: 50%;
-    color: var(--clr-primary);
-}
 
 
 .right-side > .btn {
     width: 100%;
-}
-
-
-.dark-theme .game-wrapper,
-.dark-theme .ticket-card {
-    background-color: #292929;
 }

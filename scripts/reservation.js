@@ -7,10 +7,9 @@ let currentBleacher
 const ticket = {
     bleacherType: "VIP",
     quantity: 1,
-    successUrl: "http://127.0.0.1:5500/pages/tickets.html",
-    cancelUrl: "http://127.0.0.1:5500/pages/reservation.html?gameId=3"
+    successUrl: `${window.location.origin}/pages/tickets.html`,
+    cancelUrl: window.location.href,
 }
-
 
 const bleacherElems = document.querySelectorAll(".btype")
 

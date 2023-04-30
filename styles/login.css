@@ -2,10 +2,10 @@ body::after {
     content: "";
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
     width: 50%;
     height: 100%;
-    background-color: var(--clr-primary);
+    background-color: rgb(var(--clr-white));
     z-index: -1;
 }
 
@@ -13,22 +13,6 @@ body::after {
 .primary-header {
     background-color: transparent;
 }
-
-.switch-theme-container {
-    background-color: var(--clr-white-o1);
-}
-
-
-.primary-header-user > a {
-  color: var(--clr-white-o9);
-  background-color: var(--clr-white-o1);
-  /* outline: .6rem solid var(--clr-white-o1); */
-}
-
-.seperator {
-    background-color: var(--clr-white);
-}
-
 
 /* ################# FORMS SECTIONS ################### */
 
@@ -109,7 +93,6 @@ body::after {
 .remamber-me label {
     cursor: pointer;
     opacity: .5;
-    /* font-size: var(--fz-300); */
     padding-left: 1rem;
     user-select: none;
 }
@@ -117,7 +100,6 @@ body::after {
 
 .forget-password {
     opacity: .3;
-    /* font-size: var(--fz-300); */
 }
 
 
@@ -137,11 +119,11 @@ body::after {
 }
 
 .link-text a {
-    color: var(--clr-primary);
-    background-color: var(--clr-primary-o1);
+    color: rgb(var(--clr-primary));
+    background-color: rgba(var(--clr-primary),.1);
     padding: .2rem .6rem;
     border-radius: .4rem;
-    border: 1px solid var(--clr-primary-o1);
+    border: 1px solid rgba(var(--clr-primary),.1);
 }
 
 /* ############### Login ############# */
