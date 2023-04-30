@@ -59,6 +59,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: -1;
 }
 
 
@@ -152,6 +153,8 @@
     
     width: var(--size);
     height: var(--size);
+   
+    position: relative;
     
     display: flex;
     justify-content: center;
@@ -159,8 +162,21 @@
 
     background-color: rgba(var(--clr-white), .2);
     border-radius: 50%;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    
+    isolation: isolate;
 }
+
+.next-game-team-img::before {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    z-index: -1;
+    border: 1px solid rgba(var(--clr-accent), .4);
+    border-radius: inherit;
+}
+
 
 .next-game-team img {
     width: calc(var(--size) * .8);
@@ -362,13 +378,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 3rem;
 }
 
 .ticket-teams > i {
-    opacity: .5;
     font-size: .8em;
     margin-bottom: 2rem;
+    color: rgb(var(--clr-primary),.4);
 }
 
 
@@ -388,10 +404,23 @@
     justify-content: center;
     align-items: center;
 
-    margin-bottom: .5rem;
-    background-color: rgba(var(--clr-primary), .1);
+    margin-bottom: 1.4rem;
+    background-color: rgba(var(--clr-primary), .06);
     border-radius: 50%;
+    
+    position: relative;
 }
+
+.ticket-team-img::before {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    z-index: -1;
+    border: 1px solid rgba(var(--clr-primary), .2);
+    border-radius: inherit;
+}
+
 
 
 .ticket-team img {
@@ -405,6 +434,7 @@
     opacity: .5;
     font-weight: var(--fw-medium);
     font-size: var(--fz-500);
+    /* color: rgb(var(--clr-primary)); */
     text-transform: uppercase;
     text-align: center;
 }

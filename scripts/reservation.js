@@ -59,9 +59,20 @@ async function init() {
     }
 
     document.querySelector(".game-wrapper").classList.remove("game-wrapper_empty")
+    
+
+    const ticketCardElm = document.querySelector(".ticket-card")
+    const stadiumWrapperElm = document.querySelector(".stadium-wrapper")
 
     bleacherElems.forEach(async (bleacherElm) => {
         bleacherElm.addEventListener("click", async () => {
+            
+            stadiumWrapperElm.classList.add("stadium-wrapper_disabled")
+            ticketCardElm.classList.add("ticket-card_loading-state")
+            
+
+
+
             selectBleacherVisualy(bleacherElm.getAttribute("data-type"))
             const bleacher = await APP.fetch("bleacher", {
                 query: {
@@ -71,6 +82,8 @@ async function init() {
             ticket.bleacherType = bleacher.data[0].type
             currentBleacher = bleacher.data[0]
             selectBleacherGlobally()
+            ticketCardElm.classList.remove("ticket-card_loading-state")
+            stadiumWrapperElm.classList.remove("stadium-wrapper_disabled")
         })
     })
 

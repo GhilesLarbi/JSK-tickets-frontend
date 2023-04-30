@@ -22,11 +22,20 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: end;
+    background-color: rgb(var(--clr-white));
+    padding: 2rem;
+    border: 1px solid rgba(var(--clr-black),.1);
 }
 
 
 .stadium-wrapper {
     margin-bottom: 4rem;
+}
+
+
+.stadium-wrapper_disabled {
+    pointer-events: none;
+    opacity: .8;
 }
 
 #stadium-bg {
@@ -46,7 +55,7 @@ body {
     fill: rgb(var(--clr-primary));
     fill-opacity: .05;
     
-    stroke: rgb(var(--clr-white-height));
+    stroke: rgb(var(--clr-white));
     stroke-width: .8rem;
     stroke-opacity: 1;
     stroke-linecap: round;
@@ -226,7 +235,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: .6rem;
+    gap: 1.2rem;
 }
 
 .game-team-img {
@@ -241,6 +250,17 @@ body {
 
     background-color: rgba(var(--clr-primary),.1);
     border-radius: 50%;
+    position: relative;
+    isolation: isolate;
+}
+.game-team-img::before {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    z-index: -1;
+    border: 1px solid rgba(var(--clr-primary), .2);
+    border-radius: inherit;
 }
 
 .game-team img {
@@ -280,6 +300,37 @@ body {
     margin-top: 3rem;
     margin-bottom: 2rem;
     padding: 0 4rem;
+
+    position: relative;
+}
+
+
+.ticket-card-leading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color: rgba(var(--clr-white), .8);
+    border-radius: inherit;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s, visibility .2s;
+}
+
+.ticket-card_loading-state .ticket-card-leading {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ticket-card-leading i {
+    display: flex;
 }
 
 .ticket-element {
