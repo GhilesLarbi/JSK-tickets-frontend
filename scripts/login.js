@@ -126,6 +126,10 @@ nextRegisterBtnElm.addEventListener("click", async () => {
     }
 
 
+
+    const waitLoginNot = new APP.Notification("Login ...", "loading")
+    waitLoginNot.push()
+    nextRegisterBtnElm.setAttribute("disabled", "true")
     // log in
     const loginRequest = await APP.fetch("user/login", {
         method: "POST",
@@ -137,9 +141,12 @@ nextRegisterBtnElm.addEventListener("click", async () => {
 
     const confirmEmailRequest = await APP.fetch("user/send/confirmation/email", {
         query: {
-            url: "http://127.0.0.1:5500/pages/login.html?page=confirm_identity"
+            url: `${window.location.origin}/pages/login.html?page=confirm_identity`
         }
     })
+    
+    waitLoginNot.pop()
+    nextRegisterBtnElm.removeAttribute("disabled")
     console.log(confirmEmailRequest)
 
     // redirect to home page
@@ -152,7 +159,7 @@ resendEmailLinkElm.addEventListener("click", async (e) => {
     e.preventDefault()
     const confirmEmailRequest = await APP.fetch("user/send/confirmation/email", {
         query: {
-            url: "http://127.0.0.1:5500/pages/login.html?page=confirm_identity"
+            url: `${window.location.origin}/pages/login.html?page=confirm_identity`
         }
     })
     console.log(confirmEmailRequest)

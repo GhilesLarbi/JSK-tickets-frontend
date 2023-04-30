@@ -22,20 +22,22 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: end;
-    background-color: rgb(var(--clr-white));
+    background-color: rgb(var(--clr-primary));
     padding: 2rem;
     border: 1px solid rgba(var(--clr-black),.1);
+    border-radius: .5rem;
 }
 
 
 .stadium-wrapper {
     margin-bottom: 4rem;
+    transition: opacity .2s;
 }
 
 
 .stadium-wrapper_disabled {
     pointer-events: none;
-    opacity: .8;
+    opacity: .5;
 }
 
 #stadium-bg {
@@ -52,10 +54,10 @@ body {
 }
 
 .btype {
-    fill: rgb(var(--clr-primary));
-    fill-opacity: .05;
+    fill: rgb(var(--clr-white));
+    fill-opacity: .1;
     
-    stroke: rgb(var(--clr-white));
+    stroke: rgb(var(--clr-primary));
     stroke-width: .8rem;
     stroke-opacity: 1;
     stroke-linecap: round;
@@ -71,14 +73,13 @@ body {
 
 .btype_selected,
 .btype_selected:hover {
-    fill: rgb(var(--clr-primary));
-    fill-opacity: 1;
+    fill-opacity: .7;
 }
 
 
 .stadium-filters {
     border-radius: .5rem;
-    background-color: rgba(var(--clr-primary),.1);
+    background-color: rgba(var(--clr-white),.1);
     
     display: flex;
     justify-content: space-between;
@@ -88,7 +89,7 @@ body {
 .stadium-filter p {
     margin-bottom: 1rem;
     text-transform: uppercase;
-    color: rgba(var(--clr-black),.5);
+    color: rgba(var(--clr-white),.5);
 }
 
 
@@ -116,7 +117,7 @@ body {
 
 .price-range output {
     width: 2rem;
-    color: rgba(var(--clr-black),.5);
+    color: rgba(var(--clr-white),.5);
     font-weight: var(--fw-semi-bold);
 }
 
@@ -134,14 +135,14 @@ body {
     appearance: none;
     width: 3rem;
     height: 3rem;
-    background-color: rgba(var(--clr-primary),.1);
-    border: 2px solid rgba(var(--clr-white),.1);
+    background-color: rgba(var(--clr-accent),.1);
+    border: 2px solid rgba(var(--clr-black),.1);
     border-radius: .5rem;
     cursor: pointer;
 }
 
 .ticket-number input:checked {
-    border-color: rgba(var(--clr-primary),.7);
+    border-color: rgba(var(--clr-accent),.7);
 }
 
 .ticket-numbers label {
@@ -150,18 +151,13 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: var(--fw-bold);
-    color: rgba(var(--clr-primary),.4);
+    color: rgba(var(--clr-accent),.4);
     cursor: pointer;
     user-select: none;
 }
 
 .ticket-number input:checked + label {
-    color: rgba(var(--clr-primary),.7);
-}
-
-
-.dark-theme .stadium-filters {
-    background-color: rgba(var(--clr-white),.1);
+    color: rgba(var(--clr-accent),.7);
 }
 
 /* ############################## right content ############################ */

@@ -166,7 +166,7 @@ input::placeholder {
 
 
 input[type="range"] {
-    --color : rgb(var(--clr-primary));
+    --color : rgb(var(--clr-accent));
     appearance: none;
     background: transparent;
     cursor: pointer;
