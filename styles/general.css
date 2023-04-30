@@ -50,7 +50,7 @@
 
 :root {
   --clr-accent : 255, 234, 115;
-  --clr-primary : 4, 104, 69;
+  --clr-primary : 4, 104, 82;
   --clr-white : 255, 255, 255;
   --clr-black : 0, 0, 0;
 
@@ -87,7 +87,7 @@
 
 .dark-theme {
   --clr-primary : 255, 234, 115;
-  --clr-accent : 4, 104, 69;
+  --clr-accent : 4, 104, 82;
   --clr-black : 255, 255, 255;
   --clr-white : 0, 0, 0;
   --clr-white : 33, 33, 33;
@@ -470,6 +470,7 @@ input[type="range"]::-webkit-slider-thumb {
   top: 0;
   left: 0;
   z-index: 3;
+  background-color: rgb(var(--clr-white));
 }
 
 
@@ -499,8 +500,29 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* ################ Logo ########################## */
 .logo {
-  font-size: var(--fz-600);
+  --size : 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  
+  font-size: var(--fz-500);
   font-weight: var(--fw-bold);
+}
+
+.logo svg {
+  width: var(--size);
+  height: var(--size);
+}
+
+.logo-bg {
+  color: rgb(var(--clr-primary));
+}
+
+.logo-icon {
+  color: rgb(var(--clr-white-height));
+  stroke: rgb(var(--clr-white-height));
+  stroke-width: .2rem;
 }
 
 /* ################ Links #####################*/

@@ -61,41 +61,6 @@
     align-items: center;
 }
 
-.hero-img-player {
-    width: 65%;
-    filter: drop-shadow(1.6rem 1.2rem 2rem rgba(0,0,0,.2));
-}
-
-.hero-img-bg, 
-.hero-img-yellow-ticket,
-.hero-img-green-ticket {
-    position: absolute;
-    top: 0;
-    z-index: -1;
-}
-
-.hero-img-bg {
-    height: 100%;
-    color: rgba(var(--clr-primary),.2);
-}
-
-.hero-img-green-ticket {
-    height: 30%;
-    right: 8%;
-    top: 35%;
-    color: rgb(var(--clr-primary));
-    z-index: 1;
-}
-
-
-.hero-img-yellow-ticket {
-    height: 20%;
-    top: 60%;
-    left: 9%;
-    transform: rotate(-8deg);
-    color: rgb(var(--clr-accent));
-}
-
 
 /* ################ NEXT-GAME SECTION ############### */
 .section_next-game {
@@ -103,12 +68,14 @@
 }
 
 .next-game {
+    --color : var(--clr-white);
     height: 100%;
     isolation: isolate;
     display: grid;
     align-items: center;
     align-content: center;
     justify-items: center;
+    position: relative;
 }
 
 
@@ -142,13 +109,13 @@
 .counter-element {
     font-size: var(--fz-800);
     font-weight: var(--fw-extra-bold);
-    color: rgb(var(--clr-primary));
+    color: rgb(var(--clr-accent));
 }
 .counter-element span {
     display: block;
     font-size: var(--fz-300);
     font-weight: var(--fw-regular);
-    color: rgb(var(--clr-black),.5);
+    color: rgb(var(--color),.5);
     text-transform: uppercase;
 }
 
@@ -157,8 +124,8 @@
     margin-bottom: 1rem;
     font-size: var(--fz-700);
     font-weight: var(--fw-bold);
+    color: rgba(var(--color), .8);
     text-align: center;
-    opacity: .65;
 }
 
 
@@ -166,6 +133,7 @@
 .next-game-content .text-body {
     margin-bottom: 4rem;
     text-align: center;
+    color: rgba(var(--color), .5);
 }
 
 .next-game-teams {
@@ -179,18 +147,32 @@
     text-align: center;
 }
 
-.next-game-team img {
-    width: 10rem;
-    height: 10rem;
-    object-fit: contain;
+.next-game-team-img {
+    --size : 9rem;
+    
+    width: var(--size);
+    height: var(--size);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(var(--clr-white), .2);
+    border-radius: 50%;
     margin-bottom: 1rem;
+}
+
+.next-game-team img {
+    width: calc(var(--size) * .8);
+    height: calc(var(--size) * .8);
+    object-fit: contain;
 }
 
 .next-game-team p {
     font-size: var(--fz-500);
     font-weight: var(--fw-medium);
     text-transform: uppercase;
-    opacity: .6;
+    color: rgba(var(--color),.6);
 }
 
 
@@ -211,9 +193,25 @@
     align-items: center;
     justify-content: center;
     gap: .3rem;
-    opacity: .3;
+    color: rgba(var(--color), .3);
     font-size: .6em;
 }
+
+
+.next-game-barcode {
+    position: absolute;
+    top: 50%;
+    left: -1%;
+    width: 25%;
+    transform: translateY(-50%) scale(120%) rotate(90deg);
+    opacity: .5;
+    filter: invert(1);
+}
+
+.dark-theme .next-game-barcode {
+    filter: invert(0);
+}
+
 
 
 .next-game-bg-container {
@@ -231,14 +229,17 @@
 
 .next-game-bg {
     width: 100%;
-    color: rgb(var(--clr-white));
+    color: rgb(var(--clr-primary));
     filter: drop-shadow(0rem 1.5rem 3rem rgba(0,0,0,.05));
     user-select: none;
     pointer-events: none;
+    
+    /* stroke-width: 2px; */
+    /* stroke: black; */
 }
 
 .next-game-bg-accent {
-    color: rgb(var(--clr-primary),.05);
+    color: rgb(var(--clr-primary),.1);
     position: absolute;
     width: 100%;
     height: 100%;
@@ -247,18 +248,22 @@
     transform: rotate(-8deg);
 }
 
-.next-game-barcode {
+
+.next-game::before {
+    --circle-size : 20rem;
+    content: "";
+    bottom: calc(-1 * (var(--circle-size) / 3));
+    right: calc(-1 * (var(--circle-size) / 2));
     position: absolute;
-    top: 50%;
-    left: -1%;
-    width: 25%;
-    transform: translateY(-50%) scale(120%) rotate(90deg);
-    opacity: .5;
+    width: var(--circle-size);
+    height: var(--circle-size);
+    background-color: rgb(var(--clr-primary),.1);
+    border-radius: 50%;
+    z-index: -2;
 }
 
-.dark-theme .next-game-barcode {
-    filter: invert(1);
-}
+
+
 
 
 /* ################ TICKETS SECTION ################ */
@@ -367,20 +372,37 @@
 }
 
 
-.ticket-team img {
-    width: 5rem;
-    height: 5rem;
-    object-fit: contain;
-    margin-bottom: .5rem;
+.ticket-team {
+    --size : 5rem;
 }
 
-.ticket_main .ticket-team img {
-    width: 7rem;
-    height: 7rem;
+.ticket_main .ticket-team {
+    --size : 7rem;
 }
+
+.ticket-team-img {
+    width: var(--size);
+    height: var(--size);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: .5rem;
+    background-color: rgba(var(--clr-primary), .1);
+    border-radius: 50%;
+}
+
+
+.ticket-team img {
+    width: calc(var(--size) * .8);
+    height: calc(var(--size) * .8);
+    object-fit: contain;
+}
+
 
 .ticket-team p {
-    opacity: .6;
+    opacity: .5;
     font-weight: var(--fw-medium);
     font-size: var(--fz-500);
     text-transform: uppercase;
