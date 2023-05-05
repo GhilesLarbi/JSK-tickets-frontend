@@ -11,6 +11,8 @@ const ticket = {
     cancelUrl: window.location.href,
 }
 
+console.log(ticket)
+
 const bleacherElems = document.querySelectorAll(".btype")
 
 

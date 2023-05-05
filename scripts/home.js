@@ -31,7 +31,7 @@ async function init() {
     const counterElms = document.querySelectorAll(".counter-element") 
     APP.startCounter(counterElms, (new Date(nextGame.date)).getTime())
    
-    document.querySelector(".next-game-content a.btn").setAttribute("href", `/pages/reservation.html?gameId=${nextGame.id}`)
+    document.querySelector(".next-game-content a.btn").setAttribute("href", `pages/reservation.html?gameId=${nextGame.id}`)
 
     document.querySelector(".next-game").classList.remove("next-game_empty")
 
@@ -52,7 +52,7 @@ async function init() {
         teamNameElems[0].textContent = data[i].team1.name
         teamNameElems[1].textContent = data[i].team2.name
 
-        elem.querySelector("a.btn").setAttribute("href", `/pages/reservation.html?gameId=${data[i].id}`)
+        elem.querySelector("a.btn").setAttribute("href", `pages/reservation.html?gameId=${data[i].id}`)
         
 
         if (elem.classList.contains("ticket_main")) {
