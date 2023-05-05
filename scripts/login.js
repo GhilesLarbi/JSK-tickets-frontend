@@ -80,7 +80,7 @@ loginBtnElm.addEventListener("click", async () => {
 
 
     // redirect to home page
-    window.location.href = window.location.origin
+    window.location.href = window.location.href.replace("/pages/login.html", "")
 
 })
 
@@ -195,7 +195,7 @@ createAccountBtnElm.addEventListener("click", async (e) => {
 
     console.log(data)
 
-    window.location.href = window.location.origin
+    window.location.href = window.location.href.replace("/pages/login.html", "")
 })
 
 APP.init(() => { })
