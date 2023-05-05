@@ -88,9 +88,16 @@ async function addTicket(ticketData) {
 
         const fileRes = await APP.fetch(`ticket/${ticketData.id}/pdf`, {type : "blob"})
         
-        const file = window.URL.createObjectURL(fileRes);
-        window.location.assign(file);
+        const fileUrl = window.URL.createObjectURL(fileRes);
         
+        const linkElm = document.createElement('a');
+        linkElm.style.opacity = "0"
+        linkElm.style.position = "absolute"
+        linkElm.href = fileUrl
+        linkElm.download = "ticket.pdf"
+        document.body.appendChild(linkElm) 
+        linkElm.click()    
+        linkElm.remove()        
         downloadBtnElm.removeAttribute("disabled")
 
         waitNot.pop()
