@@ -139,7 +139,7 @@ nextRegisterBtnElm.addEventListener("click", async () => {
 
     const confirmEmailRequest = await APP.fetch("user/send/confirmation/email", {
         query: {
-            url: `${window.location.pathname}?page=confirm_identity`
+            url: `${window.location.origin}${window.location.pathname}?page=confirm_identity`
         }
     })
 
@@ -157,7 +157,7 @@ resendEmailLinkElm.addEventListener("click", async (e) => {
     e.preventDefault()
     const confirmEmailRequest = await APP.fetch("user/send/confirmation/email", {
         query: {
-            url: `${window.location.pathname}?page=confirm_identity`
+            url: `${window.location.origin}${window.location.pathname}?page=confirm_identity`
         }
     })
     console.log(confirmEmailRequest)
