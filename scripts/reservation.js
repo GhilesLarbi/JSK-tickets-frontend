@@ -7,7 +7,8 @@ let currentBleacher
 const ticket = {
     bleacherType: "VIP",
     quantity: 1,
-    successUrl: `${window.location.origin}/pages/tickets.html`,
+    // successUrl: `${window.location.origin}/pages/tickets.html`,
+    successUrl : window.location.href.replace("reservation.html", "tickets.html") ,
     cancelUrl: window.location.href,
 }
 
