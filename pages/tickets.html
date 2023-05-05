@@ -1,19 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSK: Tickets</title>
-    <link rel="stylesheet" href="../styles/fontawesome.css">
-    <link rel="stylesheet" href="../styles/general.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSK: Tickets</title>
+  <link rel="stylesheet" href="../styles/fontawesome.css">
+  <link rel="stylesheet" href="../styles/general.css">
+  <link rel="stylesheet" href="../styles/tickets.css">
 
 
-    <script src="../scripts/general.js" defer></script>
-    <script src="../scripts/tickets.js" defer></script>
+  <script src="../scripts/general.js" defer></script>
+  <script src="../scripts/tickets.js" defer></script>
 </head>
+
 <body>
-    <a href="/index.html">home</a>
-    <p class="text-body">test</p>
+
+  <header class="primary-header">
+    <div class="container primary-header_container">
+      <a href="/index.html" class="logo">
+        <svg version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect class="logo-bg" x="56.305" y="102.27" width="100" height="100" rx="15.671" ry="15.671"
+            transform="translate(-56.305 -102.27)" fill="currentColor" />
+          <path class="logo-icon"
+            d="m82.075 118.04 4.4674 26.487 15.279 7.567-15.233 7.6838-4.5336 26.468 8.6243-3.929 2.76-18.035 9.1405-4.5698 0.077 16.548 3.6871-2.0634 3.6866 2.0634 0.0765-16.548 9.1405 4.5698 2.7606 18.035 8.6238 3.929-4.5331-26.468-15.233-7.6838 15.279-7.567 4.4674-26.487-8.5468 3.9042-2.8339 18.03-9.1317 4.5372 5.2e-4 -16.592-3.7569 2.1296-3.7564-2.1296 5.2e-4 16.592-9.1317-4.5372-2.8339-18.03z"
+            transform="translate(-56.305 -102.27)" fill="currentColor" />
+        </svg>
+        ⵊⵙⴽ
+      </a>
+      <nav class="primary-nav">
+        <ul>
+          <li>
+            <a class="nav-link" href="/index.html">Home</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-star"></i>
+          </li>
+          <li>
+            <a class="nav-link nav-link_selected" href="/pages/tickets.html">Tickets</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-star"></i>
+          </li>
+          <li>
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="primary-header-right">
+        <div class="switch-theme-container">
+          <input class="switch-theme-btn" type="checkbox" name="switch theme">
+          <div class="switch-theme-icons">
+            <i class="moon-icon fa-solid fa-moon"></i>
+            <i class="sun-icon fa-solid fa-sun"></i>
+          </div>
+        </div>
+        <div class="seperator"></div>
+        <a href="/pages/login.html?page=login" class="primary-header-login-btn btn btn_primary btn_small">Login
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <div class="primary-header-user">
+          <a href="#" class="primary-header-account">
+            <i class="fa-solid fa-user"></i>
+          </a>
+
+          <div class="user-dropdown">
+            <a href="#" class="dropdown-link"><i class="fa-solid fa-user-circle"></i> <span>My account</span></a>
+            <a href="#" class="dropdown-link"><i class="fa-solid fa-ticket"></i> <span>My tickets</span></a>
+            <a href="#" class="dropdown-link dropdown-link_highlight dropdwon-link_logout"><i
+                class="fa-solid fa-arrow-circle-left"></i> <span>Log out</span></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+
+
+
+  <main>
+    <section class="section">
+      <div class="container container_main">
+        <div class="top-wrapper">
+          <a href="/index.html" class="go-back-link"><i class="fa-solid fa-arrow-left-long"></i> Go back</a>
+        </div>
+
+        <div class="tickets">
+          <div class="ticket">
+
+            <div class="ticket-content">
+              <a href="/pages/games.html" class="add-tickets-btn"><i class="fa-solid fa-plus"></i></a>
+            </div>
+
+            <div class="ticket-bg">
+              <svg version="1.1" viewBox="-15 -.5 337 515" xmlns="http://www.w3.org/2000/svg">
+                <path id="ticket-bg-board"
+                  d="m321.5 70zm0 0c-8.279 0-15 6.721-15 15s6.721 15 15 15v130c-8.279 0-15 6.721-15 15s6.721 15 15 15v244c0 5.519-4.481 10-10 10h-316c-5.519 0-10-4.481-10-10v-244c8.279 0 15-6.721 15-15s-6.721-15-15-15v-130c8.279 0 15-6.721 15-15s-6.721-15-15-15v-60c0-5.519 4.481-10 10-10h316c5.519 0 10 4.481 10 10z" />
+                <path id="ticket-bg-lines"
+                  d="m3.5 83.994v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm-288 160v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2zm24 0v2h12v-2z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-wrapper">
+          <p> <i class="fa-solid fa-info-circle"></i><span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Ullam fuga cumque fugiat dicta blanditiis.</span></p>
+          <button class="btn btn_primary">Book tickts <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
 </body>
+
 </html>

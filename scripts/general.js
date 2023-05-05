@@ -1,6 +1,6 @@
 const APP = (function () {
-    const HOSTNAME = "https://stadium-tickets-api.onrender.com"
-    // const HOSTNAME = "http://127.0.0.1:3000"
+    // const HOSTNAME = "https://stadium-tickets-api.onrender.com"
+    const HOSTNAME = "http://127.0.0.1:3000"
 
 
     let notificationsElm
@@ -45,7 +45,9 @@ const APP = (function () {
         `
 
         notificationsElm.appendChild(not)
-        not.style.height = not.clientHeight + "px"
+        setTimeout(() => {
+            not.classList.add("notification_show")
+        }, 0);
     }
 
 
@@ -56,7 +58,7 @@ const APP = (function () {
             not.classList.add("notification_remove")
             setTimeout(() => {
                 not.remove()
-            }, 100);
+            }, 500);
         }, 500);
     }
 
@@ -73,7 +75,7 @@ const APP = (function () {
 
 
     // this function runs on every page
-    async function initial() {
+    function initial() {
 
 
         // add notifications
@@ -84,6 +86,9 @@ const APP = (function () {
 
         // Yo, let's load up this sick theme.
         if (localStorage.getItem("theme") === "dark") switchTheme("dark")
+
+        // add some listeners
+        addListeners()
 
         // Let's slap on a 'no internet' overlay to the page, just in case the Wi-Fi dips out.
         // One thin', if you add the template directly, the event listeners straight up stop working.
@@ -123,19 +128,21 @@ const APP = (function () {
 
         // check if the token is valid
         if (localStorage.getItem("token")) {
-            const userRequest = await fetch("user")
+            document.body.classList.add("loged-in")
+            fetch("user").then(data => {
+                if (!data.success) {
+                    localStorage.removeItem("token")
+                    localStorage.removeItem("firstLogin")
+                    document.body.classList.remove("loged-in")
+                } else if (data.success && !localStorage.getItem("firstLogin")) {
+                    localStorage.setItem("firstLogin", "no")
+                    const userLogedNot = new Notification("You loged in", "true")
+                    userLogedNot.push()
+                    userLogedNot.popAfter(2000)
+                }
+            })
+        } else localStorage.removeItem("firstLogin")
 
-            if (!userRequest.success) localStorage.removeItem("token")
-            else {
-                document.body.classList.add("loged-in")
-                const userLogedNot = new Notification("You loged in", "true")
-                userLogedNot.push()
-                userLogedNot.popAfter(2000)
-            }
-        }
-
-        // add some listeners
-        addListeners()
     }
 
     // fire up the initial function
@@ -168,7 +175,12 @@ const APP = (function () {
 
         // ############################# switch theme button ##############################
         const switchThemeBtnElm = document.querySelector(".switch-theme-btn")
-        if (switchThemeBtnElm) switchThemeBtnElm.addEventListener("change", switchTheme)
+        if (switchThemeBtnElm) switchThemeBtnElm.addEventListener("change", () => {
+            const theme = switchTheme()
+            const themeNot = new Notification(`${theme} theme`, "true")
+            themeNot.push()
+            themeNot.popAfter(2000)
+        })
 
 
 
@@ -230,9 +242,8 @@ const APP = (function () {
             else return switchTheme("dark")
         }
 
-        const themeNot = new Notification(`Switch theme to ${theme}`, "true")
-        themeNot.push()
-        themeNot.popAfter(2000)
+        return theme
+
     }
 
 
@@ -330,8 +341,8 @@ const APP = (function () {
 
 
         // get the actual data
-        const data = await res.json()
-        return data
+        if (opt.type === "blob") return await res.blob()
+        else return await res.json()
     }
 
 
@@ -371,12 +382,22 @@ const APP = (function () {
 
 
 
+    function formateDate(date) {
+        const options = {
+            month: "short",
+            day: "numeric", hour: "2-digit", minute: "2-digit"
+        }
+
+        return date.toLocaleTimeString("en-us", options)
+    }
+
 
 
 
     return {
         HOSTNAME,
         VALIDATORS,
+        formateDate,
         init,
         fetch,
         inputValidator,

@@ -51,7 +51,7 @@ loginBtnElm.addEventListener("click", async () => {
 
     if (email === false || password === false) return
 
-    
+
     loginBtnElm.setAttribute("disabled", "true")
     const waitNot = new APP.Notification("Please wait...", "loading")
     waitNot.push()
@@ -60,6 +60,7 @@ loginBtnElm.addEventListener("click", async () => {
         method: "POST",
         body: { email, password }
     })
+    
 
     waitNot.pop()
     loginBtnElm.removeAttribute("disabled")
@@ -98,7 +99,7 @@ nextRegisterBtnElm.addEventListener("click", async () => {
     const username = APP.inputValidator(usernameInputElm, "User name cant't be empty", APP.VALIDATORS.empty)
 
     if (email === false || password === false || username === false) return
-    
+
 
     nextRegisterBtnElm.setAttribute("disabled", "true")
     const waitNot = new APP.Notification("Please wait...", "loading")
@@ -109,10 +110,8 @@ nextRegisterBtnElm.addEventListener("click", async () => {
         method: "POST",
         body: { email, password, username }
     })
-    
 
-    waitNot.pop()
-    nextRegisterBtnElm.removeAttribute("disabled")
+
 
 
     if (!data.success) {
@@ -122,14 +121,13 @@ nextRegisterBtnElm.addEventListener("click", async () => {
             APP.inputValidator(passwordInputElm, data.message)
         else if (data.field == "username")
             APP.inputValidator(usernameInputElm, data.message)
+
+        waitNot.pop()
+        nextRegisterBtnElm.removeAttribute("disabled")
         return
     }
 
 
-
-    const waitLoginNot = new APP.Notification("Login ...", "loading")
-    waitLoginNot.push()
-    nextRegisterBtnElm.setAttribute("disabled", "true")
     // log in
     const loginRequest = await APP.fetch("user/login", {
         method: "POST",
@@ -144,8 +142,8 @@ nextRegisterBtnElm.addEventListener("click", async () => {
             url: `${window.location.origin}/pages/login.html?page=confirm_identity`
         }
     })
-    
-    waitLoginNot.pop()
+
+    waitNot.pop()
     nextRegisterBtnElm.removeAttribute("disabled")
     console.log(confirmEmailRequest)
 
@@ -173,9 +171,9 @@ createAccountBtnElm.addEventListener("click", async (e) => {
 
     const natioanlNumberInputElm = document.querySelector(".identity-national-number-input")
     const nationalNumber = APP.inputValidator(natioanlNumberInputElm, "Passowrd cant't be empty", APP.VALIDATORS.empty)
-   
+
     if (phone === false || nationalNumber === false) return
-    
+
 
     createAccountBtnElm.setAttribute("disabled", "true")
     const waitNot = new APP.Notification("Please wait...", "loading")
@@ -190,14 +188,14 @@ createAccountBtnElm.addEventListener("click", async (e) => {
             nationalNumber
         }
     })
-    
+
 
     waitNot.pop()
     createAccountBtnElm.removeAttribute("disabled")
-    
+
     console.log(data)
-    
+
     window.location.href = window.location.origin
 })
 
-APP.init(()=>{})
+APP.init(() => { })

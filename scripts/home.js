@@ -1,4 +1,8 @@
 async function init() {
+    
+    const waitNot = new APP.Notification("fetching data", "loading")
+    waitNot.push()
+
     let data = await APP.fetch(`game`, {
         query : {
             include : "team,league",
@@ -6,24 +10,20 @@ async function init() {
         }
     }) 
 
+    waitNot.pop()
+
 
 
     data = data.data
     
-    if (data.league == 0) {
-        return
-    }
-    
-
-
 
     const nextGame = data[0]
 
     // Fill me in, what's the deal with the next game data?
-    const nextGameImgElemes = document.querySelectorAll(".next-game-team img")
+    const nextGameImgElemes = document.querySelectorAll(".next-game-teams .team img")
     nextGameImgElemes[0].src = APP.HOSTNAME + nextGame.team1.logo
     nextGameImgElemes[1].src = APP.HOSTNAME + nextGame.team2.logo
-    const nextGameNameElemes = document.querySelectorAll(".next-game-team p")
+    const nextGameNameElemes = document.querySelectorAll(".next-game-teams .team p")
     nextGameNameElemes[0].textContent = nextGame.team1.name
     nextGameNameElemes[1].textContent = nextGame.team2.name
     
@@ -42,14 +42,13 @@ async function init() {
     
     ticketElems.forEach((elem, i) => {
         if (!data[i]) return
-        
-        elem.querySelector(".ticket-date").textContent = (new Date(data[i].date)).toDateString()
+        elem.querySelector(".ticket-date").textContent = APP.formateDate(new Date(data[i].date))
 
-        const imgElems = elem.querySelectorAll(".ticket-team img")
+        const imgElems = elem.querySelectorAll(".ticket-teams .team img")
         imgElems[0].src = APP.HOSTNAME + data[i].team1.logo
         imgElems[1].src = APP.HOSTNAME + data[i].team2.logo
         
-        const teamNameElems = elem.querySelectorAll(".ticket-team p")
+        const teamNameElems = elem.querySelectorAll(".ticket-teams .team p")
         teamNameElems[0].textContent = data[i].team1.name
         teamNameElems[1].textContent = data[i].team2.name
 

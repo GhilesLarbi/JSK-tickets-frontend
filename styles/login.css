@@ -26,7 +26,7 @@ body::after {
     grid-row: 1;
     height: 100%;
     margin-bottom: 3rem;
-    
+
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12rem;
@@ -38,13 +38,13 @@ body::after {
 }
 
 .left-side {
-    --transition-delay : .3s;
+    --transition-delay: .3s;
     visibility: hidden;
     opacity: 0;
     transition: visibility var(--transition-delay), opacity var(--transition-delay);
-} 
+}
 
-.form-wrapper_selected  .left-side{
+.form-wrapper_selected .left-side {
     visibility: visible;
     opacity: 1;
 }
@@ -120,10 +120,10 @@ body::after {
 
 .link-text a {
     color: rgb(var(--clr-primary));
-    background-color: rgba(var(--clr-primary),.1);
+    background-color: rgba(var(--clr-primary), .1);
     padding: .2rem .6rem;
     border-radius: .4rem;
-    border: 1px solid rgba(var(--clr-primary),.1);
+    border: 1px solid rgba(var(--clr-primary), .1);
 }
 
 /* ############### Login ############# */
@@ -136,4 +136,24 @@ body::after {
 /* ################ Confirm identy ############## */
 .form-wrapper .btn {
     margin-top: 6rem;
+}
+
+
+@media (max-width: 46.875em) {
+    body::after {
+        display: none;
+    }
+
+
+    .primary-header {
+        background-color: rgb(var(--clr-white));
+    }
+
+    .form-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .right-side {
+        display: none;
+    }
 }

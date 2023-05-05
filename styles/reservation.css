@@ -1,16 +1,17 @@
 body {
-    min-width: 100vh;
+    min-height: 100vh;
 }
 
 
 .section {
-    margin-top: 5rem;
+    padding-block: 5rem;
 }
 
 
 .section .container {
     display: grid;
     grid-template-columns: 3fr 2fr;
+    gap: 5rem;
 }
 
 
@@ -18,7 +19,6 @@ body {
 /* ############################## left content ############################ */
 
 .left-side {
-    margin-right: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -73,7 +73,9 @@ body {
 
 .btype_selected,
 .btype_selected:hover {
-    fill-opacity: .7;
+    fill-opacity: 1;
+    fill: rgb(var(--clr-accent));
+    pointer-events: none;
 }
 
 
@@ -161,9 +163,6 @@ body {
 }
 
 /* ############################## right content ############################ */
-.right-side {
-    margin-left: 5rem;
-}
 
 .game-wrapper {
     background-color: rgb(var(--clr-white));
@@ -226,47 +225,8 @@ body {
 }
 
 
-.game-team {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.2rem;
-}
-
-.game-team-img {
+.game-content .team {
     --size : 6rem;
-    
-    width: var(--size);
-    height: var(--size);
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: rgba(var(--clr-primary),.1);
-    border-radius: 50%;
-    position: relative;
-    isolation: isolate;
-}
-.game-team-img::before {
-    content: "";
-    position: absolute;
-    width: 120%;
-    height: 120%;
-    z-index: -1;
-    border: 1px solid rgba(var(--clr-primary), .2);
-    border-radius: inherit;
-}
-
-.game-team img {
-    width: calc(var(--size) * .8);
-}
-
-.game-team p {
-    text-transform: uppercase;
-    opacity: .6;
-    font-weight: var(--fw-medium);
 }
 
 .game-center p:first-child {
@@ -381,4 +341,33 @@ body {
 
 .right-side > .btn {
     width: 100%;
+}
+
+
+
+/* 800px */
+@media (max-width : 50em) {
+    .section .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* 430px */
+@media (max-width : 26.875em) {
+    #stadium-bleachers {
+        transform: scale(1);
+    }
+    .stadium-filters {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .stadium-filter {
+        width: 100%;
+    }
+
+    .stadium-filter:first-child {
+        width: 100%;
+    }
 }
