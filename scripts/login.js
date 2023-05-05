@@ -145,7 +145,7 @@ nextRegisterBtnElm.addEventListener("click", async () => {
 
     waitNot.pop()
     nextRegisterBtnElm.removeAttribute("disabled")
-    console.log(confirmEmailRequest)
+    console.log(confirmEmailRequest.data)
 
     // redirect to home page
     switchForms(2)
@@ -160,7 +160,7 @@ resendEmailLinkElm.addEventListener("click", async (e) => {
             url: `${window.location.origin}${window.location.pathname}?page=confirm_identity`
         }
     })
-    console.log(confirmEmailRequest)
+    console.log(confirmEmailRequest.data)
 })
 
 
