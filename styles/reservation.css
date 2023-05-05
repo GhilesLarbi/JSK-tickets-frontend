@@ -84,6 +84,7 @@ body {
     background-color: rgba(var(--clr-white),.1);
     
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding: 2rem 4rem;
 }
@@ -96,7 +97,7 @@ body {
 
 
 .stadium-filter:first-child {
-    width: 30%;
+    /* width: 30%; */
 }
 
 .stadium-filter sub {
@@ -353,21 +354,9 @@ body {
 }
 
 
-/* 430px */
-@media (max-width : 26.875em) {
+/* 700px */
+@media (max-width : 43.75em) {
     #stadium-bleachers {
         transform: scale(1);
-    }
-    .stadium-filters {
-        flex-direction: column;
-        gap: 2rem;
-    }
-    
-    .stadium-filter {
-        width: 100%;
-    }
-
-    .stadium-filter:first-child {
-        width: 100%;
     }
 }
