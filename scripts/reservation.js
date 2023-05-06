@@ -7,12 +7,10 @@ let currentBleacher
 const ticket = {
     bleacherType: "VIP",
     quantity: 1,
-    // successUrl: `${window.location.origin}/pages/tickets.html`,
     successUrl : window.location.href.replace("reservation.html", "tickets.html") ,
     cancelUrl: window.location.href,
 }
 
-console.log(ticket)
 
 const bleacherElems = document.querySelectorAll(".btype")
 
@@ -35,6 +33,9 @@ function selectBleacherGlobally() {
 
 
 async function init() {
+    
+    
+    const buyTicketBtnElm = document.querySelector(".buy-ticket-btn")
 
     const gameRes = await APP.fetch(`game/${gameIdParam}`, {
         query: {
@@ -58,6 +59,8 @@ async function init() {
             document.querySelector(".game-content .team:first-child p").textContent = game.team1.name
             document.querySelector(".game-content .team:last-child img").src = `${APP.HOSTNAME}${game.team2.logo}`
             document.querySelector(".game-content .team:last-child p").textContent = game.team2.name
+            
+            buyTicketBtnElm.removeAttribute("disabled")
         }
     }
 
@@ -72,6 +75,7 @@ async function init() {
             
             stadiumWrapperElm.classList.add("stadium-wrapper_disabled")
             ticketCardElm.classList.add("ticket-card_loading-state")
+            buyTicketBtnElm.setAttribute("disabled", "true")
             
 
 
@@ -87,11 +91,11 @@ async function init() {
             selectBleacherGlobally()
             ticketCardElm.classList.remove("ticket-card_loading-state")
             stadiumWrapperElm.classList.remove("stadium-wrapper_disabled")
+            buyTicketBtnElm.removeAttribute("disabled")
         })
     })
 
 
-    const buyTicketBtnElm = document.querySelector(".buy-ticket-btn")
     buyTicketBtnElm.addEventListener("click", async (e) => {
         e.preventDefault()
         buyTicketBtnElm.setAttribute("disabled", "true")

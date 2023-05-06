@@ -25,7 +25,7 @@ function switchForms(index) {
 
 const registerLinkElm = document.querySelector(".register-link")
 const loginLinkElm = document.querySelector(".login-link")
-const resendEmailLinkElm = document.querySelector(".resend-link")
+const sendEmailBtnElm = document.querySelector(".send-email-btn")
 const nextRegisterBtnElm = document.querySelector(".form-wrapper_signup .btn")
 const loginBtnElm = document.querySelector(".form-wrapper_login .btn")
 const createAccountBtnElm = document.querySelector(".form-wrapper_identity .btn")
@@ -60,7 +60,7 @@ loginBtnElm.addEventListener("click", async () => {
         method: "POST",
         body: { email, password }
     })
-    
+
 
     waitNot.pop()
     loginBtnElm.removeAttribute("disabled")
@@ -136,16 +136,8 @@ nextRegisterBtnElm.addEventListener("click", async () => {
 
     localStorage.setItem("token", loginRequest.data.token)
 
-
-    const confirmEmailRequest = await APP.fetch("user/send/confirmation/email", {
-        query: {
-            url: `${window.location.origin}${window.location.pathname}?page=confirm_identity`
-        }
-    })
-
     waitNot.pop()
     nextRegisterBtnElm.removeAttribute("disabled")
-    console.log(confirmEmailRequest.data)
 
     // redirect to home page
     switchForms(2)
@@ -153,14 +145,44 @@ nextRegisterBtnElm.addEventListener("click", async () => {
 
 
 // ################ resend email #####################
-resendEmailLinkElm.addEventListener("click", async (e) => {
-    e.preventDefault()
+sendEmailBtnElm.addEventListener("click", async (e) => {
+    sendEmailBtnElm.setAttribute("disabled", "true")
+    const waitNot = new APP.Notification("Please wait...", "loading")
+    waitNot.push()
+
     const confirmEmailRequest = await APP.fetch("user/send/confirmation/email", {
         query: {
             url: `${window.location.origin}${window.location.pathname}?page=confirm_identity`
         }
     })
-    console.log(confirmEmailRequest.data)
+
+    let intervalCount = 60
+    const interval = setInterval(() => {
+        sendEmailBtnElm.childNodes[0].textContent = `Wait ${intervalCount}s to resend`
+        intervalCount = intervalCount - 1
+        if (intervalCount < 0) {
+            sendEmailBtnElm.childNodes[0].textContent = `resend email`
+            sendEmailBtnElm.removeAttribute("disabled")
+            clearInterval(interval)
+        }
+    }, 1000);
+    
+
+
+
+    waitNot.pop()
+
+    if (!confirmEmailRequest.success) {
+        const errNot = new APP.Notification(confirmEmailRequest.message, "false")
+        errNot.push()
+        errNot.popAfter(3000)
+        console.log(confirmEmailRequest)
+        
+    } else {
+        const successNot = new APP.Notification(confirmEmailRequest.message, "true")
+        successNot.push()
+        successNot.popAfter(3000)
+    }
 })
 
 

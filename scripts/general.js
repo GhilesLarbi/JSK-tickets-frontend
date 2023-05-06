@@ -134,11 +134,16 @@ const APP = (function () {
                     localStorage.removeItem("token")
                     localStorage.removeItem("firstLogin")
                     document.body.classList.remove("loged-in")
-                } else if (data.success && !localStorage.getItem("firstLogin")) {
-                    localStorage.setItem("firstLogin", "no")
-                    const userLogedNot = new Notification("You loged in", "true")
-                    userLogedNot.push()
-                    userLogedNot.popAfter(2000)
+                } else if (data.success) {
+                    if (!data.data.isEmailConfirmed) {
+                        document.querySelector(".dropdown-link_email").classList.remove("dropdown-link_hide")
+                    }
+                    if (!localStorage.getItem("firstLogin")) {
+                        localStorage.setItem("firstLogin", "no")
+                        const userLogedNot = new Notification("You loged in", "true")
+                        userLogedNot.push()
+                        userLogedNot.popAfter(2000)
+                    }
                 }
             })
         } else localStorage.removeItem("firstLogin")

@@ -260,6 +260,9 @@
 
 /* 700px */
 @media (max-width : 43.75em) {
+    .tickets {
+        gap: 2rem;
+    }
     .bottom-wrapper>p {
         width: 90%;
     }

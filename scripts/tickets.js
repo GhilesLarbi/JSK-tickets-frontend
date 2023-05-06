@@ -117,7 +117,7 @@ async function init() {
     if (!res.success) {
         const loginErrNot = new APP.Notification(res.message, "false")
         loginErrNot.push()
-        loginErrNot.popAfter(20000)
+        loginErrNot.popAfter(2000)
         return
     }
 
