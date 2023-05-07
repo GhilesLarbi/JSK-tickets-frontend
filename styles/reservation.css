@@ -334,6 +334,49 @@ body {
 }
 
 
+.show-3d-btn {
+    position: relative;
+    isolation: isolate;
+    transition: transform .2s;
+}
+
+.show-3d-btn:hover {
+    transform: scale(1.2);
+}
+
+.show-3d-btn::before,
+.show-3d-btn::after {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    z-index: -1;
+    background-color: rgb(var(--clr-primary), .5);
+    border-radius: inherit;
+}
+.show-3d-btn::before {
+    animation: wavy 1.2s infinite;
+}
+
+.show-3d-btn::after {
+    animation: wavy 2s infinite;
+}
+
+@keyframes wavy {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+
 .control-ticket-number-wrapper {
     display: flex;
     gap: 1rem;
@@ -342,6 +385,81 @@ body {
 
 .right-side > .btn {
     width: 100%;
+}
+
+
+
+
+.panorama-360-wrapper {
+    --width : 90%;
+    --height : 90%;
+    position: fixed;
+    width: var(--width);
+    height: var(--width);
+    top: calc((100% - var(--width))/2);
+    left: calc((100% - var(--height))/2);
+    z-index: 99999999;
+    
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem 1rem rgba(0,0,0,.05);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    opacity: 0;
+    visibility: hidden;
+    
+    transition: opacity .2s, visibility .2s;
+}
+
+.panorama-360-wrapper_show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.panorama-360-wrapper::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.panorama-360-exit-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: inherit;
+
+    width: 3rem;
+    height: 3rem;
+    border-radius: .3rem;
+    background-color: rgba(var(--clr-primary),.8);
+    box-shadow: 0 .4rem .8rem rgba(var(--clr-primary), .1);
+    color: rgb(var(--clr-white), .8);
+    border: 1px solid rgb(var(--clr-primary));
+    font-size: var(--fz-400);
+}
+
+.panorama-360-exit-btn::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+}
+
+#panorama-360-view {
+    width: 100%;
+    height: 100%;
+    
+    border-radius: inherit;
+    background-color: rgb(var(--clr-white));
 }
 
 
@@ -358,5 +476,11 @@ body {
 @media (max-width : 43.75em) {
     #stadium-bleachers {
         transform: scale(1);
+    }
+    
+    .panorama-360-wrapper {
+        --width : 100%;
+        --height : 100%;
+        border-radius: 0;
     }
 }

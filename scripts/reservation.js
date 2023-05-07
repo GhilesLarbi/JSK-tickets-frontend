@@ -7,7 +7,7 @@ let currentBleacher
 const ticket = {
     bleacherType: "VIP",
     quantity: 1,
-    successUrl : window.location.href.replace("reservation.html", "tickets.html") ,
+    successUrl: window.location.href.replace("reservation.html", "tickets.html"),
     cancelUrl: window.location.href,
 }
 
@@ -33,8 +33,8 @@ function selectBleacherGlobally() {
 
 
 async function init() {
-    
-    
+
+
     const buyTicketBtnElm = document.querySelector(".buy-ticket-btn")
 
     const gameRes = await APP.fetch(`game/${gameIdParam}`, {
@@ -59,24 +59,24 @@ async function init() {
             document.querySelector(".game-content .team:first-child p").textContent = game.team1.name
             document.querySelector(".game-content .team:last-child img").src = `${APP.HOSTNAME}${game.team2.logo}`
             document.querySelector(".game-content .team:last-child p").textContent = game.team2.name
-            
+
             buyTicketBtnElm.removeAttribute("disabled")
         }
     }
 
     document.querySelector(".game-wrapper").classList.remove("game-wrapper_empty")
-    
+
 
     const ticketCardElm = document.querySelector(".ticket-card")
     const stadiumWrapperElm = document.querySelector(".stadium-wrapper")
 
     bleacherElems.forEach(async (bleacherElm) => {
         bleacherElm.addEventListener("click", async () => {
-            
+
             stadiumWrapperElm.classList.add("stadium-wrapper_disabled")
             ticketCardElm.classList.add("ticket-card_loading-state")
             buyTicketBtnElm.setAttribute("disabled", "true")
-            
+
 
 
 
@@ -124,6 +124,28 @@ async function init() {
         window.location.href = res.data.payUrl
 
     })
+
+
+    const panoramaWrapperElm = document.querySelector(".panorama-360-wrapper")
+    document.querySelector(".show-3d-btn").addEventListener("click", () => {
+        panoramaWrapperElm.classList.add("panorama-360-wrapper_show")
+        pannellum.viewer('panorama-360-view', {
+            "type": "equirectangular",
+            "panorama": `../images/test/${ticket.bleacherType}.jpg`,
+            "autoLoad": true,
+            "autoRotate": -5,
+            "compass": true,
+            "northOffset": 247.5
+        })
+    })
+
+    document.querySelector(".panorama-360-exit-btn").addEventListener("click", () => {
+        panoramaWrapperElm.classList.remove("panorama-360-wrapper_show")
+        setTimeout(() => {
+            document.querySelector("#panorama-360-view").innerHTML = ""
+        }, 400);
+    })
+
 
 }
 

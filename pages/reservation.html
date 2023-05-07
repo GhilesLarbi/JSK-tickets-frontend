@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../styles/general.css">
     <link rel="stylesheet" href="../styles/reservation.css">
 
+    <link rel="stylesheet" href="../pannellum/pannellum.css">
+    <script src="../pannellum/pannellum.js" defer></script>
 
     <script src="../scripts/general.js" defer></script>
     <script src="../scripts/reservation.js" defer></script>
@@ -66,9 +68,12 @@
                     </a>
 
                     <div class="user-dropdown">
-                        <a href="#" class="dropdown-link"><i class="fa-solid fa-user-circle"></i> <span>My account</span></a>
+                        <a href="#" class="dropdown-link"><i class="fa-solid fa-user-circle"></i> <span>My
+                                account</span></a>
                         <a href="#" class="dropdown-link"><i class="fa-solid fa-ticket"></i> <span>My tickets</span></a>
-                        <a href="login.html?page=confirm_email" class="dropdown-link dropdown-link_email dropdown-link_hide"><i class="fa-solid fa-envelope"></i> <span>Confirm email</span></a>
+                        <a href="login.html?page=confirm_email"
+                            class="dropdown-link dropdown-link_email dropdown-link_hide"><i
+                                class="fa-solid fa-envelope"></i> <span>Confirm email</span></a>
                         <a href="#" class="dropdown-link dropdown-link_highlight dropdwon-link_logout"><i
                                 class="fa-solid fa-arrow-circle-left"></i> <span>Log out</span></a>
                     </div>
@@ -177,7 +182,8 @@
                                 <p>CRB</p>
                             </div>
                         </div>
-                        <a href="../index.html#tickets-section">Select other match <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="../index.html#tickets-section">Select other match <i
+                                class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                     <div class="ticket-card">
@@ -197,7 +203,7 @@
                             </div>
                             <div>
                                 <button class="show-3d-btn">
-                                    <i class="fa-solid fa-maximize"></i>
+                                    <i class="fa-solid fa-vr-cardboard"></i>
                                 </button>
                             </div>
                         </div>
@@ -235,6 +241,11 @@
             </div>
         </section>
     </main>
+
+    <div class="panorama-360-wrapper">
+        <button class="panorama-360-exit-btn"><i class="fa-solid fa-times"></i></button>
+        <div id="panorama-360-view"></div>
+    </div>
 </body>
 
 </html>
