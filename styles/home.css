@@ -263,28 +263,66 @@
 }
 
 
+.tickets-wrapper {
+    --padding-inline: max(var(--container-inline-padding), calc((100vw - var(--container-width)) / 2 + var(--container-inline-padding)));
+    margin-inline: min(calc(-1 * var(--container-inline-padding)), calc(-1 * (100vw - var(--container-width) + var(--container-inline-padding) * 2) / 2));
+    padding-inline: var(--padding-inline);
+    padding-block: 2rem;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
+
+}
+
+.tickets-wrapper::-webkit-scrollbar {
+    background-color: transparent;
+    height: 1rem;
+}
+
+.tickets-wrapper::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 100rem;
+}
+
+
+
 .tickets {
+    --ticket-width : 30rem;
+    --ticket-height : 36rem;
+    height: var(--ticket-height);
+    width : 100%;
+    min-width: max-content;;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     gap: 6rem;
 }
 
+.tickets_scrollable {
+    padding-right: var(--padding-inline);
+}
+
+.tickets_empty .loading-icon {
+    display: flex;
+}
+
 .ticket {
-    width: 30rem;
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: var(--ticket-width);
+    height: var(--ticket-height);
     display: grid;
     isolation: isolate;
 }
-
-.ticket_main {
-    width: 35rem;
-}
-
 
 .ticket-bg {
     grid-row: 1;
     grid-column: 1;
     width: 100%;
+    height: 100%;
     z-index: -1;
     color: rgb(var(--clr-white));
     filter: drop-shadow(0 .8rem 2rem rgba(0, 0, 0, .04));
@@ -301,15 +339,6 @@
     align-items: center;
 }
 
-
-.ticket_empty .ticket-content>*:not(.loading-icon) {
-    display: none;
-}
-
-
-.ticket_empty .loading-icon {
-    display: flex;
-}
 
 .ticket-date {
     height: 20%;
@@ -353,11 +382,6 @@
     font-size: .8em;
     margin-bottom: 2rem;
     color: rgb(var(--clr-primary), .4);
-}
-
-
-.ticket_main .team {
-    --size: 6rem;
 }
 
 
@@ -611,7 +635,7 @@
     .container_hero>* {
         max-width: none;
     }
-    
+
     .hero-text {
         text-align: center;
         display: flex;
@@ -653,7 +677,7 @@
     .container_stadium {
         padding-inline: var(--container-inline-padding);
     }
-    
+
     .stadium-text {
         text-align: center;
         display: flex;
@@ -661,11 +685,11 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .stadium-props {
         gap: 1rem;
     }
-    
+
 
     .footer-form {
         margin-inline: 0;
@@ -673,37 +697,23 @@
 }
 
 
- /* 700px */
+/* 700px */
 @media (max-width : 43.75em) {
     .tickets {
-        margin-inline: calc(-1 * (100vw - 100%) + var(--container-inline-padding));
-        justify-content: start;
-        overflow-x: auto;
-        padding-inline: var(--container-inline-padding);
-        padding-bottom: 2rem;
-        
         gap: 2rem;
-    }    
-    
-    .ticket {
-        flex-shrink: 0;
-        flex-grow: 0;
-        width: 30rem;
     }
-    
 
-    
-.stadium-props {
+    .stadium-props {
         display: grid;
         grid-template-columns: 1fr 1fr;
-}
+    }
 
 }
 
 
 
 /* 500px */
-@media (max-width : 31.25em ) {
+@media (max-width : 31.25em) {
     .next-game-teams {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -722,9 +732,9 @@
     .next-game-stars {
         display: none;
     }
-    
 
-    
+
+
     .footer-form {
         padding: 8rem 2rem;
     }

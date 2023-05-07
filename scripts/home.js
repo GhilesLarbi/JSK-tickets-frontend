@@ -11,12 +11,8 @@ async function init() {
     }) 
 
     waitNot.pop()
-
-
-
     data = data.data
     
-
     const nextGame = data[0]
 
     // Fill me in, what's the deal with the next game data?
@@ -38,29 +34,55 @@ async function init() {
 
 
     // Let's get these tickets on lock - time to set up that sweet,
-    const ticketElems = document.querySelectorAll(".ticket")
+    const ticketsElm = document.querySelector(".tickets")
+    ticketsElm.classList.remove("tickets_empty")
     
-    ticketElems.forEach((elem, i) => {
-        if (!data[i]) return
-        elem.querySelector(".ticket-date").textContent = APP.formateDate(new Date(data[i].date))
+    data.forEach((game, i) => {
+        const ticketTemplate = `
+            <svg class="ticket-bg" version="1.1" viewBox="861.5 2248 266 315" xmlns="http://www.w3.org/2000/svg">
+              <path rx="0" ry="0"
+                d="m861.5 2326c0.166 0 0.333 0.01 0.5 0.01 8.279 0 15-6.721 15-15s-6.721-15-15-15c-0.167 0-0.334 0-0.5 0.01v-43.012c0-2.76 2.24-5 5-5h256c2.76 0 5 2.24 5 5v43c-8.279 0-15 6.721-15 15s6.721 15 15 15v232c0 2.76-2.24 5-5 5h-256c-2.76 0-5-2.24-5-5zm25-18.992c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4zm54 0c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4zm-18 0c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4zm-18 0c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4zm108 0c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4zm-36 0c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4zm18 0c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4zm-36 0c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4zm72 0c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4zm18 0c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4zm54 0c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4zm-36 0c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4zm18 0c-2.208 0-4 1.792-4 4s1.792 4 4 4 4-1.792 4-4-1.792-4-4-4z"
+                fill="currentColor" />
+            </svg>
 
-        const imgElems = elem.querySelectorAll(".ticket-teams .team img")
-        imgElems[0].src = APP.HOSTNAME + data[i].team1.logo
-        imgElems[1].src = APP.HOSTNAME + data[i].team2.logo
+            <div class="ticket-content">
+
+              <p class="ticket-date">${APP.formateDate(new Date(game.date))}</p>
+              <div class="ticket-center">
+                <h3 class="ticket-league">${game.league.name}</h3>
+                <p class="ticket-desc">${game.description}</p>
+                <div class="ticket-teams">
+                  <div class="team">
+                    <div class="team-img">
+                      <img src="${APP.HOSTNAME + game.team1.logo}">
+                    </div>
+                    <p>${game.team1.name}</p>
+                  </div>
+                  <i class="fa-solid fa-star"></i>
+                  <div class="team">
+                    <div class="team-img">
+                      <img src="${APP.HOSTNAME + game.team2.logo}">
+                    </div>
+                    <p>${game.team2.name}</p>
+                  </div>
+                </div>
+              </div>
+              <a href="pages/reservation.html?gameId=${game.id}" class="btn btn_primary">Buy ticket
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+        `
         
-        const teamNameElems = elem.querySelectorAll(".ticket-teams .team p")
-        teamNameElems[0].textContent = data[i].team1.name
-        teamNameElems[1].textContent = data[i].team2.name
-
-        elem.querySelector("a.btn").setAttribute("href", `pages/reservation.html?gameId=${data[i].id}`)
+        const ticket = document.createElement("div")
+        ticket.classList.add("ticket")
+        ticket.innerHTML = ticketTemplate
+        ticketsElm.appendChild(ticket)
         
 
-        if (elem.classList.contains("ticket_main")) {
-            elem.querySelector(".ticket-league").textContent = data[i].league.name
-            elem.querySelector(".ticket-desc").textContent = data[i].description
+        const ticketsWrapperElm = document.querySelector('.tickets-wrapper')
+        if (ticketsWrapperElm.scrollWidth > ticketsWrapperElm.clientWidth) {
+            ticketsElm.classList.add("tickets_scrollable")
         }
-        
-        elem.classList.remove("ticket_empty")
     })
 
 }

@@ -215,7 +215,18 @@ createAccountBtnElm.addEventListener("click", async (e) => {
     waitNot.pop()
     createAccountBtnElm.removeAttribute("disabled")
 
-    console.log(data)
+    if (!data.success) {
+        if (data.field == "phone") 
+            APP.inputValidator(phoneInputElm, data.message)
+        else if (data.field == "nationalNumber") 
+            APP.inputValidator(natioanlNumberInputElm, data.message)
+        else {
+            const errNot = new APP.Notification(data.message, "false")
+            errNot.push()
+            errNot.popAfter(3000)
+        }
+        return
+    }
 
     window.location.href = window.location.href.replace("/pages/login.html", "")
 })
