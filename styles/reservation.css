@@ -21,7 +21,7 @@ body {
 .left-side {
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: space-between;
     background-color: rgb(var(--clr-primary));
     padding: 2rem;
     border: 1px solid rgba(var(--clr-black),.1);
@@ -86,11 +86,12 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 1.6rem;
     padding: 2rem 4rem;
 }
 
 .stadium-filter p {
-    margin-bottom: 1rem;
+    margin-bottom: .8rem;
     text-transform: uppercase;
     color: rgba(var(--clr-white),.5);
 }
@@ -164,7 +165,11 @@ body {
 }
 
 /* ############################## right content ############################ */
-
+.right-side {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
 .game-wrapper {
     background-color: rgb(var(--clr-white));
     border: 1px solid rgba(var(--clr-black),.1);
@@ -254,8 +259,6 @@ body {
     border: 1px solid rgba(var(--clr-black),.1);
     box-shadow: 0 .8rem 2rem .4rem rgba(0, 0, 0, 0.02);
     border-radius: .5rem;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
     padding: 0 4rem;
 
     position: relative;
@@ -483,4 +486,21 @@ body {
         --height : 100%;
         border-radius: 0;
     }
+}
+
+
+/* 500px */
+@media (max-width : 31.25em) {
+	.section {
+    	padding-block: 0rem 5rem;
+	}
+	.section .container {
+        gap: 3rem;
+    }
+    
+	.left-side {
+		padding-block: 7rem 2rem;
+		margin-inline: calc(-1 * var(--container-inline-padding));
+    	border-radius: 0;
+	}
 }

@@ -1118,7 +1118,7 @@ input[type="range"]::-moz-range-thumb {
 /* 500px */
 @media (max-width : 31.25em) {
   body {
-    --container-inline-padding: 1rem;
+    --container-inline-padding: 2rem;
     overflow-x: hidden;
   }
 }

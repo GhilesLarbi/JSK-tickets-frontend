@@ -495,19 +495,7 @@
 }
 
 
-.footer-form::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(var(--bg-color));
-    box-shadow: 0 .8rem 3rem rgba(0, 0, 0, .06);
-    border-radius: .8rem;
-    z-index: -1;
-}
-
+.footer-form::before,
 .footer-form::after {
     content: "";
     position: absolute;
@@ -515,8 +503,17 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(var(--bg-color), .1);
     border-radius: .8rem;
+}
+
+.footer-form::before {
+    background-color: rgb(var(--bg-color));
+    box-shadow: 0 .8rem 3rem rgba(0, 0, 0, .06);
+    z-index: -1;
+}
+
+.footer-form::after {
+    background-color: rgba(var(--bg-color), .1);
     transform: rotate(-8deg);
     z-index: -2;
 }
@@ -643,12 +640,20 @@
         justify-content: center;
         align-items: center;
     }
+    
+    .section_next-game {
+    	padding: 5rem 0;
+	}
+    
+    .next-game {
+    	padding-block: 7rem;
+    	background-color: rgb(var(--clr-primary));
+        border-radius: 1rem;
+    }
 
     .next-game-content {
         width: 100%;
         padding-inline: 2rem;
-        background-color: rgb(var(--clr-primary));
-        border-radius: 1rem;
     }
 
     .next-game-content::before {
@@ -690,6 +695,9 @@
         gap: 1rem;
     }
 
+	.primary-footer {
+		padding-top: 10rem;
+	}
 
     .footer-form {
         margin-inline: 0;
@@ -707,6 +715,10 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
+    
+    .footer-bottom>div:first-child {
+    	display: none;
+	}
 
 }
 
@@ -714,6 +726,12 @@
 
 /* 500px */
 @media (max-width : 31.25em) {
+	
+	.next-game {
+		margin-inline: calc(-1 * var(--container-inline-padding));
+		border-radius: 0;
+	}
+    
     .next-game-teams {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -732,10 +750,28 @@
     .next-game-stars {
         display: none;
     }
-
+	.container_tickets {
+    	padding-block: 10rem 5rem;
+	}
+	
+	.container_stadium {
+    	margin-block: 7rem;
+	}
+	
+	.stadium-top-container {
+    	margin-bottom: 2rem;
+    	gap: 6rem;
+	}
 
 
     .footer-form {
-        padding: 8rem 2rem;
+        padding: 15rem 2rem;
+        margin-inline: calc(-1 * var(--container-inline-padding));
     }
+    
+    
+	.footer-form::before,
+	.footer-form::after {
+        border-radius: 0;
+	}
 }
