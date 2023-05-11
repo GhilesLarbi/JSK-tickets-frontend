@@ -50,7 +50,7 @@
 
 :root {
   --clr-accent: 255, 234, 115;
-  --clr-primary: 4, 104, 82;
+  --clr-primary: 4, 104, 96;
   --clr-white: 255, 255, 255;
   --clr-black: 0, 0, 0;
 
@@ -87,7 +87,7 @@
 
 .dark-theme {
   --clr-primary: 255, 234, 115;
-  --clr-accent: 4, 104, 82;
+  --clr-accent: 4, 104, 96;
   --clr-black: 255, 255, 255;
   --clr-white: 23, 23, 23;
 

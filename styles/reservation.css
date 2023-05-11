@@ -24,7 +24,7 @@ body {
     justify-content: space-between;
     background-color: rgb(var(--clr-primary));
     padding: 2rem;
-    border: 1px solid rgba(var(--clr-black),.1);
+    border: 1px solid rgba(var(--clr-black), .1);
     border-radius: .5rem;
 }
 
@@ -43,9 +43,9 @@ body {
 #stadium-bg {
     fill: rgb(var(--clr-white));
     fill-opacity: 1;
-    opacity:0;
+    opacity: 0;
     stroke: rgb(var(--clr-white));
-    stroke-width : .4rem; 
+    stroke-width: .4rem;
 }
 
 #stadium-bleachers {
@@ -56,7 +56,7 @@ body {
 .btype {
     fill: rgb(var(--clr-white));
     fill-opacity: .1;
-    
+
     stroke: rgb(var(--clr-primary));
     stroke-width: .8rem;
     stroke-opacity: 1;
@@ -67,7 +67,7 @@ body {
     transition: fill-opacity .2s, fill .2s;
 }
 
-.btype:hover{
+.btype:hover {
     fill-opacity: .5;
 }
 
@@ -81,8 +81,8 @@ body {
 
 .stadium-filters {
     border-radius: .5rem;
-    background-color: rgba(var(--clr-white),.1);
-    
+    background-color: rgba(var(--clr-white), .1);
+
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -93,7 +93,7 @@ body {
 .stadium-filter p {
     margin-bottom: .8rem;
     text-transform: uppercase;
-    color: rgba(var(--clr-white),.5);
+    color: rgba(var(--clr-white), .5);
 }
 
 
@@ -108,7 +108,7 @@ body {
 .price-range {
     isolation: isolate;
     position: relative;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,7 +121,7 @@ body {
 
 .price-range output {
     width: 2rem;
-    color: rgba(var(--clr-white),.5);
+    color: rgba(var(--clr-white), .5);
     font-weight: var(--fw-semi-bold);
 }
 
@@ -139,14 +139,14 @@ body {
     appearance: none;
     width: 3rem;
     height: 3rem;
-    background-color: rgba(var(--clr-accent),.1);
-    border: 2px solid rgba(var(--clr-black),.1);
+    background-color: rgba(var(--clr-accent), .1);
+    border: 2px solid rgba(var(--clr-black), .1);
     border-radius: .5rem;
     cursor: pointer;
 }
 
 .ticket-number input:checked {
-    border-color: rgba(var(--clr-accent),.7);
+    border-color: rgba(var(--clr-accent), .7);
 }
 
 .ticket-numbers label {
@@ -155,24 +155,25 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: var(--fw-bold);
-    color: rgba(var(--clr-accent),.4);
+    color: rgba(var(--clr-accent), .4);
     cursor: pointer;
     user-select: none;
 }
 
-.ticket-number input:checked + label {
-    color: rgba(var(--clr-accent),.7);
+.ticket-number input:checked+label {
+    color: rgba(var(--clr-accent), .7);
 }
 
 /* ############################## right content ############################ */
 .right-side {
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
+
 .game-wrapper {
     background-color: rgb(var(--clr-white));
-    border: 1px solid rgba(var(--clr-black),.1);
+    border: 1px solid rgba(var(--clr-black), .1);
     border-radius: .5rem;
     box-shadow: 0 .8rem 2rem .4rem rgba(0, 0, 0, 0.02);
     padding: 3rem 4rem;
@@ -183,12 +184,12 @@ body {
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
-    
+
     position: relative;
 }
 
 
-.game-wrapper_empty > *:not(.loading-icon){
+.game-wrapper_empty>*:not(.loading-icon) {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -207,7 +208,7 @@ body {
     margin-top: 2rem;
     font-weight: var(--fw-medium);
     opacity: .3;
-    
+
     display: none;
 }
 
@@ -221,7 +222,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     padding-inline: 2rem;
 }
 
@@ -232,7 +233,7 @@ body {
 
 
 .game-content .team {
-    --size : 6rem;
+    --size: 6rem;
 }
 
 .game-center p:first-child {
@@ -255,13 +256,39 @@ body {
 
 
 .ticket-card {
-    background-color: rgb(var(--clr-white));
-    border: 1px solid rgba(var(--clr-black),.1);
-    box-shadow: 0 .8rem 2rem .4rem rgba(0, 0, 0, 0.02);
+    --circle-size : 6rem;
+    filter: drop-shadow(0 .8rem 2rem rgba(0, 0, 0, 0.05))
+        drop-shadow(1px 0px 0 rgba(var(--clr-black), .1))
+        drop-shadow(-1px 0px 0 rgba(var(--clr-black), .1))
+        drop-shadow(0px 1px 0 rgba(var(--clr-black), .1))
+        drop-shadow(0px -1px 0 rgba(var(--clr-black), .1));
     border-radius: .5rem;
     padding: 0 4rem;
+    
+    overflow: hidden;
 
     position: relative;
+}
+.ticket-card-bg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    border-radius: 50%;
+    /* background-color: red; */
+}
+
+.ticket-card-bg::after {
+    content:'';
+    position:absolute;
+    top: 0;
+    left: 0;
+    border-radius:50%;
+    width: 100%; 
+    height: 100%;
+    box-shadow: 0px 0px 0px 2000px rgb(var(--clr-white));
 }
 
 
@@ -271,14 +298,14 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1;
     background-color: rgba(var(--clr-white), .8);
     border-radius: inherit;
-    
+
     opacity: 0;
     visibility: hidden;
     transition: opacity .2s, visibility .2s;
@@ -293,15 +320,30 @@ body {
     display: flex;
 }
 
+
+
+
 .ticket-element {
     padding: 4rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
-.ticket-element:not(:last-child) {
-    border-bottom: 2px solid rgba(var(--clr-black),.05);
+.ticket-element:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    border-bottom: 2px dashed rgba(var(--clr-black), .0);
+    opacity: .1;
+    background-image: repeating-linear-gradient(-1deg, #333333, #333333 19px, transparent 19px, transparent 35px, #333333 35px), repeating-linear-gradient(89deg, #333333, #333333 19px, transparent 19px, transparent 35px, #333333 35px), repeating-linear-gradient(179deg, #333333, #333333 19px, transparent 19px, transparent 35px, #333333 35px), repeating-linear-gradient(269deg, #333333, #333333 19px, transparent 19px, transparent 35px, #333333 35px);
+    background-size: 3px 100%, 100% 3px, 3px 100%, 100% 3px;
+    background-position: 0 0, 0 0, 100% 0, 0 100%;
+    background-repeat: no-repeat;
 }
 
 
@@ -315,8 +357,8 @@ body {
     margin-bottom: .4rem;
 }
 
-.ticket-element-title  i {
-    color: rgba(var(--clr-primary),.8);
+.ticket-element-title i {
+    color: rgba(var(--clr-primary), .8);
     font-size: var(--fz-500);
 }
 
@@ -327,19 +369,22 @@ body {
 
 
 
-.show-3d-btn ,
+.show-3d-btn,
 .control-ticket-number-btn {
-    width: 4rem;
-    height: 4rem;
-    background-color: rgba(var(--clr-primary),.1);
+    --size: 3rem;
+    width: var(--size);
+    height: var(--size);
+    background-color: rgba(var(--clr-primary), .1);
     color: rgb(var(--clr-primary));
-    border-radius: 50%;
+    border-radius: .4rem;
 }
 
 
 .show-3d-btn {
+    --size: 4rem;
     position: relative;
     isolation: isolate;
+    border-radius: 50%;
     transition: transform .2s;
 }
 
@@ -359,6 +404,7 @@ body {
     background-color: rgb(var(--clr-primary), .5);
     border-radius: inherit;
 }
+
 .show-3d-btn::before {
     animation: wavy 1.2s infinite;
 }
@@ -386,7 +432,7 @@ body {
 }
 
 
-.right-side > .btn {
+.right-side>.btn {
     width: 100%;
 }
 
@@ -394,25 +440,25 @@ body {
 
 
 .panorama-360-wrapper {
-    --width : 90%;
-    --height : 90%;
+    --width: 90%;
+    --height: 90%;
     position: fixed;
     width: var(--width);
     height: var(--width);
     top: calc((100% - var(--width))/2);
     left: calc((100% - var(--height))/2);
     z-index: 99999999;
-    
+
     border-radius: 1rem;
-    box-shadow: 0 0 1rem 1rem rgba(0,0,0,.05);
+    box-shadow: 0 0 1rem 1rem rgba(0, 0, 0, .05);
 
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     opacity: 0;
     visibility: hidden;
-    
+
     transition: opacity .2s, visibility .2s;
 }
 
@@ -441,7 +487,7 @@ body {
     width: 3rem;
     height: 3rem;
     border-radius: .3rem;
-    background-color: rgba(var(--clr-primary),.8);
+    background-color: rgba(var(--clr-primary), .8);
     box-shadow: 0 .4rem .8rem rgba(var(--clr-primary), .1);
     color: rgb(var(--clr-white), .8);
     border: 1px solid rgb(var(--clr-primary));
@@ -460,7 +506,7 @@ body {
 #panorama-360-view {
     width: 100%;
     height: 100%;
-    
+
     border-radius: inherit;
     background-color: rgb(var(--clr-white));
 }
@@ -480,27 +526,29 @@ body {
     #stadium-bleachers {
         transform: scale(1);
     }
-    
+}
+
+@media (max-width : 43.75em) or (max-height : 31.25em) {
     .panorama-360-wrapper {
-        --width : 100%;
-        --height : 100%;
+        --width: 100%;
+        --height: 100%;
         border-radius: 0;
     }
 }
 
-
 /* 500px */
 @media (max-width : 31.25em) {
-	.section {
-    	padding-block: 0rem 5rem;
-	}
-	.section .container {
+    .section {
+        padding-block: 0rem 5rem;
+    }
+
+    .section .container {
         gap: 3rem;
     }
-    
-	.left-side {
-		padding-block: 7rem 2rem;
-		margin-inline: calc(-1 * var(--container-inline-padding));
-    	border-radius: 0;
-	}
+
+    .left-side {
+        padding-block: 7rem 2rem;
+        margin-inline: calc(-1 * var(--container-inline-padding));
+        border-radius: 0;
+    }
 }
