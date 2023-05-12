@@ -93,6 +93,7 @@
     color: rgba(var(--clr-primary), .9);
     border-radius: 50%;
 }
+
 .options-btn_showdrop {
     border: .2rem solid rgba(var(--clr-primary), .2);
     box-shadow: 0 .8rem 1rem rgba(var(--clr-primary), .1);

@@ -92,15 +92,21 @@ async function addTicket(ticketData) {
     const optionBtnElm = ticketElm.querySelector(".ticket-options-btn")
     optionBtnElm.addEventListener("click", (e) => {
         e.preventDefault()
-        optionBtnElm.classList.toggle("options-btn_showdrop")
         toggleDropdown()
     })
     
 
     function toggleDropdown(opt) {
-        if (opt === "show") optionBtnElm.nextElementSibling.classList.add("dropdown_show")
-        else if (opt === "hide") optionBtnElm.nextElementSibling.classList.remove("dropdown_show")
-        else optionBtnElm.nextElementSibling.classList.toggle("dropdown_show")
+        if (opt === "show") {
+            optionBtnElm.nextElementSibling.classList.add("dropdown_show")
+            optionBtnElm.classList.add("options-btn_showdrop")
+        } else if (opt === "hide"){
+            optionBtnElm.nextElementSibling.classList.remove("dropdown_show")
+            optionBtnElm.classList.remove("options-btn_showdrop")
+        } else {
+            optionBtnElm.nextElementSibling.classList.toggle("dropdown_show")
+            optionBtnElm.classList.toggle("options-btn_showdrop")
+        }
     }
 
 
