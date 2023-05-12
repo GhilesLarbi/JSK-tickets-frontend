@@ -1,3 +1,6 @@
+APP.addNavbar(".")
+APP.initial()
+
 async function init() {
     
     const waitNot = new APP.Notification("fetching data", "loading")

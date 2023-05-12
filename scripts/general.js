@@ -1,15 +1,11 @@
 const APP = (function () {
-    const HOSTNAME = "https://stadium-tickets-api.onrender.com"
-    // const HOSTNAME = "http://localhost:3000"
+    // const HOSTNAME = "https://stadium-tickets-api.onrender.com"
+    const HOSTNAME = "http://localhost:3000"
 
 
     let notificationsElm
     let uniqueNotificationId = 0
     let retryBtnElm
-
-
-
-
 
 
     // #################### Notification #############################
@@ -69,15 +65,8 @@ const APP = (function () {
     }
 
 
-
-
-
-
-
     // this function runs on every page
     function initial() {
-
-
         // add notifications
         notificationsElm = document.createElement("div")
         notificationsElm.classList.add("notifications")
@@ -150,10 +139,6 @@ const APP = (function () {
 
     }
 
-    // fire up the initial function
-    initial()
-
-
     function addListeners() {
         // ################################ input ################################### 
         document.querySelectorAll(".input").forEach((inputElm, index) => {
@@ -178,56 +163,6 @@ const APP = (function () {
             })
         })
 
-        // ############################# switch theme button ##############################
-        const switchThemeBtnElm = document.querySelector(".switch-theme-btn")
-        if (switchThemeBtnElm) switchThemeBtnElm.addEventListener("change", () => {
-            const theme = switchTheme()
-            const themeNot = new Notification(`${theme} theme`, "true")
-            themeNot.push()
-            themeNot.popAfter(2000)
-        })
-
-
-
-        // ############################# show user dropdown ################################
-        const primaryHeaderAccountElm = document.querySelector(".primary-header-account ")
-        if (primaryHeaderAccountElm) primaryHeaderAccountElm.addEventListener("click", (e) => {
-            e.preventDefault()
-            primaryHeaderAccountElm.parentElement.classList.toggle("primary-header-user_showdrop")
-        })
-
-
-        // ############################# disconnect ################################
-        const disconnectBtnElm = document.querySelector(".dropdwon-link_logout")
-        if (disconnectBtnElm) disconnectBtnElm.addEventListener("click", (e) => {
-            e.preventDefault()
-            localStorage.removeItem("token")
-            window.location.reload()
-        })
-
-
-        // ############################## fixed header ##############################
-        const primaryHeaderElm = document.querySelector(".primary-header")
-
-        if (primaryHeaderElm) {
-            const primaryHeaderHeight = primaryHeaderElm.offsetHeight
-
-            document.addEventListener("scroll", e => {
-                if (window.pageYOffset > primaryHeaderHeight && window.pageYOffset < 900) {
-                    primaryHeaderElm.classList.add("primary-header_hide")
-                } else {
-                    primaryHeaderElm.classList.remove("primary-header_hide")
-                }
-
-                if (window.pageYOffset > 450) {
-                    document.body.classList.add("fixed-header")
-                    document.body.style.paddingTop = primaryHeaderHeight + "px"
-                } else {
-                    document.body.classList.remove("fixed-header")
-                    document.body.style.paddingTop = "0px"
-                }
-            })
-        }
     }
 
 
@@ -260,6 +195,134 @@ const APP = (function () {
             if (document.body.classList.contains("show-no-internet-overlay")) noInternetOverlay("hide")
             else noInternetOverlay("show")
         }
+    }
+
+
+    // add navbar 
+    function addNavbar(rootPath) {
+        let page = "home"
+        if (window.location.pathname.includes("tickets.html")) page = "tickets"
+
+        const navbarTemplate = `
+        <div class="container primary-header_container">
+          <a href="${rootPath}/index.html" class="logo">
+            <svg version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <rect class="logo-bg" x="56.305" y="102.27" width="100" height="100" rx="15.671" ry="15.671"
+                transform="translate(-56.305 -102.27)" fill="currentColor" />
+              <path class="logo-icon"
+                d="m82.075 118.04 4.4674 26.487 15.279 7.567-15.233 7.6838-4.5336 26.468 8.6243-3.929 2.76-18.035 9.1405-4.5698 0.077 16.548 3.6871-2.0634 3.6866 2.0634 0.0765-16.548 9.1405 4.5698 2.7606 18.035 8.6238 3.929-4.5331-26.468-15.233-7.6838 15.279-7.567 4.4674-26.487-8.5468 3.9042-2.8339 18.03-9.1317 4.5372 5.2e-4 -16.592-3.7569 2.1296-3.7564-2.1296 5.2e-4 16.592-9.1317-4.5372-2.8339-18.03z"
+                transform="translate(-56.305 -102.27)" fill="currentColor" />
+            </svg>
+            ⵊⵙⴽ
+          </a>
+          <nav class="primary-nav">
+            <ul>
+              <li>
+                <a class="nav-link ${page == "home" ? "nav-link_selected" : ""}" href="${rootPath}/index.html">Home</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-star"></i>
+              </li>
+              <li>
+                <a class="nav-link ${page == "tickets" ? "nav-link_selected" : ""}" href="${rootPath}/pages/tickets.html">Tickets</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-star"></i>
+              </li>
+              <li>
+                <a class="nav-link" href="#">About</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="primary-header-right">
+            <div class="switch-theme-container">
+              <input class="switch-theme-btn" type="checkbox" name="switch theme">
+              <div class="switch-theme-icons">
+                <i class="moon-icon fa-solid fa-moon"></i>
+                <i class="sun-icon fa-solid fa-sun"></i>
+              </div>
+            </div>
+            <div class="seperator"></div>
+            <a href="${rootPath}/pages/login.html?page=login" class="primary-header-login-btn btn btn_primary btn_small">Login
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+    
+            <div class="primary-header-user">
+              <a href="#" class="primary-header-account">
+                <i class="fa-solid fa-user"></i>
+              </a>
+    
+              <div class="user-dropdown">
+                <a href="#" class="dropdown-link"><i class="fa-solid fa-user-circle"></i> <span>My account</span></a>
+                <a href="pages/tickets.html" class="dropdown-link"><i class="fa-solid fa-ticket"></i> <span>My
+                    tickets</span></a>
+                <a href="pages/login.html?page=confirm_email"
+                  class="dropdown-link dropdown-link_email dropdown-link_hide"><i class="fa-solid fa-envelope"></i>
+                  <span>Confirm email</span></a>
+                <a href="#" class="dropdown-link dropdown-link_highlight dropdwon-link_logout"><i
+                    class="fa-solid fa-arrow-circle-left"></i> <span>Log out</span></a>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+        `
+
+        const headerElm = document.createElement("header")
+        headerElm.classList.add("primary-header")
+        headerElm.innerHTML = navbarTemplate
+
+
+        // ############################# switch theme button ##############################
+        const switchThemeBtnElm = headerElm.querySelector(".switch-theme-btn")
+        if (switchThemeBtnElm) switchThemeBtnElm.addEventListener("change", () => {
+            const theme = switchTheme()
+            const themeNot = new Notification(`${theme} theme`, "true")
+            themeNot.push()
+            themeNot.popAfter(2000)
+        })
+
+
+
+        // ############################# show user dropdown ################################
+        const primaryHeaderAccountElm = headerElm.querySelector(".primary-header-account ")
+        if (primaryHeaderAccountElm) primaryHeaderAccountElm.addEventListener("click", (e) => {
+            e.preventDefault()
+            primaryHeaderAccountElm.parentElement.classList.toggle("primary-header-user_showdrop")
+        })
+
+
+        // ############################# disconnect ################################
+        const disconnectBtnElm = headerElm.querySelector(".dropdwon-link_logout")
+        if (disconnectBtnElm) disconnectBtnElm.addEventListener("click", (e) => {
+            e.preventDefault()
+            localStorage.removeItem("token")
+            window.location.reload()
+        })
+
+
+        // ############################## fixed header ##############################
+        document.body.prepend(headerElm)
+        const primaryHeaderHeight = headerElm.offsetHeight
+
+        document.addEventListener("scroll", e => {
+            if (window.pageYOffset > primaryHeaderHeight && window.pageYOffset < 900) {
+                headerElm.classList.add("primary-header_hide")
+            } else {
+                headerElm.classList.remove("primary-header_hide")
+            }
+
+            if (window.pageYOffset > 450) {
+                document.body.classList.add("fixed-header")
+                document.body.style.paddingTop = primaryHeaderHeight + "px"
+            } else {
+                document.body.classList.remove("fixed-header")
+                document.body.style.paddingTop = "0px"
+            }
+        })
+        
+
+        return headerElm
     }
 
 
@@ -402,6 +465,8 @@ const APP = (function () {
     return {
         HOSTNAME,
         VALIDATORS,
+        initial,
+        addNavbar,
         formateDate,
         init,
         fetch,

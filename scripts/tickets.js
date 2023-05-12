@@ -1,3 +1,6 @@
+APP.addNavbar("..")
+APP.initial()
+
 const ticketsElm = document.querySelector(".tickets")
 
 

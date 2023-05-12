@@ -14,6 +14,14 @@ body::after {
     background-color: transparent;
 }
 
+.primary-nav,
+.primary-header-right .seperator,
+.primary-header-login-btn {
+    display: none;
+}
+
+
+
 /* ################# FORMS SECTIONS ################### */
 
 .container_wrappers {

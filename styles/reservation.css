@@ -139,14 +139,14 @@ body {
     appearance: none;
     width: 3rem;
     height: 3rem;
-    background-color: rgba(var(--clr-accent), .1);
+    background-color: rgba(var(--clr-white), .1);
     border: 2px solid rgba(var(--clr-black), .1);
     border-radius: .5rem;
     cursor: pointer;
 }
 
 .ticket-number input:checked {
-    border-color: rgba(var(--clr-accent), .7);
+    border-color: rgba(var(--clr-white), .7);
 }
 
 .ticket-numbers label {
@@ -155,13 +155,13 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: var(--fw-bold);
-    color: rgba(var(--clr-accent), .4);
+    color: rgba(var(--clr-white), .4);
     cursor: pointer;
     user-select: none;
 }
 
 .ticket-number input:checked+label {
-    color: rgba(var(--clr-accent), .7);
+    color: rgba(var(--clr-white), .7);
 }
 
 /* ############################## right content ############################ */
@@ -258,10 +258,8 @@ body {
 .ticket-card {
     --circle-size : 6rem;
     filter: drop-shadow(0 .8rem 2rem rgba(0, 0, 0, 0.05))
-        drop-shadow(1px 0px 0 rgba(var(--clr-black), .1))
-        drop-shadow(-1px 0px 0 rgba(var(--clr-black), .1))
-        drop-shadow(0px 1px 0 rgba(var(--clr-black), .1))
-        drop-shadow(0px -1px 0 rgba(var(--clr-black), .1));
+        drop-shadow(1px 1px 0 rgba(var(--clr-black), .1))
+        drop-shadow(-1px -1px 0 rgba(var(--clr-black), .1));
     border-radius: .5rem;
     padding: 0 4rem;
     

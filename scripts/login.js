@@ -1,3 +1,6 @@
+APP.addNavbar("..")
+APP.initial()
+
 // let's peep that page query and bust out the right form like a boss.
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
