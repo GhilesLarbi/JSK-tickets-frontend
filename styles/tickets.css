@@ -74,20 +74,39 @@
 }
 
 
-.download-btn {
+.ticket-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.ticket-options-btn {
     --size: 3rem;
     width: var(--size);
     height: var(--size);
 
     margin-inline: auto;
 
-    background-color: rgba(var(--clr-primary), .9);
-    color: rgba(var(--clr-white), .9);
+    background-color: rgba(var(--clr-primary), .1);
+    color: rgba(var(--clr-primary), .9);
     border-radius: 50%;
-    box-shadow: 0 .8rem 1rem rgba(var(--clr-primary), .1);
-
-    transition: opacity .2s;
 }
+.options-btn_showdrop {
+    border: .2rem solid rgba(var(--clr-primary), .2);
+    box-shadow: 0 .8rem 1rem rgba(var(--clr-primary), .1);
+}  
+
+
+.ticket-options .dropdown {
+  --top : 8rem;
+  --right : -2rem;
+  --indecator-position : 8rem;
+    
+  filter: drop-shadow(1px 1px 0 rgba(var(--clr-black), .1)) drop-shadow(-1px -1px 0 rgba(var(--clr-black), .1)) drop-shadow(0 0 2rem rgba(0, 0, 0, 0.1));
+}
+
 
 .download-btn:disabled {
     pointer-events: none;

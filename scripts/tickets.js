@@ -8,7 +8,14 @@ async function addTicket(ticketData) {
     const ticketTemplate = `
             <div class="ticket-content">
                 <p class="ticket-date"></p>
-                <button class="download-btn"><i class="fa-solid fa-download"></i></button>
+                <!-- <button class="download-btn"><i class="fa-solid fa-download"></i></button> -->
+                <div class="ticket-options">
+                    <button class="ticket-options-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                    <div class="dropdown">        
+                        <button class="dropdown-link dropdown-link_highlight download-btn"><i class="fa-solid fa-download"></i> <span>Download PDF</span></button>
+                        <button class="dropdown-link remove-btn"><i class="fa-solid fa-trash"></i> <span>Delete Ticket</span></button>
+                    </div>
+                </div>
 
                 <div class="ticket-info">
                     <div class="ticket-info-element">
@@ -79,31 +86,65 @@ async function addTicket(ticketData) {
     APP.fetch(`ticket/${ticketData.id}/string`).then((data) => {
         ticketElm.querySelector(".ticket-qrcode-string").textContent = data.data.string
     })
+
+
+    // ############################# show user dropdown ################################
+    const optionBtnElm = ticketElm.querySelector(".ticket-options-btn")
+    optionBtnElm.addEventListener("click", (e) => {
+        e.preventDefault()
+        optionBtnElm.classList.toggle("options-btn_showdrop")
+        toggleDropdown()
+    })
     
+
+    function toggleDropdown(opt) {
+        if (opt === "show") optionBtnElm.nextElementSibling.classList.add("dropdown_show")
+        else if (opt === "hide") optionBtnElm.nextElementSibling.classList.remove("dropdown_show")
+        else optionBtnElm.nextElementSibling.classList.toggle("dropdown_show")
+    }
+
+
 
 
     const downloadBtnElm = ticketElm.querySelector(".download-btn")
-    
+
     downloadBtnElm.addEventListener("click", async () => {
+        toggleDropdown("hide")
         downloadBtnElm.setAttribute("disabled", "true")
         const waitNot = new APP.Notification("Please wait", "loading")
         waitNot.push()
 
-        const fileRes = await APP.fetch(`ticket/${ticketData.id}/pdf`, {type : "blob"})
-        
+        const fileRes = await APP.fetch(`ticket/${ticketData.id}/pdf`, { type: "blob" })
+
         const fileUrl = window.URL.createObjectURL(fileRes);
-        
+
         const linkElm = document.createElement('a');
         linkElm.style.opacity = "0"
         linkElm.style.position = "absolute"
         linkElm.href = fileUrl
         linkElm.download = "ticket.pdf"
-        document.body.appendChild(linkElm) 
-        linkElm.click()    
-        linkElm.remove()        
+        document.body.appendChild(linkElm)
+        linkElm.click()
+        linkElm.remove()
         downloadBtnElm.removeAttribute("disabled")
 
         waitNot.pop()
+    })
+    
+
+
+    const removeBtnElm = ticketElm.querySelector(".remove-btn")
+
+    removeBtnElm.addEventListener("click", async () => {
+        toggleDropdown("hide")
+        const waitNot = new APP.Notification("Please wait", "loading")
+        waitNot.push()
+
+        const deleteRes = await APP.fetch(`ticket/${ticketData.id}`, {method : "DELETE"})
+
+        waitNot.pop()
+        
+        window.location.reload()
     })
 }
 
