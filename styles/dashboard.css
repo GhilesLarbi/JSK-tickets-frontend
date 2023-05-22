@@ -72,7 +72,7 @@ body {
 
 .sidebar {
     height: 100%;
-    z-index: 100;
+    z-index: 3;
     width: var(--sidebar-width);
     transition: width .2s;
 }
@@ -729,33 +729,6 @@ body {
     .tab--container {
         max-width: 170rem;
     }
-
-
-    .nav-grads-table--head>.grads-table--head {
-        max-width: 170rem;
-    }
-    
-
-    .tab__schedules {
-        overflow-x: hidden;
-    }
-
-    .tab__schedules .tab--container {
-        overflow: visible;
-    }
-
-    .calendar-wrapper {
-        position: relative;
-    }
-    .calendar-wrapper::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 100%;
-        width: 100%;
-        height: 100%;
-        background-color: inherit;
-    }
 }
 
 /* 960px */
@@ -913,7 +886,7 @@ body {
 /* 650px */
 @media (max-width : 40.625em) {
     .wrapper {
-        --sidebar-height : 10rem;
+        --sidebar-height : 8rem;
     }
     .content-wrapper {
         transform: none;
@@ -922,16 +895,17 @@ body {
     }
 
     .tab {
-
         padding-bottom: var(--sidebar-height);
     }
 
     .sidebar {
-        --sidebar-width : 100%;
+        --sidebar-width : 90%;
         height: var(--sidebar-height);
-        bottom: 0;
-
-        box-shadow: 0 -1rem 1rem rgba(0, 0, 0, 0.1);
+        bottom: 1.2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 10rem;
+        box-shadow: 0 -1rem 2rem rgba(0, 0, 0, 0.02);
     }
 
     .sidebar__collapsed .sidebar {
@@ -959,7 +933,7 @@ body {
     }
     
     .sidebar--btn {
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         padding-left: 0;
         gap: 1.2rem;
