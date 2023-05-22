@@ -217,21 +217,11 @@ const APP = (function () {
           </a>
           <nav class="primary-nav">
             <ul>
-              <li>
-                <a class="nav-link ${page == "home" ? "nav-link_selected" : ""}" href="${rootPath}/index.html">Home</a>
-              </li>
-              <li>
-                <i class="fa-solid fa-star"></i>
-              </li>
-              <li>
-                <a class="nav-link ${page == "tickets" ? "nav-link_selected" : ""}" href="${rootPath}/pages/tickets.html">Tickets</a>
-              </li>
-              <li>
-                <i class="fa-solid fa-star"></i>
-              </li>
-              <li>
-                <a class="nav-link" href="#">About</a>
-              </li>
+              <li><a class="nav-link ${page == "home" ? "nav-link_selected" : ""}" href="${rootPath}/index.html">Home</a></li>
+              <li><i class="fa-solid fa-star"></i></li>
+              <li><a class="nav-link ${page == "tickets" ? "nav-link_selected" : ""}" href="${rootPath}/pages/tickets.html">Tickets</a></li>
+              <li><i class="fa-solid fa-star"></i></li>
+              <li><a class="nav-link" href="#">About</a></li>
             </ul>
           </nav>
           <div class="primary-header-right">
@@ -254,8 +244,8 @@ const APP = (function () {
     
               <div class="dropdown">
                 <a href="#" class="dropdown-link"><i class="fa-solid fa-user-circle"></i> <span>My account</span></a>
-                <a href="pages/tickets.html" class="dropdown-link"><i class="fa-solid fa-ticket"></i> <span>My tickets</span></a>
-                <a href="pages/login.html?page=confirm_email" class="dropdown-link dropdown-link_email dropdown-link_hide"><i class="fa-solid fa-envelope"></i> <span>Confirm email</span></a>
+                <a href="${rootPath}/pages/tickets.html" class="dropdown-link"><i class="fa-solid fa-ticket"></i> <span>My tickets</span></a>
+                <a href="${rootPath}/pages/login.html?page=confirm_email" class="dropdown-link dropdown-link_email dropdown-link_hide"><i class="fa-solid fa-envelope"></i> <span>Confirm email</span></a>
                 <a href="#" class="dropdown-link dropdown-link_highlight dropdwon-link_logout"><i class="fa-solid fa-arrow-circle-left"></i> <span>Log out</span></a>
               </div>
             </div>
@@ -269,15 +259,8 @@ const APP = (function () {
         headerElm.innerHTML = navbarTemplate
 
 
-        // ############################# switch theme button ##############################
-        const switchThemeBtnElm = headerElm.querySelector(".switch-theme-btn")
-        if (switchThemeBtnElm) switchThemeBtnElm.addEventListener("change", () => {
-            const theme = switchTheme()
-            const themeNot = new Notification(`${theme} theme`, "true")
-            themeNot.push()
-            themeNot.popAfter(2000)
-        })
 
+        addSwitchThemeBtn(headerElm)
 
 
         // ############################# show user dropdown ################################
@@ -317,9 +300,23 @@ const APP = (function () {
                 document.body.style.paddingTop = "0px"
             }
         })
-        
+
 
         return headerElm
+    }
+
+
+
+    // ############################# switch theme button ##############################
+
+    function addSwitchThemeBtn(elem) {
+        const switchThemeBtnElm = elem.querySelector(".switch-theme-btn")
+        if (switchThemeBtnElm) switchThemeBtnElm.addEventListener("change", () => {
+            const theme = switchTheme()
+            const themeNot = new Notification(`${theme} theme`, "true")
+            themeNot.push()
+            themeNot.popAfter(2000)
+        })
     }
 
 
@@ -469,6 +466,7 @@ const APP = (function () {
         fetch,
         inputValidator,
         startCounter,
+        addSwitchThemeBtn,
         Notification
     }
 })()

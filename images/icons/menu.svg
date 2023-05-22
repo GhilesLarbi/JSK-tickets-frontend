@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <g id="Group-Copy">
+    <g id="arrow-left">
+      <path d="M0 0L32 0L32 32L0 32L0 0L0 0Z" id="Rectangle-13" fill="none" fill-rule="evenodd" stroke="none" />
+    </g>
+    <path d="M7 7.98016L25 8.01981" id="Line" fill="none" fill-rule="evenodd" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+    <path d="M7 23.0198L25 23.0198" id="Line-2" fill="none" fill-rule="evenodd" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+    <path d="M7 15.0198L25 15.0198" id="Line-2-Copy" fill="none" fill-rule="evenodd" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+  </g>
+</svg>
