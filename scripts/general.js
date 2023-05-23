@@ -286,7 +286,7 @@ const APP = (function () {
         const primaryHeaderHeight = headerElm.offsetHeight
 
         document.addEventListener("scroll", e => {
-            if (window.pageYOffset > primaryHeaderHeight && window.pageYOffset < 900) {
+            if (window.pageYOffset > primaryHeaderHeight && window.pageYOffset < 800) {
                 headerElm.classList.add("primary-header_hide")
             } else {
                 headerElm.classList.remove("primary-header_hide")

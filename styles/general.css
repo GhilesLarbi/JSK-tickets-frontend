@@ -352,7 +352,15 @@ input[type="range"]::-moz-range-thumb {
 
 
 
-
+/* ############## select button ############### */
+.select-btn {
+  display: block;
+  padding: .4rem 2rem;
+  border-radius: 50rem;
+  border: 1px solid rgba(var(--clr-black), .1);
+  /* background: rgba(var(--clr-white), 1); */
+  background: inherit;
+}
 
 
 /* ############### Input ################# */

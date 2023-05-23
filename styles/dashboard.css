@@ -473,8 +473,41 @@ body {
 }
 
 .bar {
+    --drop-background : rgba(var(--clr-primary), .2);
     border-radius: 10rem 10rem 0 0;
     width: 3.2rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.bar::before {
+    content: attr(data-value);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 1.2rem);
+    transform: translateX(-50%);
+    background-color: var(--drop-background);
+    padding: 1rem;
+    border-radius: .5rem;
+    display: none;
+
+    box-shadow : 0 1rem 2rem rgba(0,0,0,.1);
+}
+
+.bar::after {
+    content: "";
+    position: absolute;
+    bottom: calc(100% - .5rem);
+    transform: translateX(-50%);
+    left: 50%;
+    border: 1rem solid red;
+    border-color: var(--drop-background) transparent transparent transparent;
+    display: none;
+}
+
+.bar:hover::before,
+.bar:hover::after {
+    display: block;
 }
 
 .bar__s1 {
@@ -593,61 +626,6 @@ body {
     gap: 4rem;
     margin-top: 3.2rem;
 }
-
-
-
-
-
-/* TEMPORARY */
-.bar--wrapper:nth-child(1) .bar__s1 {
-    height: 80%;
-}
-.bar--wrapper:nth-child(1) .bar__s2 {
-    height: 60%;
-}
-
-.bar--wrapper:nth-child(2) .bar__s1 {
-    height: 50%;
-}
-.bar--wrapper:nth-child(2) .bar__s2 {
-    height: 87%;
-}
-
-.bar--wrapper:nth-child(3) .bar__s1 {
-    height: 70%;
-}
-.bar--wrapper:nth-child(3) .bar__s2 {
-    height: 33%;
-}
-
-.bar--wrapper:nth-child(4) .bar__s1 {
-    height: 42%;
-}
-.bar--wrapper:nth-child(4) .bar__s2 {
-    height: 56%;
-}
-
-.bar--wrapper:nth-child(5) .bar__s1 {
-    height: 52%;
-}
-.bar--wrapper:nth-child(5) .bar__s2 {
-    height: 70%;
-}
-
-.bar--wrapper:nth-child(6) .bar__s1 {
-    height: 35%;
-}
-.bar--wrapper:nth-child(6) .bar__s2 {
-    height: 37%;
-}
-
-.bar--wrapper:nth-child(7) .bar__s1 {
-    height: 5%;
-}
-.bar--wrapper:nth-child(7) .bar__s2 {
-    height: 29%;
-}
-
 
 
 
@@ -795,37 +773,19 @@ body {
     }
 
 
-
-
-    .info-card--wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2.4rem;
-    }
-    
-    .card__info, .card__info:first-child, .card__info:last-child {
-        border-radius: 1.2rem;
-        border: none;
-    }
-
-    .card__info:nth-child(1) {
-        grid-row: span 2;
-    }
-
-    .card__info .gauge-chart {
-        justify-items: center;
-    }
-    .card__info .gauge-chart--circles, 
-    .card__info .gauge-chart--info-wrapper {
-        display: flex;
-    }
-
     .chart-card--wrapper {
         min-height: 40rem;
     }
 
     .card__gauge {
-        display: none;
+        /* display: none; */
+        position: absolute;
+        top: 55rem;
+        left: 0;
+
+        border-radius: 0;
+        width: 100%;
+        /* padding-block: 8rem; */
     }
 
     .tab__courses--header {
