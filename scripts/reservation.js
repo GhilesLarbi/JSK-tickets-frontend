@@ -6,10 +6,12 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 
 let gameIdParam = params.gameId
-let currentBleacher
 
 const ticket = {
-    bleacherType: "VIP",
+    bleacher : {
+        type: "VIP",
+        price : 2000,
+    },
     gameId: null,
     quantity: 1,
     successUrl: window.location.href.replace("reservation.html", "tickets.html"),
@@ -19,27 +21,21 @@ const ticket = {
 
 const bleacherElems = document.querySelectorAll(".btype")
 
-
-function selectBleacherVisualy(bleacherType) {
+function selectBleacher(bleacher) {
+    ticket.bleacher = bleacher
     bleacherElems.forEach(bleacherElm => {
         bleacherElm.classList.remove("btype_selected")
-        if (bleacherElm.getAttribute("data-type") === bleacherType) {
+        if (bleacherElm.getAttribute("data-type") === bleacher.type.toLowerCase()) {
             bleacherElm.classList.add("btype_selected")
         }
     })
-}
-
-
-function selectBleacherGlobally() {
-    document.querySelector(".ticket-bleacher").textContent = currentBleacher.type
-    document.querySelector(".ticket-price").textContent = currentBleacher.price
-
+    document.querySelector(".ticket-bleacher").textContent = ticket.bleacher.type
+    document.querySelector(".quantity-element").textContent = "0" + ticket.quantity
+    document.querySelector(".ticket-price").textContent = ticket.bleacher.price * ticket.quantity
 }
 
 
 async function init() {
-
-
     const buyTicketBtnElm = document.querySelector(".buy-ticket-btn")
 
     APP.fetch(`game/${gameIdParam}`, {
@@ -81,18 +77,14 @@ async function init() {
             ticketCardElm.classList.add("ticket-card_loading-state")
             buyTicketBtnElm.setAttribute("disabled", "true")
 
-
-
-
-            selectBleacherVisualy(bleacherElm.getAttribute("data-type"))
             const bleacher = await APP.fetch("bleacher", {
                 query: {
                     type: bleacherElm.getAttribute("data-type")
                 }
             })
-            ticket.bleacherType = bleacher.data[0].type
-            currentBleacher = bleacher.data[0]
-            selectBleacherGlobally()
+
+            selectBleacher(bleacher.data[0])
+
             ticketCardElm.classList.remove("ticket-card_loading-state")
             stadiumWrapperElm.classList.remove("stadium-wrapper_disabled")
             buyTicketBtnElm.removeAttribute("disabled")
@@ -101,20 +93,20 @@ async function init() {
     
 
     document.querySelectorAll(".control-ticket-number-btn").forEach((button, i) => {
-        const quantityElm = document.querySelector(".quantity-element")
         button.addEventListener("click", ()=> {
             let newQuantity = ticket.quantity
             if (i === 0) newQuantity -= 1
             else newQuantity += 1
             if (newQuantity < 1 || newQuantity > 5) return
             ticket.quantity = newQuantity
-            quantityElm.textContent = "0" + newQuantity
+            selectBleacher(ticket.bleacher)
         })
     })
 
 
     buyTicketBtnElm.addEventListener("click", async (e) => {
         e.preventDefault()
+        ticket.bleacherType = ticket.bleacher.type
 
         if (ticket.gameId == null) {
             const errNot = new APP.Notification("Please select another match ", "false")
