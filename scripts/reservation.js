@@ -153,7 +153,7 @@ async function init() {
         panoramaWrapperElm.classList.add("panorama-360-wrapper_show")
         pannellum.viewer('panorama-360-view', {
             "type": "equirectangular",
-            "panorama": `../images/test/${ticket.bleacherType}.jpg`,
+            "panorama": `../images/test/${ticket.bleacher.type}.jpg`,
             "autoLoad": true,
             "autoRotate": -5,
             "compass": true,
