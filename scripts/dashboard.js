@@ -1,5 +1,6 @@
 APP.initial()
 APP.addSwitchThemeBtn(document.body)
+APP.isLogedIn("admin")
 
 
 // tab control
@@ -43,28 +44,38 @@ sidebarCollapseBtn.addEventListener("click", ()=> {
 
 
 
-
+// ###############################################################################
 // statistics tab
 // select game
-let statisticsSelectedGame = 1
 const statisticsSelectElm = document.querySelector(".statistics-option")
 
-
-async function init() {
+async function statisticsTabInit() {
     const gamesResult = await APP.fetch("game", { query: {filter : "new", include : "team"}})
     const games = gamesResult.data 
+    compareChart(games[0].id)
 
 
     games.forEach(game => {
         statisticsSelectElm.innerHTML += `<option value="${game.id}">${game.team1.name}-${game.team2.name}</option>`
     })
 
+
+    statisticsSelectElm.addEventListener("change" ,(e)=> {
+        compareChart(Number(statisticsSelectElm.value))
+    })
+}
+
+
+async function compareChart(gameId) {
+    document.querySelector(".card__compare").classList.add("card__loading-state")
     const bleachersResult = await APP.fetch("bleacher")
     const bleachers = bleachersResult.data
 
     const compareChartElm = document.querySelector(".compare-chart .bars")
+    compareChartElm.innerHTML = ""
+
     bleachers.forEach(bleacher => {
-        gameStatByBleacher = bleacher.tickets.filter((ticket)=> ticket.gameId == statisticsSelectedGame)[0]
+        gameStatByBleacher = bleacher.tickets.filter((ticket)=> ticket.gameId == gameId)[0]
         if (!gameStatByBleacher) gameStatByBleacher = {freePlaces : bleacher.quantity}
         
         const barTemplate = `
@@ -76,6 +87,13 @@ async function init() {
 
         compareChartElm.innerHTML += barTemplate
     })
+
+    document.querySelector(".card__compare").classList.remove("card__loading-state")
+}
+
+
+async function init() {
+    statisticsTabInit()
 }
 
 init()

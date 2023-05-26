@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashbord</title>
+    <title>JSK : Admin Dashbord</title>
+    <link rel="shortcut icon" href="../images/logo.svg" type="image/x-icon">
+
 
     <link rel="stylesheet" href="../styles/fontawesome.css">
     <link rel="stylesheet" href="../styles/general.css">
@@ -105,7 +107,7 @@
                           </div>
                         </div>
                         <div class="seperator"></div>
-                        <a href="${rootPath}/pages/login.html?page=login" class="primary-header-login-btn btn btn_primary btn_small">Login
+                        <a href="login.html?page=login&actor=admin" class="primary-header-login-btn btn btn_primary btn_small">Login
                           <i class="fa-solid fa-arrow-right"></i>
                         </a>
                 
@@ -129,7 +131,11 @@
                 <div class="tab tab__grades tab__selected">
                     <div class="tab--container">
                         <div class="chart-card--wrapper">
-                            <div class="card card__compare">
+                            <div class="card card__compare card__loading-state">
+                                <div class="card--loading">
+                                    <i class="fas fa-spinner loading-icon"></i>
+                                </div>
+
                                 <header class="card--header">
                                     <p class="card--title">Sold Tickets</p>
                                     <div class="compare-chart--info-wrapper">
@@ -173,6 +179,9 @@
                             </div>
 
                             <div class="card card__gauge">
+                                <div class="card--loading">
+                                    <i class="fas fa-spinner loading-icon"></i>
+                                </div>
                                 <header class="card--header">
                                     <p class="card--title">Ticket chart</p>
                                 </header>
