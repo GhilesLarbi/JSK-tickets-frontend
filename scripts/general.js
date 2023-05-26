@@ -360,12 +360,12 @@ const APP = (function () {
         else options.method = "GET"
 
         // stringify the body by default
-        if (opt.body) options.body = JSON.stringify(opt.body)
-
+        if (opt.body && opt.bodyType != "file") options.body = JSON.stringify(opt.body)
+        else if (opt.body) options.body = opt.body
 
         // set the content type to json by default
         if (opt.headers["Content-Type"]) options.headers["Content-Type"] = opt.headers["Content-Type"]
-        else options.headers["Content-Type"] = "application/json"
+        else if (opt.bodyType != "file") options.headers["Content-Type"] = "application/json"
 
         // set the authorization token if any 
         let token
@@ -377,7 +377,7 @@ const APP = (function () {
         // construct the query
         let query = ""
         if (opt.query) query = "?" + new URLSearchParams(opt.query)
-
+        
         // console.log(`${HOSTNAME}/api/${url}${query}`)
         // console.log(options)
 
@@ -450,6 +450,52 @@ const APP = (function () {
     }
 
 
+    // check meme type
+    function getMimeType(file) {
+        const reader = new FileReader();
+        return new Promise((resolve, reject) => {
+            reader.onloadend = function () {
+                const arr = (new Uint8Array(reader.result)).subarray(0, 4);
+                let header = "";
+                for (let i = 0; i < arr.length; i++) {
+                    header += arr[i].toString(16);
+                }
+
+                let mimeType;
+                switch (header) {
+                    case "89504e47":
+                        mimeType = "image/png";
+                        break;
+                    case "47494638":
+                        mimeType = "image/gif";
+                        break;
+                    case "3c737667":
+                        mimeType = "image/svg+xml";
+                        break;
+                    case "ffd8ffe0":
+                    case "ffd8ffe1":
+                    case "ffd8ffe2":
+                    case "ffd8ffe3":
+                    case "ffd8ffe8":
+                        mimeType = "image/jpeg";
+                        break;
+                    default:
+                        mimeType = "Unknown";
+                        break;
+                }
+
+                resolve(mimeType);
+            };
+
+            reader.onerror = function (error) {
+                reject(error);
+            };
+
+            reader.readAsArrayBuffer(file);
+        });
+    }
+
+
 
 
     return {
@@ -463,6 +509,7 @@ const APP = (function () {
         startCounter,
         addSwitchThemeBtn,
         isLogedIn,
+        getMimeType,
         Notification
     }
 })()

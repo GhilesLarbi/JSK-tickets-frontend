@@ -158,13 +158,16 @@ picture {
   display: block;
 }
 
+button, a {
+  cursor: pointer;
+}
+
 button,
 input,
 input:focus {
   border-radius: 0;
   background: none;
   border: none;
-  cursor: pointer;
   outline: none;
 }
 

@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="../styles/fontawesome.css">
     <link rel="stylesheet" href="../styles/general.css">
     <link rel="stylesheet" href="../styles/dashboard.css">
-    
-    
+
+
     <script defer src="../scripts/general.js"></script>
     <script defer src="../scripts/dashboard.js"></script>
 </head>
@@ -25,10 +25,10 @@
                 <a href="../index.html" class="logo">
                     <svg version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <rect class="logo-bg" x="56.305" y="102.27" width="100" height="100" rx="15.671" ry="15.671"
-                          transform="translate(-56.305 -102.27)" fill="currentColor" />
+                            transform="translate(-56.305 -102.27)" fill="currentColor" />
                         <path class="logo-icon"
-                          d="m82.075 118.04 4.4674 26.487 15.279 7.567-15.233 7.6838-4.5336 26.468 8.6243-3.929 2.76-18.035 9.1405-4.5698 0.077 16.548 3.6871-2.0634 3.6866 2.0634 0.0765-16.548 9.1405 4.5698 2.7606 18.035 8.6238 3.929-4.5331-26.468-15.233-7.6838 15.279-7.567 4.4674-26.487-8.5468 3.9042-2.8339 18.03-9.1317 4.5372 5.2e-4 -16.592-3.7569 2.1296-3.7564-2.1296 5.2e-4 16.592-9.1317-4.5372-2.8339-18.03z"
-                          transform="translate(-56.305 -102.27)" fill="currentColor" />
+                            d="m82.075 118.04 4.4674 26.487 15.279 7.567-15.233 7.6838-4.5336 26.468 8.6243-3.929 2.76-18.035 9.1405-4.5698 0.077 16.548 3.6871-2.0634 3.6866 2.0634 0.0765-16.548 9.1405 4.5698 2.7606 18.035 8.6238 3.929-4.5331-26.468-15.233-7.6838 15.279-7.567 4.4674-26.487-8.5468 3.9042-2.8339 18.03-9.1317 4.5372 5.2e-4 -16.592-3.7569 2.1296-3.7564-2.1296 5.2e-4 16.592-9.1317-4.5372-2.8339-18.03z"
+                            transform="translate(-56.305 -102.27)" fill="currentColor" />
                     </svg>
                     <p>ⵊⵙⴽ</p>
                 </a>
@@ -41,39 +41,44 @@
 
                     <svg class="icon-24" viewBox="0 0 32 32">
                         <path d="M0 0L32 0L32 32L0 32L0 0L0 0Z" fill="none" fill-rule="evenodd" stroke="none" />
-                        <path d="M7 7.98016L25 8.01981" fill-rule="evenodd" stroke=currentColor stroke-width="2" stroke-linecap="round" />
-                        <path d="M7 23.0198L25 23.0198" fill-rule="evenodd" stroke=currentColor stroke-width="2" stroke-linecap="round" />
-                        <path d="M7 15.0198L25 15.0198" fill-rule="evenodd" stroke=currentColor stroke-width="2" stroke-linecap="round" />
+                        <path d="M7 7.98016L25 8.01981" fill-rule="evenodd" stroke=currentColor stroke-width="2"
+                            stroke-linecap="round" />
+                        <path d="M7 23.0198L25 23.0198" fill-rule="evenodd" stroke=currentColor stroke-width="2"
+                            stroke-linecap="round" />
+                        <path d="M7 15.0198L25 15.0198" fill-rule="evenodd" stroke=currentColor stroke-width="2"
+                            stroke-linecap="round" />
                     </svg>
 
                     <svg class="icon-24" viewBox="0 0 32 32">
                         <path d="M0 0L32 0L32 32L0 32L0 0L0 0Z" fill="none" fill-rule="evenodd" stroke="none" />
-                        <path d="M7.16116 7.16116L24.8388 24.8388" fill-rule="evenodd" stroke=currentColor stroke-width="2" stroke-linecap="round" />
-                        <path d="M7.16116 24.8388L24.8388 7.16116" fill-rule="evenodd" stroke=currentColor stroke-width="2" stroke-linecap="round" />
+                        <path d="M7.16116 7.16116L24.8388 24.8388" fill-rule="evenodd" stroke=currentColor
+                            stroke-width="2" stroke-linecap="round" />
+                        <path d="M7.16116 24.8388L24.8388 7.16116" fill-rule="evenodd" stroke=currentColor
+                            stroke-width="2" stroke-linecap="round" />
                     </svg>
                 </button>
             </div>
 
             <div class="sidebar--tab-controls">
-                <button class="sidebar--btn tab-control tab-control__selected">
+                <button class="sidebar--btn tab-control">
                     <i class="fa-solid fa-chart-simple  sidebar--btn--icon icon-32"></i>
                     <p>Statistics</p>
-                </button>
-
-                <button class="sidebar--btn tab-control">
-                    <i class="fa-solid fa-futbol  sidebar--btn--icon icon-32"></i>
-                    <p>Games</p>
                 </button>
 
                 <button class="sidebar--btn tab-control">
                     <i class="fa-solid fa-shirt  sidebar--btn--icon icon-32"></i>
                     <p>Teams</p>
                 </button>
+
+                <button class="sidebar--btn tab-control">
+                    <i class="fa-solid fa-futbol-ball sidebar--btn--icon icon-32"></i>
+                    <p>Games</p>
+                </button>
             </div>
 
             <div class="sidebar--bottom">
                 <div class="sidebar--divider"></div>
-                <button class="sidebar--btn">
+                <button class="sidebar--btn logout-btn">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <p>Log Out</p>
                 </button>
@@ -83,52 +88,58 @@
         <div class="content-wrapper">
             <header class="navbar">
                 <div class="tab--headers">
-                    <div class="tab--header tab--header__selected">
+                    <div class="tab--header">
                         <p class="tab--title">Statistics</p>
                         <select class="select-btn statistics-option">
                         </select>
                     </div>
 
                     <div class="tab--header">
-                        <p class="tab--title">Games</p>
+                        <p class="tab--title">Teams</p>
                     </div>
 
                     <div class="tab--header">
-                        <p class="tab--title">Teams</p>
+                        <p class="tab--title">Gmaes</p>
                     </div>
                 </div>
 
                 <div class="primary-header-right">
-                        <div class="switch-theme-container">
-                          <input class="switch-theme-btn" type="checkbox" name="switch theme">
-                          <div class="switch-theme-icons">
+                    <div class="switch-theme-container">
+                        <input class="switch-theme-btn" type="checkbox" name="switch theme">
+                        <div class="switch-theme-icons">
                             <i class="moon-icon fa-solid fa-moon"></i>
                             <i class="sun-icon fa-solid fa-sun"></i>
-                          </div>
                         </div>
-                        <div class="seperator"></div>
-                        <a href="login.html?page=login&actor=admin" class="primary-header-login-btn btn btn_primary btn_small">Login
-                          <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                
-                        <div class="primary-header-user">
-                          <a href="#" class="primary-header-account">
+                    </div>
+                    <div class="seperator"></div>
+                    <a href="login.html?page=login&actor=admin"
+                        class="primary-header-login-btn btn btn_primary btn_small">Login
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <div class="primary-header-user">
+                        <a href="#" class="primary-header-account">
                             <i class="fa-solid fa-user"></i>
-                          </a>
-                
-                          <div class="dropdown">
-                            <a href="#" class="dropdown-link"><i class="fa-solid fa-user-circle"></i> <span>My account</span></a>
-                            <a href="pages/tickets.html" class="dropdown-link"><i class="fa-solid fa-ticket"></i> <span>My tickets</span></a>
-                            <a href="pages/login.html?page=confirm_email" class="dropdown-link dropdown-link_email dropdown-link_hide"><i class="fa-solid fa-envelope"></i> <span>Confirm email</span></a>
-                            <a href="#" class="dropdown-link dropdown-link_highlight dropdwon-link_logout"><i class="fa-solid fa-arrow-circle-left"></i> <span>Log out</span></a>
-                          </div>
+                        </a>
+
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-link"><i class="fa-solid fa-user-circle"></i> <span>My
+                                    account</span></a>
+                            <a href="pages/tickets.html" class="dropdown-link"><i class="fa-solid fa-ticket"></i>
+                                <span>My tickets</span></a>
+                            <a href="pages/login.html?page=confirm_email"
+                                class="dropdown-link dropdown-link_email dropdown-link_hide"><i
+                                    class="fa-solid fa-envelope"></i> <span>Confirm email</span></a>
+                            <a href="#" class="dropdown-link dropdown-link_highlight dropdwon-link_logout"><i
+                                    class="fa-solid fa-arrow-circle-left"></i> <span>Log out</span></a>
                         </div>
+                    </div>
 
                 </div>
             </header>
 
             <main class="tabs">
-                <div class="tab tab__grades tab__selected">
+                <div class="tab tab__grades">
                     <div class="tab--container">
                         <div class="chart-card--wrapper">
                             <div class="card card__compare card__loading-state">
@@ -137,7 +148,7 @@
                                 </div>
 
                                 <header class="card--header">
-                                    <p class="card--title">Sold Tickets</p>
+                                    <p class="card--title"><i class="fa-solid fa-chart-column"></i> Remaining places</p>
                                     <div class="compare-chart--info-wrapper">
                                         <div class="chart--info">
                                             <div class="chart--info-circle"></div>
@@ -183,7 +194,7 @@
                                     <i class="fas fa-spinner loading-icon"></i>
                                 </div>
                                 <header class="card--header">
-                                    <p class="card--title">Ticket chart</p>
+                                    <p class="card--title"><i class="fa-solid fa-chart-pie"></i> Ticket chart</p>
                                 </header>
                                 <main class="gauge-chart--wrapper">
                                     <div class="gauge-chart">
@@ -228,6 +239,25 @@
 
                 <div class="tab tab__courses">
                     <div class="tab--container">
+                        <div class="team-header">
+                            <p class="card--title"><i class="fa-solid fa-shirt"></i>Teams</p>
+                            <button class="btn btn_primary btn_small"><i class="fa-solid fa-plus"></i>Add team</button>
+                        </div>
+
+                        <table class="teams-table">
+                            <thead class="teams-table--head">
+                                <tr>
+                                    <th>ID number</th>
+                                    <th>Logo</th>
+                                    <th>Name</th>
+                                    <th>Captain Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="teams-table--body">
+                            </tbody>
+
+                        </table>
                     </div>
                 </div>
 
