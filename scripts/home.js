@@ -1,8 +1,8 @@
 APP.addNavbar(".")
 APP.initial()
+APP.isLogedIn()
 
 async function init() {
-    
     const waitNot = new APP.Notification("fetching data", "loading")
     waitNot.push()
 
@@ -90,4 +90,4 @@ async function init() {
 
 }
 
-APP.init(init)
+init()

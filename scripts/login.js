@@ -1,5 +1,6 @@
 APP.addNavbar("..")
 APP.initial()
+APP.isLogedIn()
 
 // let's peep that page query and bust out the right form like a boss.
 const urlSearchParams = new URLSearchParams(window.location.search);
@@ -59,7 +60,10 @@ loginBtnElm.addEventListener("click", async () => {
     const waitNot = new APP.Notification("Please wait...", "loading")
     waitNot.push()
 
-    const data = await APP.fetch("user/login", {
+    let endPoint = "user"
+    if (params.actor == "admin") endPoint = "admin" 
+
+    const data = await APP.fetch(`${endPoint}/login`, {
         method: "POST",
         body: { email, password }
     })
@@ -79,12 +83,14 @@ loginBtnElm.addEventListener("click", async () => {
 
 
     // save the token to use it else where
-    localStorage.setItem("token", data.data.token)
-
-
-    // redirect to home page
-    window.location.href = window.location.href.replace("/pages/login.html", "")
-
+    if (endPoint == "admin") {
+        localStorage.setItem("adminToken", data.data.token)
+        window.location.href = window.location.href.replace("login.html", "dashboard.html")
+    }
+    else {
+        localStorage.setItem("token", data.data.token)
+        window.location.href = window.location.href.replace("/pages/login.html", "")
+    }
 })
 
 
@@ -233,5 +239,3 @@ createAccountBtnElm.addEventListener("click", async (e) => {
 
     window.location.href = window.location.href.replace("/pages/login.html", "")
 })
-
-APP.init(() => { })

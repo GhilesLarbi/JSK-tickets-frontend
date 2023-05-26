@@ -111,32 +111,6 @@ const APP = (function () {
                 })
             })
         }
-
-
-
-
-        // check if the token is valid
-        if (localStorage.getItem("token")) {
-            document.body.classList.add("loged-in")
-            fetch("user").then(data => {
-                if (!data.success) {
-                    localStorage.removeItem("token")
-                    localStorage.removeItem("firstLogin")
-                    document.body.classList.remove("loged-in")
-                } else if (data.success) {
-                    if (!data.data.isEmailConfirmed) {
-                        document.querySelector(".dropdown-link_email").classList.remove("dropdown-link_hide")
-                    }
-                    if (!localStorage.getItem("firstLogin")) {
-                        localStorage.setItem("firstLogin", "no")
-                        const userLogedNot = new Notification("You loged in", "true")
-                        userLogedNot.push()
-                        userLogedNot.popAfter(2000)
-                    }
-                }
-            })
-        } else localStorage.removeItem("firstLogin")
-
     }
 
     function addListeners() {
@@ -163,6 +137,33 @@ const APP = (function () {
             })
         })
 
+    }
+
+    // check if token is valid
+    async function isLogedIn(actor) {
+        if (actor == "admin") tok = "adminToken"
+        else tok = "token"
+
+        if (localStorage.getItem(tok)) {
+            document.body.classList.add("loged-in")
+            fetch("user", {actor}).then(data => {
+                if (!data.success) {
+                    localStorage.removeItem(tok)
+                    localStorage.removeItem(`firstLogin${actor}`)
+                    document.body.classList.remove("loged-in")
+                } else if (data.success) {
+                    if (!data.data.isEmailConfirmed) {
+                        document.querySelector(".dropdown-link_email").classList.remove("dropdown-link_hide")
+                    }
+                    if (!localStorage.getItem(`firstLogin${actor}`)) {
+                        localStorage.setItem(`firstLogin${actor}`, "no")
+                        const userLogedNot = new Notification("You loged in", "true")
+                        userLogedNot.push()
+                        userLogedNot.popAfter(2000)
+                    }
+                }
+            })
+        } else localStorage.removeItem("firstLogin")
     }
 
 
@@ -342,13 +343,6 @@ const APP = (function () {
     // #################################################
 
 
-    // Just give me your first initial, fam
-    async function init(callback) {
-        await callback()
-        return true
-    }
-
-
     // Let's whip up a custom fetch function.
     async function fetch(url, opt) {
 
@@ -373,10 +367,12 @@ const APP = (function () {
         if (opt.headers["Content-Type"]) options.headers["Content-Type"] = opt.headers["Content-Type"]
         else options.headers["Content-Type"] = "application/json"
 
-        // set the authorization token if any
-        const token = localStorage.getItem("token")
-        if (token) options.headers.authorization = `Bearer ${token}`
+        // set the authorization token if any 
+        let token
+        if (opt.actor && opt.actor == "admin") token = localStorage.getItem("adminToken")
+        else token = localStorage.getItem("token")
 
+        if (token) options.headers.authorization = `Bearer ${token}`
 
         // construct the query
         let query = ""
@@ -462,11 +458,11 @@ const APP = (function () {
         initial,
         addNavbar,
         formateDate,
-        init,
         fetch,
         inputValidator,
         startCounter,
         addSwitchThemeBtn,
+        isLogedIn,
         Notification
     }
 })()

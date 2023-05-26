@@ -1,5 +1,6 @@
 APP.addNavbar("..")
 APP.initial()
+APP.isLogedIn()
 
 const ticketsElm = document.querySelector(".tickets")
 
@@ -178,4 +179,4 @@ async function init() {
     });
 }
 
-APP.init(init)
+init()

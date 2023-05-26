@@ -1,5 +1,6 @@
 APP.addNavbar("..")
 APP.initial()
+APP.isLogedIn()
 
 
 const urlSearchParams = new URLSearchParams(window.location.search);
@@ -171,4 +172,4 @@ async function init() {
 
 }
 
-APP.init(init)
+init()
