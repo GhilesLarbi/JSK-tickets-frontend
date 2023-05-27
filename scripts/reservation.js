@@ -54,7 +54,7 @@ async function init() {
             else {
                 ticket.gameId = game.id
                 document.querySelector(".game-date").textContent = APP.formateDate(new Date(game.date))
-                document.querySelector(".game-center p:first-child").textContent = game.league.name
+                document.querySelector(".game-center p:first-child").textContent = game.league? game.league.name : ""
                 document.querySelector(".game-center p:last-child").textContent = game.description
                 document.querySelector(".game-content .team:first-child img").src = `${APP.HOSTNAME}${game.team1.logo}`
                 document.querySelector(".game-content .team:first-child p").textContent = game.team1.name

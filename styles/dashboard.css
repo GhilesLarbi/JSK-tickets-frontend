@@ -890,24 +890,52 @@ body {
 
 
 /* center numbers */
-/* .games-table--body td:nth-child(1), */
+.game-row__finished {
+    background-color: rgba(var(--clr-err), .08) !important;
+}
+
 .games-table--body td:nth-child(4),
 .games-table--body td:nth-child(5) {
     font-weight: 500;
 }
 
-.games-table--body td:nth-child(8),
-.games-table--head th:nth-child(8) {
+.games-table--body td:nth-child(9),
+.games-table--head th:nth-child(9) {
     text-align: center;
     width: 12%;
 }
 
 
-.game-status__finished {
-    background-color: rgba(var(--clr-err), .8);
-    color: rgba(255,255,255, .9);
-    padding: 0 1rem;
-    border-radius: 100rem;
+.row .select-btn {
+    pointer-events: none;
+    border: 2px solid transparent;
+}
+
+.row__edit .select-btn {
+    pointer-events: all;
+    border-color: rgba(var(--clr-primary), .4);
+}
+
+
+.row input[type="date"],
+.row input[type="time"] {
+    border: 2px solid transparent;
+    padding: 1rem;
+    border-radius: 1rem;
+    pointer-events: none;
+}
+
+
+.row__edit input[type="date"],
+.row__edit input[type="time"] {
+    border: 2px solid rgba(var(--clr-primary), .4);
+    pointer-events: all;
+}
+
+
+.table-input__score {
+    text-align: center;
+    padding-inline: .1rem;
 }
 
 
@@ -920,6 +948,12 @@ body {
 
 .game-team .team-img {
     flex-shrink: 0;
+}
+
+.game-score-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

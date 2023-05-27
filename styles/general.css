@@ -316,13 +316,14 @@ input[type="range"]::-moz-range-thumb {
   font-weight: var(--fw-medium);
   border: .2rem solid transparent;
 
-  transition: opacity .4s;
+  transition: opacity .4s, box-shadow .2s;
 }
 
 .btn:disabled {
   background-color: rgba(var(--clr-primary), .2);
   border-color: rgba(var(--clr-primary), .1);
-  box-shadow: none;
+  box-shadow: none !important;
+  cursor: auto;
 }
 
 .btn>i {
@@ -344,6 +345,10 @@ input[type="range"]::-moz-range-thumb {
   background-color: rgb(var(--clr-primary));
   color: rgb(var(--clr-white));
   box-shadow: 0 .6rem 1.5rem rgba(var(--clr-primary), .2);
+}
+
+.btn_primary:hover {
+  box-shadow: 0 .6rem 1.5rem rgba(var(--clr-primary), .4);
 }
 
 .btn_secondary {
