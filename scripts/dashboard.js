@@ -170,49 +170,36 @@ function addTeam(team, isFirstChild) {
         const waitNot = new APP.Notification("Please wait...", "loading")
         waitNot.push()
 
-        const isSended = [false, false]
 
-        // send data
-        APP.fetch(`team/${idElm.innerText}`, { method: "PUT", body: newTeam, actor: "admin" }).then((result) => {
-            const data = result.data
-            nameElm.value = data.name
-            captainNameElm.value = data.captainName
-            updateBtnElm.removeAttribute("disabled")
-            isSended[0] = true
-
-            if (isSended[0] == true && isSended[1] == true) {
-                waitNot.pop()
-            }
-        })
-
+        const promises = [APP.fetch(`team/${idElm.innerText}`, { method: "PUT", body: newTeam, actor: "admin" })]
         // update logo if any
         if (logo) {
             const formData = new FormData()
             formData.append('logo', logo)
-
-            APP.fetch(`team/${idElm.innerText}/upload/logo`, {
+            
+            promises.push(APP.fetch(`team/${idElm.innerText}/upload/logo`, {
                 method: "POST",
                 body: formData,
                 actor: "admin",
                 bodyType: "file"
-            }).then((result) => {
-                console.log(result)
-                if (!result.success) teamLogoElm.src = oldImg
-                else oldImg = teamLogoElm.src
-
-                isSended[1] = true
-                if (isSended[0] == true && isSended[1] == true) {
-                    waitNot.pop()
-                }
-            })
-        } else {
-            isSended[1] = true
-            if (isSended[0] == true && isSended[1] == true) {
-                waitNot.pop()
-            }
+            }))
         }
 
+        // send data
+        const results = await Promise.all(promises)
 
+        nameElm.value = results[0].data.name
+        captainNameElm.value = results[0].data.captainName
+        updateBtnElm.removeAttribute("disabled")
+
+
+        if (!results[1] || !results[1].success) teamLogoElm.src = oldImg
+        else oldImg = teamLogoElm.src
+
+        waitNot.pop()
+
+        isFirstEnter[0] = true
+        isFirstEnter[2] = true
         teamRowElem.classList.remove("row__edit")
     })
 
@@ -395,6 +382,7 @@ function addGame(data, isFirstChild) {
         waitNot.pop()
 
         if (updatedGameResult.success) {
+            isFirstEnter[0] = true
             gameRowElem.classList.remove("row__edit")
 
             selectTeamElems[0].value = updatedGame.team1Id
@@ -460,6 +448,7 @@ async function statisticsTabInit() {
     compareChart(games[0].id)
 
 
+    statisticsSelectElm.innerHTML = ""
     games.forEach(game => {
         statisticsSelectElm.innerHTML += `<option value="${game.id}">${game.team1.name}-${game.team2.name}</option>`
     })
@@ -564,7 +553,6 @@ async function teamsTabInit() {
             svaeBtn.removeAttribute("disabled")
 
             if (teamResult.success == true) {
-
                 // update logo if any
                 if (logo) {
                     const formData = new FormData()
@@ -603,16 +591,19 @@ async function gamesTabInit() {
     const wiatNot = new APP.Notification("Fetching games data", "loading")
     wiatNot.push()
 
-    const gamesResult = await APP.fetch("game", { query: { include: "team,league" } })
-    const gamesData = gamesResult.data
+    const results = await Promise.all([
+        APP.fetch("game", { query: { include: "team,league" } }),
+        APP.fetch("team"),
+        await APP.fetch("league")
+    ])
 
-    const teamsResult = await APP.fetch("team")
-    const teamsData = teamsResult.data
+    const gamesData = results[0].data
+    const teamsData = results[1].data
+    const leaguesData = results[2].data
 
-    const leaguesResult = await APP.fetch("league")
-    const leaguesData = leaguesResult.data
 
     const tableBodyElm = document.querySelector(".games-table--body")
+    tableBodyElm.innerHTML = ""
 
     // add fetched team to the table
     gamesData.forEach(game => addGame({ game, teams: teamsData, leagues: leaguesData }))
@@ -749,6 +740,7 @@ async function gamesTabInit() {
             svaeBtn.removeAttribute("disabled")
 
             if (gameResult.success == true) {
+                isFirstEnter[0] = true
                 addNewGameBtn.removeAttribute("disabled")
                 tableBodyElm.removeChild(gameRowElem)
 
