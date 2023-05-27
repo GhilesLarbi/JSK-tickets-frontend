@@ -969,7 +969,8 @@ input[type="range"]::-moz-range-thumb {
 }
 
 
-.team-img img {
+.team-img img,
+.team-img svg {
   width: calc(var(--size) * .8);
   height: calc(var(--size) * .8);
   object-fit: contain;
