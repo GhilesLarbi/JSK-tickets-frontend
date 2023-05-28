@@ -960,6 +960,22 @@ body {
 
 
 /* ########################## */
+/* ##### bleachers tab ###### */
+/* ########################## */
+
+.bleachers-table--body td:nth-child(1) {
+    font-weight: 600;
+}
+
+.bleachers-table--body td:nth-child(4),
+.bleachers-table--head th:nth-child(4) {
+    text-align: center;
+    width: 12%;
+}
+
+
+
+/* ########################## */
 /* ####### RESPONSIVE ####### */
 /* ########################## */
 

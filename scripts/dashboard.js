@@ -31,6 +31,7 @@ function selectTab(i) {
         if (i == 0) statisticsTabInit()
         else if (i == 1) teamsTabInit()
         else if (i == 2) gamesTabInit()
+        else if (i == 3) bleachersTabInit()
     }
 }
 
@@ -409,6 +410,78 @@ function addGame(data, isFirstChild) {
 
 
 
+// generic add bleacher row function
+function addBleacher(data, isFirstChild) {
+
+    const tableBodyElm = document.querySelector(".bleachers-table--body")
+    const bleacherRowTemlate = `
+        <td>${data.type}</td>
+        <td><input class="table-input table-input__quantity" type="text" value="${data.quantity}" placeholder="Quantity"></td>
+        <td><input class="table-input table-input__price" type="text" value="${data.price}" placeholder="Price"></td>
+        <td class="table--action-wrapper teams-table--action-wrapper">
+            <button class="btn btn_primary btn_small btn__save"><i class="fa-solid fa-save"></i>Update</button>
+            <button class="action-btn bleacher-action-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            <div class="dropdown ">
+                <button class="dropdown-link dropdown-link_highlight dropdown-link_edit"><i class="fa-solid fa-pen-to-square"></i> <span>Edit</span></button>
+            </div>
+        </td>
+    `
+
+    const bleacherRowElem = document.createElement("tr")
+    bleacherRowElem.classList.add("row")
+    // bleacherRowElem.classList.add("row__edit")
+    bleacherRowElem.innerHTML = bleacherRowTemlate
+
+    // ############################# show user dropdown ################################
+    const actionBtnElm = bleacherRowElem.querySelector(".bleacher-action-btn")
+    actionBtnElm.addEventListener("click", (e) => {
+        e.preventDefault()
+        toggleDropdown(actionBtnElm)
+    })
+
+
+    // edit game dropdown link
+    bleacherRowElem.querySelector(".dropdown-link_edit").addEventListener("click", () => {
+        bleacherRowElem.classList.add("row__edit")
+        toggleDropdown(actionBtnElm, "hide")
+    })
+
+    // update team data
+    const updateBtnElm = bleacherRowElem.querySelector(".btn__save")
+    updateBtnElm.addEventListener("click", async () => {
+        const quantityElem = bleacherRowElem.querySelector(".table-input__quantity")
+        const priceElem = bleacherRowElem.querySelector(".table-input__price")
+
+        updateBtnElm.setAttribute("disabled", "true")
+        const waitNot = new APP.Notification("Please wait...", "loading")
+        waitNot.push()
+
+        // // send data
+        const updatedBleacherResult = await APP.fetch(`bleacher/${data.type}`, { method: "PUT", body: {quantity : quantityElem.value, price : priceElem.value}, actor: "admin" })
+        const updatedBleacher = updatedBleacherResult.data
+
+        updateBtnElm.removeAttribute("disabled")
+        waitNot.pop()
+
+        if (updatedBleacherResult.success) {
+            isFirstEnter[0] = true
+            bleacherRowElem.classList.remove("row__edit")
+            quantityElem.value = updatedBleacher.quantity
+            priceElem.value = updatedBleacher.price
+        } else {
+            const errNot = new APP.Notification("Please check your inputs", "false")
+            errNot.push()
+            errNot.popAfter(3000)
+        }
+    })
+
+    if (isFirstChild) tableBodyElm.prepend(bleacherRowElem)
+    else tableBodyElm.appendChild(bleacherRowElem)
+}
+
+
+
+
 
 
 
@@ -759,6 +832,24 @@ async function gamesTabInit() {
 
         tableBodyElm.prepend(gameRowElem)
     })
+
+    wiatNot.pop()
+}
+
+
+
+async function bleachersTabInit() {
+    const wiatNot = new APP.Notification("Fetching bleachers data", "loading")
+    wiatNot.push()
+
+    const results = await APP.fetch("bleacher")
+    const bleachersData = results.data
+
+    const tableBodyElm = document.querySelector(".bleachers-table--body")
+    tableBodyElm.innerHTML = ""
+
+    // add fetched team to the table
+    bleachersData.forEach(bleacher => addBleacher(bleacher))
 
     wiatNot.pop()
 }

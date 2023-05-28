@@ -2,6 +2,48 @@ APP.addNavbar("..")
 APP.initial()
 APP.isLogedIn()
 
+
+
+function convertPdfToImageBlob(pdfBlob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+  
+      reader.onloadend = () => {
+        const arrayBuffer = reader.result;
+  
+        // Load the PDF using pdf.js
+        pdfjsLib.getDocument(arrayBuffer).promise.then((pdf) => {
+          const pageNumber = 1; // Set the desired page number
+          const scale = 1.5; // Set the desired scale factor
+  
+          // Load the page and render it as a canvas
+          pdf.getPage(pageNumber).then((page) => {
+            const viewport = page.getViewport({ scale });
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+  
+            const renderContext = {
+              canvasContext: context,
+              viewport: viewport
+            };
+  
+            page.render(renderContext).promise.then(() => {
+              // Convert the canvas to a Blob
+              canvas.toBlob((blob) => {
+                resolve(blob);
+              }, 'image/png');
+            }).catch(reject);
+          }).catch(reject);
+        }).catch(reject);
+      };
+  
+      reader.readAsArrayBuffer(pdfBlob);
+    });
+  }
+
+
 const ticketsElm = document.querySelector(".tickets")
 
 
@@ -13,8 +55,10 @@ async function addTicket(ticketData) {
                 <div class="ticket-options">
                     <button class="ticket-options-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                     <div class="dropdown">        
-                        <button class="dropdown-link dropdown-link_highlight download-btn"><i class="fa-solid fa-download"></i> <span>Download PDF</span></button>
-                        <button class="dropdown-link remove-btn"><i class="fa-solid fa-trash"></i> <span>Delete Ticket</span></button>
+                        <button class="dropdown-link download-btn"><i class="fa-solid fa-download"></i> <span>Download PDF</span></button>
+                        <button class="dropdown-link download-img-btn"><i class="fa-solid fa-download"></i> <span>Download PNG</span></button>
+                        <button class="dropdown-link download-qrcode-btn"><i class="fa-solid fa-download"></i> <span>QR code</span></button>
+                        <button class="dropdown-link dropdown-link_highlight remove-btn"><i class="fa-solid fa-trash"></i> <span>Delete Ticket</span></button>
                     </div>
                 </div>
 
@@ -111,17 +155,18 @@ async function addTicket(ticketData) {
     }
 
 
+    async function downloadTicket(fileType){
 
-
-    const downloadBtnElm = ticketElm.querySelector(".download-btn")
-
-    downloadBtnElm.addEventListener("click", async () => {
         toggleDropdown("hide")
         downloadBtnElm.setAttribute("disabled", "true")
         const waitNot = new APP.Notification("Please wait", "loading")
         waitNot.push()
 
-        const fileRes = await APP.fetch(`ticket/${ticketData.id}/pdf`, { type: "blob" })
+        let fileRes
+        if (fileType == "PDF" || fileType == "PNG") fileRes = await APP.fetch(`ticket/${ticketData.id}/pdf`, { type: "blob" })
+        else if (fileType == "QR") fileRes = await APP.fetch(`ticket/${ticketData.id}/qrcode`, { type: "blob" })
+
+        if (fileType == "PNG") fileRes = await convertPdfToImageBlob(fileRes)
 
         const fileUrl = window.URL.createObjectURL(fileRes);
 
@@ -129,14 +174,33 @@ async function addTicket(ticketData) {
         linkElm.style.opacity = "0"
         linkElm.style.position = "absolute"
         linkElm.href = fileUrl
-        linkElm.download = "ticket.pdf"
+
+        if (fileType == "PDF") linkElm.download = "ticket.pdf"
+        else if (fileType == "PNG") linkElm.download = "ticket.png"
+        else if (fileType == "QR") linkElm.download = "qrcode.png"
+
+
         document.body.appendChild(linkElm)
         linkElm.click()
         linkElm.remove()
         downloadBtnElm.removeAttribute("disabled")
 
         waitNot.pop()
-    })
+    }
+
+
+
+
+    const downloadBtnElm = ticketElm.querySelector(".download-btn")
+    downloadBtnElm.addEventListener("click", ()=> {downloadTicket("PDF")})
+
+
+    const downloadImgBtn = ticketElm.querySelector(".download-img-btn")
+    downloadImgBtn.addEventListener("click", ()=> {downloadTicket("PNG")})
+
+
+    const downloadQrCodeBtn = ticketElm.querySelector(".download-qrcode-btn")
+    downloadQrCodeBtn.addEventListener("click", ()=> {downloadTicket("QR")})
     
 
 
