@@ -1,6 +1,6 @@
 APP.initial()
 APP.addSwitchThemeBtn(document.body)
-APP.isLogedIn("admin")
+APP.isLogedIn("admin", {redirect : true})
 
 
 // tab control

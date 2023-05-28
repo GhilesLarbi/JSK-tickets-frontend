@@ -139,8 +139,14 @@ const APP = (function () {
 
     }
 
+    function redirectToLogin(actor) {
+        if (!actor) actor = "user"
+        const pagesIndex = window.location.pathname.indexOf("/pages")
+        window.location.href = window.location.origin + window.location.pathname.slice(0, pagesIndex) + "/pages/login.html?actor="+actor
+    }
+
     // check if token is valid
-    async function isLogedIn(actor) {
+    async function isLogedIn(actor, options) {
         if (actor == "admin") tok = "adminToken"
         else tok = "token"
 
@@ -151,6 +157,8 @@ const APP = (function () {
                     localStorage.removeItem(tok)
                     localStorage.removeItem(`firstLogin${actor}`)
                     document.body.classList.remove("loged-in")
+                    if (options && options.redirect) redirectToLogin(actor)
+
                 } else if (data.success) {
                     if (!data.data.isEmailConfirmed) {
                         document.querySelector(".dropdown-link_email").classList.remove("dropdown-link_hide")
@@ -163,7 +171,10 @@ const APP = (function () {
                     }
                 }
             })
-        } else localStorage.removeItem("firstLogin")
+        } else {
+            localStorage.removeItem("firstLogin")
+            if (options && options.redirect) redirectToLogin(actor)
+        }
     }
 
 
@@ -235,7 +246,7 @@ const APP = (function () {
             </div>
             <div class="seperator"></div>
             <a href="${rootPath}/pages/login.html?page=login" class="primary-header-login-btn btn btn_primary btn_small">Login
-              <i class="fa-solid fa-arrow-right"></i>
+              <i class="fa-solid fa-user"></i>
             </a>
     
             <div class="primary-header-user">

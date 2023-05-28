@@ -44,6 +44,7 @@ loginLinkElm.addEventListener("click", e => {
     switchForms(0)
 })
 
+
 // ################ LOGIN #####################
 
 loginBtnElm.addEventListener("click", async () => {
@@ -85,11 +86,16 @@ loginBtnElm.addEventListener("click", async () => {
     // save the token to use it else where
     if (endPoint == "admin") {
         localStorage.setItem("adminToken", data.data.token)
-        window.location.href = window.location.href.replace("login.html", "dashboard.html")
+
+        const pagesIndex = window.location.pathname.indexOf("/pages")
+        window.location.href = window.location.origin + window.location.pathname.slice(0, pagesIndex) + "/pages/dashboard.html"
+        // window.location.href = window.location.href.replace("login.html", "dashboard.html")
     }
     else {
         localStorage.setItem("token", data.data.token)
-        window.location.href = window.location.href.replace("/pages/login.html", "")
+        const pagesIndex = window.location.pathname.indexOf("/pages")
+        window.location.href = window.location.origin + window.location.pathname.slice(0, pagesIndex)
+        // window.location.href = window.location.href.replace("/pages/login.html", "")
     }
 })
 
@@ -237,5 +243,7 @@ createAccountBtnElm.addEventListener("click", async (e) => {
         return
     }
 
-    window.location.href = window.location.href.replace("/pages/login.html", "")
+    const pagesIndex = window.location.pathname.indexOf("/pages")
+    window.location.href = window.location.origin + window.location.pathname.slice(0, pagesIndex)
+    // window.location.href = window.location.href.replace("/pages/login.html", "")
 })

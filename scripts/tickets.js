@@ -1,6 +1,6 @@
 APP.addNavbar("..")
 APP.initial()
-APP.isLogedIn()
+APP.isLogedIn("user", {redirect : true})
 
 
 
@@ -55,9 +55,9 @@ async function addTicket(ticketData) {
                 <div class="ticket-options">
                     <button class="ticket-options-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                     <div class="dropdown">        
-                        <button class="dropdown-link download-btn"><i class="fa-solid fa-download"></i> <span>Download PDF</span></button>
-                        <button class="dropdown-link download-img-btn"><i class="fa-solid fa-download"></i> <span>Download PNG</span></button>
-                        <button class="dropdown-link download-qrcode-btn"><i class="fa-solid fa-download"></i> <span>QR code</span></button>
+                        <button class="dropdown-link download-btn"><i class="fa-solid fa-file-pdf"></i> <span>Download PDF</span></button>
+                        <button class="dropdown-link download-img-btn"><i class="fa-solid fa-file-image"></i> <span>Download PNG</span></button>
+                        <button class="dropdown-link download-qrcode-btn"><i class="fa-solid fa-qrcode"></i> <span>QR code</span></button>
                         <button class="dropdown-link dropdown-link_highlight remove-btn"><i class="fa-solid fa-trash"></i> <span>Delete Ticket</span></button>
                     </div>
                 </div>
