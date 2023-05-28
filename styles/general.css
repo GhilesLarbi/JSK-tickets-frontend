@@ -563,7 +563,7 @@ input[type="range"]::-moz-range-thumb {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 99;
 
   background-color: rgba(var(--clr-white), .9);
   visibility: hidden;
@@ -994,7 +994,7 @@ input[type="range"]::-moz-range-thumb {
   max-height: 50%;
   bottom: 2rem;
   right: 2rem;
-  z-index: 3;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -1024,7 +1024,7 @@ input[type="range"]::-moz-range-thumb {
 
 .notification_show {
   max-height: 10rem;
-  margin-top: 1rem;
+  margin-top: .4rem;
 }
 
 .notification_pop {

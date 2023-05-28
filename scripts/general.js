@@ -1,6 +1,6 @@
 const APP = (function () {
-    const HOSTNAME = "https://stadium-tickets-api.onrender.com"
-    // const HOSTNAME = "http://localhost:3000"
+    // const HOSTNAME = "https://stadium-tickets-api.onrender.com"
+    const HOSTNAME = "http://localhost:3000"
 
 
     let notificationsElm
@@ -90,7 +90,7 @@ const APP = (function () {
                     check your internet connection and try again later. If the problem persists, please contact support for further
                     assistance.</p>
             
-                <button class="btn btn_primary">Retry <i class="fa-solid fa-arrow-right"></i></button>
+                <button class="btn btn_primary">Retry <i class="fa-solid fa-rotate"></i></button>
             </div>
         `
 
@@ -344,7 +344,7 @@ const APP = (function () {
 
 
     // Let's whip up a custom fetch function.
-    async function fetch(url, opt) {
+    async function fetch(url, opt, rec) {
 
         // if no options provided use empty one
         if (!opt) opt = {}
@@ -393,8 +393,14 @@ const APP = (function () {
 
             // Let's wait for that retry button to get clicked, and then run this function again recursively.
             // That way, if we ain't got no connection, we'll just chill and wait until it's back, and then we'll keep on truckin'
+
+            if (rec) setTimeout(() => {retryBtnElm.removeAttribute("disabled")}, 2000);
+
             await retryBtnElm.waitForClick()
-            return await fetch(url, opt)
+
+            retryBtnElm.setAttribute("disabled", "true")
+
+            return await fetch(url, opt, true)
         }
 
 

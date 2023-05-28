@@ -1,3 +1,4 @@
+body::before,
 body::after {
     content: "";
     position: fixed;
@@ -5,8 +6,21 @@ body::after {
     right: 0;
     width: 50%;
     height: 100%;
+}
+
+
+body::before {
+    background-image: url(../images/img3.jpg);
+    background-position: 90% 30%;
+    background-size: cover;
+    z-index: -2;
+}
+
+
+body::after {
     background-color: rgb(var(--clr-primary));
     z-index: -1;
+    opacity: .3;
 }
 
 
@@ -26,13 +40,13 @@ body::after {
 
 /* ################ Theme switcher button ########################## */
 .switch-theme-container {
-    background-color: rgba(var(--clr-white), .1);
+    background-color: rgba(var(--clr-white), .6);
 }
 
 
 .primary-header-account {
-    color: rgb(var(--clr-white), .5);
-    background-color: rgba(var(--clr-white), .1);
+    color: rgb(var(--clr-primary), .9);
+    background-color: rgba(var(--clr-white), .6);
 }
 
 
@@ -162,8 +176,19 @@ body::after {
 
 
 @media (max-width: 46.875em) {
+    body::before,
     body::after {
         display: none;
+    }
+
+    .switch-theme-container {
+        background-color: rgba(var(--clr-primary), .1);
+    }
+    
+    
+    .primary-header-account {
+        color: rgb(var(--clr-primary), .9);
+        background-color: rgba(var(--clr-primary), .1);
     }
 
 
