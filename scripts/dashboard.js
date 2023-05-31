@@ -489,9 +489,15 @@ function addBleacher(data, isFirstChild) {
 // update compare chart
 async function compareChart(gameId) {
     document.querySelector(".card__compare").classList.add("card__loading-state")
+
     const bleachersResult = await APP.fetch("bleacher")
     const bleachers = bleachersResult.data
 
+    const maxQuantity = bleachers.reduce((maxObj, obj) => obj.quantity > maxObj.quantity ? obj : maxObj).quantity
+
+
+
+    // update bars
     const compareChartElm = document.querySelector(".compare-chart .bars")
     compareChartElm.innerHTML = ""
 
@@ -501,13 +507,16 @@ async function compareChart(gameId) {
 
         const barTemplate = `
             <div class="bar--wrapper">
-                <div style="height:${bleacher.quantity * 100 / 15000}%" data-value="${bleacher.quantity}" class="bar bar__s1"></div>
-                <div style="height:${gameStatByBleacher.freePlaces * 100 / 15000}%" data-value="${gameStatByBleacher.freePlaces}" class="bar bar__s2"></div>
+                <div style="height:${bleacher.quantity * 100 / maxQuantity}%" data-value="${bleacher.quantity}" class="bar bar__s1"></div>
+                <div style="height:${gameStatByBleacher.freePlaces * 100 / maxQuantity}%" data-value="${gameStatByBleacher.freePlaces}" class="bar bar__s2"></div>
                 <p class="bar--text">${bleacher.type}</p>
             </div>`
 
         compareChartElm.innerHTML += barTemplate
     })
+
+    // update axises
+    document.querySelectorAll(".axises .namber").forEach((n,i) => n.innerText = Math.floor(maxQuantity-i*(maxQuantity/4)))
 
     document.querySelector(".card__compare").classList.remove("card__loading-state")
 }

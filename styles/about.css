@@ -1,0 +1,293 @@
+.center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerr{
+    width: 100%;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.div{
+    width: 100%;
+    margin: 3rem 0 10rem 0;
+    background-color: rgba(var(--clr-white));
+    border-radius: 0 0 1rem 1rem;
+}
+.image-container{
+    box-shadow: .5rem .5rem .1rem  rgba(var(--clr-accent));
+    width: 100%;
+    height: 15rem;
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    transition: all .3s;
+
+}
+.image-container:hover{
+    box-shadow: 1rem 1rem .1rem  rgba(var(--clr-accent));
+    height: 25rem;
+    transition: all .3s;
+}
+.image-container:hover .p{
+    max-height: 3rem;
+}
+.read-more-btn:hover .image-container{
+    height: 20rem;
+    transition: height .3s;
+}
+.image-container img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: blur(0px);
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transition: filter .3s;
+}
+.header{
+    position: absolute;
+    top: 40%;
+    width: 80%;
+    overflow: hidden;
+    height: 6rem;
+    align-self: center;
+    left: -100%;
+    z-index: 1;
+    font-size: 7rem;
+    font-family: 'Bebas Neue', sans-serif;
+    color: white;
+    text-shadow: .2rem .2rem .2rem rgb(14, 14, 14);
+    transition: left 0.3s, scale .7s;
+}
+
+.image-container:hover .header{
+    left: 10%;
+    scale: 1.25;
+    transition: left 0.3s, scale .7s;
+    cursor: default;
+    z-index: 10;
+}
+.image-container:hover .p{
+    transition: filter .3s;
+}
+.image-container:hover img{
+    filter: blur(2px);
+    transition: filter .3s;
+}
+.text-container{
+    text-align: center;
+    padding: 0 2rem;
+    position: relative;
+}
+.p{
+    /* padding: 3rem 0rem; */
+    text-align: justify;
+    font-size: 1.6rem;
+    max-height: 0rem; 
+    overflow: hidden;
+    position: relative;
+    filter: blur(2px);
+    line-height: 1.8rem;
+    transition: max-height .3s ,filter .5s ,padding .3s ;
+}
+.p strong{
+    font-size: 2rem;
+    font-weight: 700;
+}
+.p img{
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+.p.show{
+    padding: 3rem 0rem;
+    max-height: 300rem;
+    filter: blur(0);
+    transition:  max-height .7s ,filter .3s ,padding .3s ;
+}
+
+.read-more-btn{
+    background-color: rgba(var(--clr-primary));
+    width: 20rem;
+    color: rgba(var(--clr-white));
+    height: 3rem;
+    border-radius: .6rem;
+    position: absolute;
+    letter-spacing: 0;
+    font-size: 1.6rem;
+    bottom: -2rem;
+    z-index: 100;
+    left: calc(50% - 10rem);
+}
+.stadium{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.stadium-img{
+    position: relative;
+    width: 40rem;
+    height: 30rem;
+}
+.stadium-img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.stadium-text{
+    width: 30%;
+}
+.p2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+align-items: center;    justify-content: space-evenly;
+}
+@keyframes btnAnimation {
+    0%{
+        bottom: -3rem;
+    }
+    50%{
+        bottom: -3.2rem;
+    }
+    100%{
+        bottom: -3rem;
+    }
+}
+.read-more-btn.up i{
+    transform: rotate(180deg);
+}
+.poem-image{
+    width: 100%;
+    height: 0;
+    opacity: 0;
+    transition: opacity .3s, heigth .3s;
+}
+.poem-image.show{
+    opacity: 1;
+    height: 16rem;
+    transition: opacity 1s .5s,heigth .3s;
+}
+.poem-image img{
+    border-radius: 0 0 1rem 1rem;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+.image{
+    height: 25rem;
+    width: 15rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.image h3{
+    text-align: center;
+    text-shadow: .1rem .2rem .2rem rgba(var(--clr-white));
+    margin: 1rem 0;
+}
+.image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.swiper-wrapper{
+    margin-bottom: 7rem;
+    cursor: grab;
+}
+.punchline{
+    display: none;
+    animation: none;
+}
+
+/* responsive  */
+@media ((max-width : 1000px)) {
+    .header{
+        height: 100%;
+        font-size: 5rem;
+        top: 0%;
+    }
+
+}
+@media ((max-width : 800px)) {
+    .header{
+        left: 10%;
+    }
+    .image-container img{
+        filter: blur(1px);
+    }
+}
+@media ((max-width : 700px)) {
+    .poem-image img{
+        object-fit: contain;
+    }
+    .poem-image{
+        height: 30rem;
+    }
+    .p.show{
+        line-height: 2rem;
+        max-height: 900rem;
+    }
+    .image{
+        height: 20rem;
+        width: 10rem;
+    }
+    .read-more-btn{
+        width: 15rem;
+        font-size: 1.4rem;
+        left: calc(50% - 7.5rem);
+    }
+    
+}
+@media ((max-width : 450px)) {
+    .header{
+        font-size: 4rem;
+        left: 10%;
+    }
+    .image-container:hover .header{
+        left: 0%;
+        scale: none;
+        transition: none;
+        cursor: default;
+        z-index: 10;
+    }
+    .poem-image{
+        display: none;
+    }
+    .p strong{
+        font-size: 1.5rem;
+    }
+    .image-container img{
+        filter: blur(1px);
+    }
+    .p{
+        font-size: 1.5rem;
+    }
+    .image{
+        height: 15rem;
+        width: 5rem;
+    }
+    .read-more-btn{
+        width: 13rem;
+        font-size: 1.2rem;
+        height: 3rem;
+        left: calc(50% - 6.5rem);
+    }
+}
+@media ((max-width : 350px)) {
+    .image{
+        height: 13rem;
+        width: 3rem;
+        font-size: 1.2rem;
+    }
+}

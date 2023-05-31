@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSK: User</title>
+
+    <link rel="stylesheet" href="../styles/fontawesome.css">
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/user.css">
+
+
+    <script src="../scripts/general.js" defer></script>
+    <script src="../scripts/user.js" defer></script>
+
+</head>
+
+<body>
+    <main>
+       <div class="container">
+        <section class="all-params user-section">
+            <div class="left-side">
+                <div class="hamburger-btn">
+                    <div class="linee"></div>
+                    <div class="linee"></div>
+                </div>
+                <div class="element">
+                    <h3>My Account</h3>
+                    <div class="user-btn">  
+                        <button class="myprofile-btn clicked"><i class="fa-solid fa-lock"></i><p>My profile</p></button>
+                    </div>
+                    <div class="user-btn">
+                        <button class="changepassword-btn"><i class="fa-solid fa-user"></i><p>Change password</p> </button>
+                    </div>
+                </div>
+                <div class="element">
+                    <div class="line"></div>
+                    <div class="user-btn">
+                        <button class="logout-btn"><i class="fa-solid fa-right-from-bracket fa-rotate-180"></i><p>Log out</p></button>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="right-side-container">
+                <div class="right-side right-side1 show">
+                    <div class="header-right-side">
+                        <h1>my profile</h1>
+                        <div class="user-btn user-btn2">
+                            <button class="edit-btn"><i class="fa-solid fa-pen-to-square"></i><p>Edit profile</p> </button>
+                        </div>
+                    </div>
+                    <div class="info-container">
+                        <div class="info-left">
+                            <div class="info-left-item">
+                                <label for="username">Username:</label>
+                                <input class="username" type="text">
+                            </div>
+                            <div class="info-left-item">
+                                <label for="firstname">Firstname:</label>
+                                <input class="ipt firstname" type="text"> 
+                            </div>
+                            
+                            <div class="info-left-item">
+                                <label for="lastname">Lastname:</label>
+                                <input class="ipt lastname" type="text">  
+                            </div>
+                            
+                            <div class="info-left-item">
+                                <label for="email">Email:</label>
+                                <input class="ipt email" type="email">
+                            </div>
+                            <div class="info-left-item">
+                                <label for="phone">Phone:</label>
+                                <input class="ipt phone" type="number" oninput="limitCharacters(this, 10)">
+                            </div>
+                        </div>
+                          
+                        <div class="info-right">
+                            <!-- <div class="profile-image">
+                                <label for="img"><i class="fa-solid fa-camera"></i></label>
+                                <input type="file" id="img" accept="image/*">
+                            </div> -->
+                            <!-- <div class="info-right-item">
+                                <h3>Gender :</h3> <br>
+                                <input type="radio" id="male" name="gender" value="Male">
+                                <label for="male">Male</label><br>
+                                <input type="radio" id="female" name="gender" value="Female">
+                                <label for="female">Female</label>  
+                            </div> -->
+                        </div>
+                        
+                    </div>
+                    <div class="user-btn user-btn2">
+                        <button class="submit-btn"><i class="fa-solid fa-pen-to-square"></i><p>Submit changes</p> </button>
+                    </div>
+                </div>
+                <div class="right-side right-side2">
+                    <div class="header-right-side">
+                        <h1>Change password</h1>
+                    </div>
+                    <div class="elements-container testt">
+                        <input id="old-pass" type="password" placeholder="old password">
+                        <input id="new-pass" type="password" placeholder="new password">
+                        <input id="confirm-pass" type="password" placeholder="confirm new password">
+                        <div class="user-btn user-btn2">
+                            <button class="edit-btn edit-btn2"><i class="fa-solid fa-pen-to-square"></i><p>Confirm</p> </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="right-side right-side3">
+                    <div class="header-right-side">
+                        <h1>My reservations</h1>
+                    </div>
+                    <div class="elements-container"> -->
+                        <!-- the reservations  -->
+                    <!-- </div>
+                </div> -->
+                <!-- <div class="right-side right-side4">
+                    <div class="header-right-side">
+                        <h1>History</h1>
+                    </div>
+                    <div class="info-container table-wrapper">
+                        <table class="history-table">
+                            <thead>
+                                <tr>
+                                    <th><h3>Event name</h3></th>
+                                    <th><h3>Date and hour</h3></th>
+                                    <th><h3>Total</h3></th>
+                                    <th><h3>Download</h3></th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <div class="table-body">
+                                    <tr>
+                                        <td>jsk vs mca</td>
+                                        <td>18:30 19/19/2002</td>
+                                        <td>2</td>
+                                        <td>
+                                           <div class="user-btn user-btn2">
+                                                <button class="edit-btn edit-btn2"><i class="fa-solid fa-download"></i><p>Download</p> </button>
+                                            </div> 
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>jsk vs mca</td>
+                                        <td>18:30 19/19/2002</td>
+                                        <td>2</td>
+                                        <td>
+                                           <div class="user-btn user-btn2">
+                                                <button class="edit-btn edit-btn2"><i class="fa-solid fa-download"></i><p>Download</p> </button>
+                                            </div> 
+                                        </td>
+                                        
+                                    </tr>
+                        
+                                </div>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div> -->
+            </div>
+            
+        </section>
+       </div>
+    </main>
+
+</body>
+
+</html>
